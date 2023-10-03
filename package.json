@@ -1,10 +1,10 @@
 {
-  "name": "mindrested",
+  "name": "mindrested-frontend",
   "version": "0.1.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/mouadlouhichi/mindrested"
+    "url": "https://github.com/mouadlouhichi/mindrested-frontend"
   },
   "author": {
     "name": "Mouad Louhichi",
