@@ -25,21 +25,21 @@ jobs:
       FACEBOOK_ID: ${{ secrets.FACEBOOK_ID }}
       FACEBOOK_SECRET: ${{ secrets.FACEBOOK_SECRET }}
     steps:
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
       - uses: actions/checkout@v3
       - run: echo "node_version=$(cat .github/nodejs.version)" >> $GITHUB_ENV
       - name: "use node ${{ env.node_version }}"
         uses: actions/setup-node@v3
         with:
           node-version: "${{ env.node_version }}"
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
+        run: npx playwright install --with-deps
       - name: Run Playwright tests
-        run: pnpm playwright test
+        run: npx playwright test
       - uses: actions/upload-artifact@v3
         if: always()
         with:
