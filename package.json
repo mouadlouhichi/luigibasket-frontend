@@ -45,6 +45,7 @@
     "lint:fix": "next lint --fix",
     "lint:i18n": "eslint --fix --ext .json --format node_modules/eslint-plugin-i18n-json/formatter.js src/i18n/messages",
     "lint:next": "next lint",
+    "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx}\"",
     "shadcn": "pnpm dlx shadcn-ui@latest add",
     "start": "next start",
     "storybook": "cross-env FORCE_COLOR=1 storybook dev -p 6006",

@@ -35,6 +35,9 @@ jobs:
       FACEBOOK_ID: ${{ secrets.FACEBOOK_ID }}
       FACEBOOK_SECRET: ${{ secrets.FACEBOOK_SECRET }}
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/checkout@v3
 
       - name: Set up node
@@ -43,7 +46,7 @@ jobs:
           node-version: "18.x"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Restore next build
         uses: actions/cache@v3
@@ -59,7 +62,7 @@ jobs:
         env:
           SKIP_BUILD_PRODUCT_REDIRECTS: 1
         # change this if your site requires a custom build command
-        run: yarn build
+        run: pnpm build
 
       # Here's the first place where next-bundle-analysis' own script is used
       # This step pulls the raw bundle stats for the current bundle

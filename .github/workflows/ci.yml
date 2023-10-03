@@ -1,5 +1,5 @@
 
-name: Build and Deploy to Digitalocean
+name: CI/CD Build and Deploy to Digitalocean
 
 permissions: write-all
 # Controls when the action will run. Triggers the workflow on push or pull request
