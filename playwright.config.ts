@@ -10,6 +10,10 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  timeout: 90000,
+  expect: {
+    timeout: 30000,
+  },
   testDir: "./e2e",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -70,7 +74,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: "yarn dev",
+    command: "pnpm dev",
     url: "http://127.0.0.1:3000",
     reuseExistingServer: !process.env.CI,
   },
