@@ -1,7 +1,7 @@
 import * as React from "react";
 import Skeleton, {
   SkeletonStyleProps,
-  SkeletonTheme
+  SkeletonTheme,
 } from "react-loading-skeleton";
 
 import "react-loading-skeleton/dist/skeleton.css";
@@ -26,7 +26,7 @@ const SkeletonComponent = ({
   height,
   color,
   containerClassName,
-  count
+  count,
 }: SkeletonProps) => {
   return (
     <SkeletonTheme borderRadius={borderRadius}>

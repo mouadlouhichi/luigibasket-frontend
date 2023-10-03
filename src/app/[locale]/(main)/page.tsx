@@ -27,7 +27,7 @@ function PageHome() {
                 {t.rich("description", {
                   code: (chunks) => (
                     <code className="font-mono text-primary-500">{chunks}</code>
-                  )
+                  ),
                 })}
               </p>
               <Button href="https://github.com/" className="mr-3">

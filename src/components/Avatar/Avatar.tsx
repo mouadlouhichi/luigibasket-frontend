@@ -18,7 +18,7 @@ const avatar = cva(
     "shadow-inner",
     "ring-1",
     "ring-white",
-    "dark:ring-neutral-900"
+    "dark:ring-neutral-900",
   ],
   {
     variants: {
@@ -27,27 +27,27 @@ const avatar = cva(
           "bg-primary-500",
           "text-white",
           "hover:enabled:bg-primary-700",
-          "font-normal"
-        ]
+          "font-normal",
+        ],
       },
       size: {
         sm: ["w-6", "h-6", "sm:w-8", "sm:h-8"],
         md: ["w-8", "h-8", "sm:w-9", "sm:h-9"],
         lg: ["w-10", "h-10", "sm:w-12", "sm:h-12"],
-        xl: ["w-32", "h-32"]
+        xl: ["w-32", "h-32"],
       },
       borderRadius: {
         "rounded-full": ["rounded-full"],
         "rounded-md": ["rounded-md"],
-        "rounded-lg": ["rounded-lg"]
-      }
+        "rounded-lg": ["rounded-lg"],
+      },
     },
     defaultVariants: {
       intent: "primary",
       size: "md",
-      borderRadius: "rounded-full"
-    }
-  }
+      borderRadius: "rounded-full",
+    },
+  },
 );
 
 export interface AvatarProps extends VariantProps<typeof avatar> {
@@ -72,13 +72,13 @@ const Avatar: FC<AvatarProps> = ({
   size,
   className,
   borderRadius = "rounded-full",
-  hasCheckedClass = "w-4 h-4 -top-0.5 -right-0.5"
+  hasCheckedClass = "w-4 h-4 -top-0.5 -right-0.5",
 }) => {
   const url = imgUrl || "";
   const name = userName || "John Doe";
   const _setBgColor = (name: string) => {
     const backgroundIndex = Math.floor(
-      name.charCodeAt(0) % avatarColors.length
+      name.charCodeAt(0) % avatarColors.length,
     );
     return avatarColors[backgroundIndex];
   };

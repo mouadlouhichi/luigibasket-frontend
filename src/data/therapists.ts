@@ -10,7 +10,7 @@ import { StayDataType } from "./types";
 const DEMO_STAY_LISTINGS = __stayListing.map((post, index): StayDataType => {
   //  ##########  GET CATEGORY BY CAT ID ######## //
   const category = DEMO_STAY_CATEGORIES.filter(
-    (taxonomy) => taxonomy.id === post.listingCategoryId
+    (taxonomy) => taxonomy.id === post.listingCategoryId,
   )[0];
 
   return {
@@ -20,7 +20,7 @@ const DEMO_STAY_LISTINGS = __stayListing.map((post, index): StayDataType => {
     isAds: !index ? true : post.isAds,
     author: DEMO_AUTHORS.filter((user) => user.id === post.authorId)[0],
     listingCategory: category,
-    href: post.href as Route
+    href: post.href as Route,
   };
 });
 

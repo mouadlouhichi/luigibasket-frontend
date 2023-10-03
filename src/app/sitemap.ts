@@ -11,14 +11,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/signup",
     "/account",
     "/account-billing",
-    "/account-password"
+    "/account-password",
   ].map((route) => ({
     url: absoluteUrl(route),
-    lastModified: new Date().toISOString()
+    lastModified: new Date().toISOString(),
   }));
 
   return [
-    ...routes
+    ...routes,
 
     // ...more routes
   ];

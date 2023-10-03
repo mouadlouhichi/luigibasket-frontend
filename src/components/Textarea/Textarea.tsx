@@ -14,25 +14,25 @@ const cvaConfig = cva(["block", "w-full", "bg-white"], {
         "dark:border-neutral-700",
         "dark:bg-neutral-900",
         "dark:focus:ring-primary-6000",
-        "dark:focus:ring-opacity-25"
-      ]
+        "dark:focus:ring-opacity-25",
+      ],
     },
     sizeType: {
-      md: ["px-4", "py-3"]
+      md: ["px-4", "py-3"],
     },
     rounded: {
-      "rounded-2xl": ["rounded-2xl"]
+      "rounded-2xl": ["rounded-2xl"],
     },
     font: {
-      base: ["text-sm", "font-normal"]
-    }
+      base: ["text-sm", "font-normal"],
+    },
   },
   defaultVariants: {
     intent: "primary",
     sizeType: "md",
     rounded: "rounded-2xl",
-    font: "base"
-  }
+    font: "base",
+  },
 });
 
 export interface TextareaProps
@@ -49,12 +49,12 @@ export interface TextareaProps
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     { className = "", sizeType, intent, rounded, font, children, ...args },
-    ref
+    ref,
   ) => {
     return (
       <textarea
         className={twMerge(
-          cvaConfig({ intent, sizeType, className, rounded, font })
+          cvaConfig({ intent, sizeType, className, rounded, font }),
         )}
         rows={4}
         ref={ref}
@@ -63,7 +63,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {children}
       </textarea>
     );
-  }
+  },
 );
 
 export default Textarea;

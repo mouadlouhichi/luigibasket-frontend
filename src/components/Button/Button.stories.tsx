@@ -11,38 +11,38 @@ const meta: Meta<typeof Button> = {
     underline: false,
     children: "Button",
     size: "md",
-    colorStyle: "primary"
+    colorStyle: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary", "secondary", "circle"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     size: {
       options: ["sm", "lg", "md"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     disabled: {
-      control: { type: "boolean" }
+      control: { type: "boolean" },
     },
     fontSize: {
       options: ["normal", "big", "bold"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     colorStyle: {
       options: ["primary", "secondary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
-  render: (args) => <Button {...args} />
+  render: (args) => <Button {...args} />,
 };
 
 export default meta;

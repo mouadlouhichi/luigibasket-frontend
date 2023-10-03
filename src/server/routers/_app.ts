@@ -6,7 +6,7 @@ import { userRouter } from "./subRouters/user.router";
 export const appRouter = router({
   user: userRouter,
   admin: adminRouter,
-  survey: surveyRouter
+  survey: surveyRouter,
 });
 
 // export type definition of API

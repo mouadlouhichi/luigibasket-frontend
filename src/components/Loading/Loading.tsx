@@ -5,18 +5,18 @@ import { twMerge } from "tailwind-merge";
 const cvaConfig = cva(["flex"], {
   variants: {
     intent: {
-      primary: ["bg-transparen"]
+      primary: ["bg-transparen"],
     },
     size: {
       sm: ["h-5 w-5"],
       md: ["h-6 w-6"],
-      lg: ["h-8 w-8"]
-    }
+      lg: ["h-8 w-8"],
+    },
   },
   defaultVariants: {
     intent: "primary",
-    size: "lg"
-  }
+    size: "lg",
+  },
 });
 
 export interface LoadingProps extends VariantProps<typeof cvaConfig> {
@@ -27,7 +27,7 @@ export interface LoadingProps extends VariantProps<typeof cvaConfig> {
 const Loading = ({
   intent = "primary",
   size = "sm",
-  className = "animate-spin -ml-1 mr-3"
+  className = "animate-spin -ml-1 mr-3",
 }: LoadingProps) => {
   return (
     <svg

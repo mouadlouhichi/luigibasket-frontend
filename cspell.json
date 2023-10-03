@@ -167,11 +167,5 @@
     "обліковки",
     "обліковок"
   ],
-  "ignorePaths": [
-    "**/*.txt",
-    ".next",
-    "build",
-    "dist",
-    "out"
-  ]
+  "ignorePaths": ["**/*.txt", ".next", "build", "dist", "out"]
 }

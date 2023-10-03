@@ -28,7 +28,7 @@ export interface NavMobileProps {
 
 const NavMobile: React.FC<NavMobileProps> = ({
   data = NAVIGATION,
-  onClickClose
+  onClickClose,
 }) => {
   const _renderMenuChild = (item: NavItemType) => {
     return (
@@ -37,7 +37,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
           <Disclosure key={i.href + index} as="li">
             <Link
               href={{
-                pathname: i.href || undefined
+                pathname: i.href || undefined,
               }}
               className="mt-0.5 flex rounded-lg px-4 text-sm font-medium text-neutral-900 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800"
             >
@@ -82,7 +82,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
         <Link
           className="flex w-full rounded-lg px-4 text-sm font-medium uppercase tracking-wide hover:bg-neutral-100 dark:hover:bg-neutral-800"
           href={{
-            pathname: item.href || undefined
+            pathname: item.href || undefined,
           }}
         >
           <span

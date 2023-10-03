@@ -20,7 +20,7 @@ const Questions: FC<QuestionsProps> = ({
   question,
   index,
   nextStep,
-  control
+  control,
 }) => {
   const { setIsNextDisabled } = useSurveyStore();
 

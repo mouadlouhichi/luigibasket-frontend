@@ -9,7 +9,7 @@ import { HTMLAttributeReferrerPolicy, useEffect } from "react";
  */
 function useOutsideAlerter(
   ref: React.RefObject<HTMLDivElement>,
-  handleClickOutsideCallback: () => void
+  handleClickOutsideCallback: () => void,
 ) {
   useEffect(() => {
     /**
@@ -33,7 +33,7 @@ export default useOutsideAlerter;
 
 export function OutSideCloser(
   ref: React.RefObject<HTMLDivElement>,
-  close: () => void
+  close: () => void,
 ) {
   useOutsideAlerter(ref, () => {
     close();

@@ -16,8 +16,8 @@ function AccountPage() {
     {},
     {
       onError: (err) => toast.error(err.message),
-      refetchOnWindowFocus: false
-    }
+      refetchOnWindowFocus: false,
+    },
   );
 
   return (

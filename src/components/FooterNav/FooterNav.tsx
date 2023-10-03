@@ -8,7 +8,7 @@ import isInViewport from "@/utils/isInViewport";
 import {
   HeartIcon,
   MagnifyingGlassIcon,
-  UserCircleIcon
+  UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
 import MenuBar from "@/shared/MenuBar";
@@ -28,22 +28,22 @@ const NAV: NavItem[] = [
   {
     name: "Explore",
     link: "/" as PathName,
-    icon: MagnifyingGlassIcon
+    icon: MagnifyingGlassIcon,
   },
   {
     name: "Wishlists",
     link: "/" as PathName,
-    icon: HeartIcon
+    icon: HeartIcon,
   },
   {
     name: "Log in",
     link: "/" as PathName,
-    icon: UserCircleIcon
+    icon: UserCircleIcon,
   },
   {
     name: "Menu",
-    icon: MenuBar
-  }
+    icon: MenuBar,
+  },
 ];
 
 const FooterNav = () => {

@@ -6,7 +6,7 @@ export const avatarImgs = [
   "https://uifaces.co/our-content/donated/1H_7AxP0.jpg",
   "https://randomuser.me/api/portraits/women/9.jpg",
   "https://images-na.ssl-images-amazon.com/images/M/MV5BYzg2NDY4MjAtZDBjNS00MGRhLWJkZDMtYWJkZDM1NWZiMzgyXkEyXkFqcGdeQXVyMTE1MzA3MTI@._V1_UX172_CR0,0,172,256_AL_.jpg",
-  "https://uifaces.co/our-content/donated/VUMBKh1U.jpg"
+  "https://uifaces.co/our-content/donated/VUMBKh1U.jpg",
 ];
 
 const personNames = [
@@ -27,7 +27,7 @@ const personNames = [
   "Anthony Wyatt",
   "Mike Orr",
   "Azul Hull",
-  "Derick Hubbard"
+  "Derick Hubbard",
 ];
 
 const tagNames = [
@@ -44,7 +44,7 @@ const tagNames = [
   "Javascript",
   "Vue",
   "Reactjs",
-  "Androind"
+  "Androind",
 ];
 
 const featuredImgs = [
@@ -62,7 +62,7 @@ const featuredImgs = [
   "https://images.pexels.com/photos/704971/pexels-photo-704971.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
   "https://images.pexels.com/photos/248547/pexels-photo-248547.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
   "https://images.pexels.com/photos/209977/pexels-photo-209977.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-  "https://images.pexels.com/photos/848618/pexels-photo-848618.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+  "https://images.pexels.com/photos/848618/pexels-photo-848618.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
 ];
 
 const imgHigtQualitys = [
@@ -74,7 +74,7 @@ const imgHigtQualitys = [
   "https://images.pexels.com/photos/4443477/pexels-photo-4443477.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   "https://images.pexels.com/photos/4273989/pexels-photo-4273989.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   "https://images.pexels.com/photos/4806731/pexels-photo-4806731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-  "https://images.pexels.com/photos/5499131/pexels-photo-5499131.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  "https://images.pexels.com/photos/5499131/pexels-photo-5499131.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
 ];
 
 const aTitles = [
@@ -90,7 +90,7 @@ const aTitles = [
   "in mollis nunc sed id semper risus in hendrerit gravida",
   "tellus integer feugiat scelerisque varius morbi enim nunc faucibus a",
   "eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci",
-  "non sodales neque sodales ut etiam sit amet nisl purus"
+  "non sodales neque sodales ut etiam sit amet nisl purus",
 ];
 
 function _getTitleRd() {
@@ -121,5 +121,5 @@ export {
   _getAvatarRd,
   _getImgHightQualityRd,
   _getTitleRd,
-  _getPersonNameRd
+  _getPersonNameRd,
 };

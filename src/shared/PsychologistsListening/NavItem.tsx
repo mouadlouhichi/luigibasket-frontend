@@ -19,7 +19,7 @@ const NavItem: FC<NavItemProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick = () => {},
   isActive = false,
-  renderX
+  renderX,
 }) => {
   return (
     <li className="nc-NavItem relative" data-nc-id="NavItem">

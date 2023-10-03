@@ -7,22 +7,22 @@ const button = cva(
     "border-neutral-300",
     "bg-transparent",
     "text-primary-500",
-    "focus:ring-primary-500"
+    "focus:ring-primary-500",
   ],
   {
     variants: {
       intent: {
-        primary: ["border-neutral-200"]
+        primary: ["border-neutral-200"],
       },
       sizeType: {
-        md: ["h-6", "w-6"]
-      }
+        md: ["h-6", "w-6"],
+      },
     },
     defaultVariants: {
       intent: "primary",
-      sizeType: "md"
-    }
-  }
+      sizeType: "md",
+    },
+  },
 );
 
 export interface InputProps
@@ -52,7 +52,7 @@ const Radio = React.forwardRef<HTMLInputElement, InputProps>(
       onChange,
       ...args
     },
-    ref
+    ref,
   ) => {
     return (
       <div className="flex items-center">
@@ -74,7 +74,7 @@ const Radio = React.forwardRef<HTMLInputElement, InputProps>(
         </label>
       </div>
     );
-  }
+  },
 );
 
 export default Radio;

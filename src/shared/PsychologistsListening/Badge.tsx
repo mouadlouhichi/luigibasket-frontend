@@ -15,7 +15,7 @@ const Badge: FC<BadgeProps> = ({
   className = "relative",
   name,
   color = "blue",
-  href
+  href,
 }) => {
   const getColorClass = (hasHover = true) => {
     switch (color) {

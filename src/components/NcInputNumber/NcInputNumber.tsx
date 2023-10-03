@@ -20,7 +20,7 @@ const NcInputNumber: FC<NcInputNumberProps> = ({
   max,
   onChange,
   label,
-  desc
+  desc,
 }) => {
   const [value, setValue] = useState(defaultValue);
 

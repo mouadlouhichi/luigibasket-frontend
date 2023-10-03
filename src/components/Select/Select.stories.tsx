@@ -8,27 +8,27 @@ const meta: Meta<typeof Select> = {
   args: {
     className: "",
     sizeType: "md",
-    intent: "primary"
+    intent: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     sizeType: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
-  render: (args) => <Select {...args} />
+  render: (args) => <Select {...args} />,
 };
 
 export default meta;

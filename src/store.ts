@@ -18,7 +18,7 @@ const useAppStore = create<initialState>((set) => ({
   setCurrentLanguage: (language: string) =>
     set((state) => ({ ...state, language })),
   user: null,
-  setUser: (user: User) => set((state) => ({ ...state, user }))
+  setUser: (user: User) => set((state) => ({ ...state, user })),
 }));
 
 /* const useFeedbackStore = create<initialState>((set) => ({

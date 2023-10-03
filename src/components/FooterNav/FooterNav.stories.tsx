@@ -5,13 +5,13 @@ import FooterNav from "./FooterNav";
 const meta: Meta<typeof FooterNav> = {
   title: "FooterNav",
   component: FooterNav,
-  args: {}
+  args: {},
 };
 
 type Story = StoryObj<typeof FooterNav>;
 
 export const Default: Story = {
-  render: (args: any) => <FooterNav {...args} />
+  render: (args: any) => <FooterNav {...args} />,
 };
 
 export default meta;

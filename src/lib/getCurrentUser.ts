@@ -14,11 +14,11 @@ export const isAdmin = async (userId?: string) => {
   const { userType } =
     (await db.user.findFirst({
       where: {
-        id: userId
+        id: userId,
       },
       select: {
-        userType: true
-      }
+        userType: true,
+      },
     })) || {};
 
   return userType === UserType.Admin;

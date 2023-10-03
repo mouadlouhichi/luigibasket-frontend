@@ -69,7 +69,7 @@ import {
   Volume2,
   VolumeX,
   Wallet,
-  X
+  X,
 } from "lucide-react";
 
 export const ImageSvgIcons = {
@@ -82,7 +82,7 @@ export const ImageSvgIcons = {
   WishlistSvg: <Image src={wishlistSvg} alt="whishlist" />,
   HelpSvg: <Image src={helpSvg} alt="help" />,
   HomeSvg: <Image src={homeSvg} alt="home" />,
-  AddImage: <Image src={addImage} alt="add image" />
+  AddImage: <Image src={addImage} alt="add image" />,
 };
 export type Icons = LucideIcon;
 
@@ -145,7 +145,7 @@ export {
   ImageIcon,
   Shirt,
   Footprints,
-  HardHat
+  HardHat,
 };
 
 type XTwitterIconProps = {

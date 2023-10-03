@@ -9,7 +9,7 @@ export default function LoglibAnalytics() {
   return (
     <Loglib
       config={{
-        id: loglibSiteId
+        id: loglibSiteId,
       }}
     />
   );

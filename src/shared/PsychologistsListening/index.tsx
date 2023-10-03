@@ -28,7 +28,7 @@ const PsychologistsListening: FC<PsychologistsListeningProps> = ({
   subHeading = "Explore our skilled psychiatrists, What type of therapy are you seeking?",
   headingIsCenter,
   tabs = ["Individual", "Couples", "Family", "Child", "Adolescent", "Adult"],
-  cardType = "card2"
+  cardType = "card2",
 }) => {
   return (
     <div className="nc-SectionGridFeaturePlaces relative">

@@ -25,7 +25,7 @@ interface Props {
 export default function AvatarDropdown({
   className = "",
   user,
-  isMobile = false
+  isMobile = false,
 }: Props) {
   const [loading, SetLoading] = useState<boolean>(false);
   const ref = useRef(null);

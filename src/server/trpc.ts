@@ -1,8 +1,7 @@
 import { Session } from "next-auth";
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
+import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
-
 import superjson from "superjson";
 import { ZodError } from "zod";
 
@@ -22,15 +21,13 @@ interface CreateContextOptions {
 export const createContextInner = async (opts: CreateContextOptions) => {
   return {
     session: opts.session,
-    prisma: db
+    prisma: db,
   };
 };
-
 
 export async function createContext(session: Session | null) {
   return { user: session?.user, prisma: db, session };
 }
-
 
 type Context = inferAsyncReturnType<typeof createContext>;
 // Avoid exporting the entire t-object
@@ -53,10 +50,10 @@ const t = initTRPC.context<Context>().create({
         zod:
           error.cause instanceof ZodError
             ? error.cause.flatten().fieldErrors
-            : null
-      }
+            : null,
+      },
     };
-  }
+  },
 });
 
 // Base router and procedure helpers

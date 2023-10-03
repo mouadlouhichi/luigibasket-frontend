@@ -2,12 +2,12 @@
  * @see https://youtu.be/qCLV0Iaq9zU
  */
 
+import { getServerSession } from "next-auth";
 import { authOption } from "@/lib/authOptions";
+import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+
 import { appRouter } from "@/server/routers/_app";
 import { createContext } from "@/server/trpc";
-import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { getServerSession } from "next-auth";
-
 
 const handler = async (req: Request) => {
   const session = await getServerSession(authOption());

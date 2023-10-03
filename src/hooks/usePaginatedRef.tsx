@@ -18,7 +18,7 @@ const usePaginatedRef = ({ hasNextPage, fetchNextPage }: Props) => {
   }, [inView]);
 
   return {
-    viewRef: ref
+    viewRef: ref,
   };
 };
 

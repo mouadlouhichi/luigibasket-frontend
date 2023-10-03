@@ -17,8 +17,8 @@ export const appts = {
     youtube: "@mindrested_maroc",
     facebook: "mindrested_maroc",
     twitter: "mindrested_maroc",
-    instagram: "mindrested_maroc"
-  })
+    instagram: "mindrested_maroc",
+  }),
 };
 
 export default appts;
@@ -29,11 +29,11 @@ const links = {
   twitter: "https://x.com/mindrested_maroc",
   youtube: "https://youtube.com/mindrested_maroc",
   instagram: "https://instagram.com/mindrested_maroc",
-  facebook: "https://facebook.com/groups/bleverse"
+  facebook: "https://facebook.com/groups/bleverse",
 };
 
 export const contactConfig = {
-  email: "contact.mindrested@gmail.com"
+  email: "contact.mindrested@gmail.com",
 };
 
 // ========================================================
@@ -65,7 +65,7 @@ export const ROLES = [
   OWNER_ROLE,
   ADMIN_ROLE,
   Therapist_ROLE,
-  GUEST_ROLE
+  GUEST_ROLE,
 ] as const;
 
 export const POLICIES = {
@@ -111,19 +111,19 @@ export const POLICIES = {
   COMMENT_DELETE: "comment:delete",
   POST_CREATE: "post:create",
   POST_READ: "post:read",
-  POST_UPDATE: "post:update"
+  POST_UPDATE: "post:update",
 } as const;
 // ======================= default features===========================
 
 export const defaultFeatures = {
   internationalizationEnabled: true,
   themeToggleEnabled: true,
-  authEnabled: true
+  authEnabled: true,
 };
 
 export const settings = {
   internationalizationEnabled: true,
-  themeToggleEnabled: true
+  themeToggleEnabled: true,
 };
 
 export const siteConfig = {
@@ -136,10 +136,10 @@ export const siteConfig = {
     name: "MindRested",
     link: "https://www.mindrested.com",
     email: "contact@mindrested.com",
-    twitter: "@mindrested_maroc"
+    twitter: "@mindrested_maroc",
   },
   handles: {
-    twitter: "@mindrested_maroc"
+    twitter: "@mindrested_maroc",
   },
   keywords: [
     "online therapy",
@@ -171,16 +171,16 @@ export const siteConfig = {
     "personalized therapy",
     "professional therapists",
     "therapeutic resources",
-    "self-help tools"
+    "self-help tools",
   ],
   url: {
     base: baseUrl,
-    author: REPOSITORY_OWNER
+    author: REPOSITORY_OWNER,
   },
   ogImage: `${baseUrl}/og-image.png`,
   mainNav: NAVIGATION,
   links,
-  footerNav: FOOTER_NAVIGATION
+  footerNav: FOOTER_NAVIGATION,
 };
 
 // ========================================================
@@ -190,7 +190,7 @@ export const heroHeader: HeroHeader = {
   header2: `Helps Build Great eCommerce & SaaS Faster`,
   subheader: `shadcn/ui, Link, App Router, TypeScript, T3, Stripe, Clerk, Tailwind,
   Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons,
-  etc.`
+  etc.`,
 };
 
 export const featureCards: ContentSection = {
@@ -199,17 +199,17 @@ export const featureCards: ContentSection = {
   content: [
     {
       text: `Next.js`,
-      subtext: `The React Framework`
+      subtext: `The React Framework`,
     },
     {
       text: `shadcn/ui`,
-      subtext: `Beautifully Designed Components`
+      subtext: `Beautifully Designed Components`,
     },
     {
       text: `Vercel`,
-      subtext: `Develop. Preview. Ship.`
-    }
-  ]
+      subtext: `Develop. Preview. Ship.`,
+    },
+  ],
 };
 
 export const features: ContentSection = {
@@ -218,17 +218,17 @@ export const features: ContentSection = {
   content: [
     {
       text: `SEO Optimized`,
-      subtext: `Improved website visibility on search engines`
+      subtext: `Improved website visibility on search engines`,
     },
     {
       text: `Highly Performant`,
-      subtext: `Fast loading times and smooth performance`
+      subtext: `Fast loading times and smooth performance`,
     },
     {
       text: `Easy Customization`,
-      subtext: `Change your content and layout with little effort`
-    }
-  ]
+      subtext: `Change your content and layout with little effort`,
+    },
+  ],
 };
 
 // ========================================================
@@ -238,18 +238,18 @@ export const loginSocials = [
     name: "Continue with Facebook",
     href: "#",
     icon: ImageSvgIcons.FacebookSvg,
-    provider: "facebook"
+    provider: "facebook",
   },
   {
     name: "Continue with Twitter",
     href: "#",
     icon: ImageSvgIcons.TwitterSvg,
-    provider: "linkedin"
+    provider: "linkedin",
   },
   {
     name: "Continue with Google",
     href: "#",
     icon: ImageSvgIcons.GoogleSvg,
-    provider: "google"
-  }
+    provider: "google",
+  },
 ];

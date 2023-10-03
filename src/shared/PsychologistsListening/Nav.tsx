@@ -9,7 +9,7 @@ export interface NavProps {
 const Nav: FC<NavProps> = ({
   containerClassName = "",
   className = "",
-  children
+  children,
 }) => {
   return (
     <nav className={`nc-Nav ${containerClassName}`} data-nc-id="Nav">

@@ -8,27 +8,27 @@ const meta: Meta<typeof CustomSelect> = {
   args: {
     className: "",
     sizeType: "md",
-    intent: "primary"
+    intent: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     sizeType: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof CustomSelect>;
 
 export const Default: Story = {
-  render: (args) => <CustomSelect {...args} />
+  render: (args) => <CustomSelect {...args} />,
 };
 
 export default meta;

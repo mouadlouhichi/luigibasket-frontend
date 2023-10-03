@@ -29,6 +29,6 @@ export const surveySchema = z.object({
     emailVerified: z.date().nullable(),
     image: z.string().nullable(),
     hasSurvey: z.boolean(),
-    userType: z.string()
-  })
+    userType: z.string(),
+  }),
 });

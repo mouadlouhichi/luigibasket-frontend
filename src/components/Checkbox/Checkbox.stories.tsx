@@ -8,27 +8,27 @@ const meta: Meta<typeof Checkbox> = {
   args: {
     className: "",
     sizeType: "md",
-    intent: "primary"
+    intent: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     size: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Checkbox>;
 
 export const Default: Story = {
-  render: (args) => <Checkbox {...args} />
+  render: (args) => <Checkbox {...args} />,
 };
 
 export default meta;

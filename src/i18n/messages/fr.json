@@ -197,6 +197,45 @@
     "pricing": "tarification",
     "tools": "outils"
   },
+  "islands": {
+    "command": {
+      "dark": "Sombre",
+      "light": "Clair",
+      "system": "Système",
+      "theme": "Thème",
+      "tools": "Fonctionnalités"
+    },
+    "copy-button": {
+      "copied": "Copié dans le presse-papiers !",
+      "copy": "Copier dans le presse-papiers"
+    },
+    "footer": "Développé par {author}. Le code source est disponible sur {github}.",
+    "links": {
+      "github": "Mon profil GitHub",
+      "twitter": "Mon profil Twitter"
+    },
+    "main": {
+      "about": "à propos",
+      "github": "github",
+      "tools": "fonctionnalités",
+      "twitter": "twitter"
+    },
+    "pricing": {
+      "toast": {
+        "description": "Ce projet est open source et gratuit à utiliser. 🥳",
+        "title": "C'est gratuit ! 😜"
+      }
+    },
+    "search": {
+      "placeholder": "Tapez une commande ou recherchez",
+      "title": "Rechercher..."
+    },
+    "toast": {
+      "error": "Erreur",
+      "success": "Succès",
+      "warning": "Avertissement"
+    }
+  },
   "landing": {
     "features": {
       "clock": {
@@ -248,45 +287,6 @@
       "linkText": "Accéder à la liste"
     },
     "title": "Découvrez les outils primordiaux pour React, Next.js et au-delà. \nConçu spécialement pour vous."
-  },
-  "islands": {
-    "command": {
-      "dark": "Sombre",
-      "light": "Clair",
-      "system": "Système",
-      "theme": "Thème",
-      "tools": "Fonctionnalités"
-    },
-    "copy-button": {
-      "copied": "Copié dans le presse-papiers !",
-      "copy": "Copier dans le presse-papiers"
-    },
-    "footer": "Développé par {author}. Le code source est disponible sur {github}.",
-    "links": {
-      "github": "Mon profil GitHub",
-      "twitter": "Mon profil Twitter"
-    },
-    "main": {
-      "about": "à propos",
-      "github": "github",
-      "tools": "fonctionnalités",
-      "twitter": "twitter"
-    },
-    "pricing": {
-      "toast": {
-        "description": "Ce projet est open source et gratuit à utiliser. 🥳",
-        "title": "C'est gratuit ! 😜"
-      }
-    },
-    "search": {
-      "placeholder": "Tapez une commande ou recherchez",
-      "title": "Rechercher..."
-    },
-    "toast": {
-      "error": "Erreur",
-      "success": "Succès",
-      "warning": "Avertissement"
-    }
   },
   "meta": {
     "description": "Starter Next.js 13",

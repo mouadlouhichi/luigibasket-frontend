@@ -8,27 +8,27 @@ const meta: Meta<typeof Loading> = {
   args: {
     className: "animate-spin -ml-1 mr-3",
     size: "md",
-    intent: "primary"
+    intent: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     size: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Loading>;
 
 export const Default: Story = {
-  render: (args) => <Loading {...args} />
+  render: (args) => <Loading {...args} />,
 };
 
 export default meta;

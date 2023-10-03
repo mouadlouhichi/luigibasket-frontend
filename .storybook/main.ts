@@ -3,19 +3,19 @@ import type { StorybookConfig } from "@storybook/nextjs";
 const config: StorybookConfig = {
   stories: [
     "../src/components/**/*.stories.mdx",
-    "../src/components/**/*.stories.@(js|jsx|ts|tsx)"
+    "../src/components/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions"
+    "@storybook/addon-interactions",
   ],
   framework: {
     name: "@storybook/nextjs",
-    options: {}
+    options: {},
   },
   docs: {
-    autodocs: "tag"
+    autodocs: "tag",
   },
   typescript: {
     check: false,
@@ -24,14 +24,14 @@ const config: StorybookConfig = {
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: (prop) =>
-        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true
-    }
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+    },
   },
   staticDirs: [
     {
       from: "../src/fonts",
-      to: "src/fonts"
-    }
-  ]
+      to: "src/fonts",
+    },
+  ],
 };
 export default config;

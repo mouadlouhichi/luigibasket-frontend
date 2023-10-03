@@ -8,27 +8,27 @@ const meta: Meta<typeof Skeleton> = {
   args: {
     className: "",
     size: "md",
-    intent: "primary"
+    intent: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     size: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Skeleton>;
 
 export const Default: Story = {
-  render: (args) => <Skeleton {...args} />
+  render: (args) => <Skeleton {...args} />,
 };
 
 export default meta;

@@ -8,8 +8,8 @@ export const userRouter = router({
     return ctx.prisma.user.findFirst({
       where: {
         // 3. The id of the current user is extracted from the session data.
-        id: ctx.session.user.id
-      }
+        id: ctx.session.user.id,
+      },
     });
-  })
+  }),
 });

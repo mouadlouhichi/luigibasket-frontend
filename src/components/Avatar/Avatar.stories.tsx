@@ -15,46 +15,46 @@ const meta: Meta<typeof Avatar> = {
     size: "md",
     className: "",
     borderRadius: "rounded-full",
-    hasCheckedClass: "w-4 h-4 -top-0.5 -right-0.5"
+    hasCheckedClass: "w-4 h-4 -top-0.5 -right-0.5",
   },
   argTypes: {
     radius: {
-      control: { type: "text" }
+      control: { type: "text" },
     },
     imgUrl: {
-      control: { type: "text" }
+      control: { type: "text" },
     },
     userName: {
-      control: { type: "text" }
+      control: { type: "text" },
     },
     hasChecked: {
-      control: { type: "boolean" }
+      control: { type: "boolean" },
     },
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     size: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
+      control: { type: "text" },
     },
     borderRadius: {
       options: ["rounded-full", "rounded-md", "rounded-lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     hasCheckedClass: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Avatar>;
 
 export const Default: Story = {
-  render: (args) => <Avatar {...args} />
+  render: (args) => <Avatar {...args} />,
 };
 
 export default meta;

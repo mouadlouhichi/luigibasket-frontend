@@ -76,40 +76,40 @@ export const surveyData: Survey = {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "18-24",
-                value: "18-24"
+                value: "18-24",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "25-34",
-                value: "25-34"
+                value: "25-34",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "35-44",
-                value: "35-44"
+                value: "35-44",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "45-54",
-                value: "45-54"
+                value: "45-54",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "55-64",
-                value: "55-64"
+                value: "55-64",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "65+",
-                value: "65+"
-              }
-            ]
-          }
+                value: "65+",
+              },
+            ],
+          },
         ],
         [
           {
@@ -123,15 +123,15 @@ export const surveyData: Survey = {
                 id: ncNanoId(),
                 label: "Male",
                 value: "male",
-                defaultChecked: true
+                defaultChecked: true,
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Female",
-                value: "female"
-              }
-            ]
+                value: "female",
+              },
+            ],
           },
           {
             id: ncNanoId(),
@@ -144,39 +144,39 @@ export const surveyData: Survey = {
                 id: ncNanoId(),
                 defaultChecked: true,
                 label: "Student",
-                value: "student"
+                value: "student",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Employee",
-                value: "employee"
+                value: "employee",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Self Employed",
-                value: "self-employed"
+                value: "self-employed",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Unemployed",
-                value: "unemployed"
+                value: "unemployed",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Retired",
-                value: "retired"
+                value: "retired",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Other",
-                value: "other"
-              }
-            ]
+                value: "other",
+              },
+            ],
           },
           {
             id: ncNanoId(),
@@ -189,42 +189,42 @@ export const surveyData: Survey = {
                 id: ncNanoId(),
                 defaultChecked: true,
                 label: "High School",
-                value: "high-school"
+                value: "high-school",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Bachelor's degree",
-                value: "bachelor-degree"
+                value: "bachelor-degree",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Master's degree",
-                value: "master-degree"
+                value: "master-degree",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Doctorate",
-                value: "doctorate"
+                value: "doctorate",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Undergraduate",
-                value: "undergraduate"
+                value: "undergraduate",
               },
               {
                 id: ncNanoId(),
                 defaultChecked: false,
                 label: "Prefer not to answer",
-                value: "none"
-              }
-            ]
-          }
-        ]
-      ]
+                value: "none",
+              },
+            ],
+          },
+        ],
+      ],
     },
     {
       id: ncNanoId(),
@@ -242,10 +242,10 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -259,10 +259,10 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -276,10 +276,10 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -293,33 +293,33 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Daily",
-              value: "daily"
+              value: "daily",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Weekly",
-              value: "weekly"
+              value: "weekly",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Monthly",
-              value: "monthly"
+              value: "monthly",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Rarely",
-              value: "rarely"
+              value: "rarely",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Never",
-              value: "never"
-            }
-          ]
+              value: "never",
+            },
+          ],
         },
         {
           id: ncNanoId(),
@@ -332,10 +332,10 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -348,10 +348,10 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -364,10 +364,10 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -381,10 +381,10 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -399,33 +399,33 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Referral from a doctor",
-              value: "referral-doctor"
+              value: "referral-doctor",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Referral from a friend/family member",
-              value: "referral-friend-family"
+              value: "referral-friend-family",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Online search",
-              value: "online-search"
+              value: "online-search",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Insurance provider directory",
-              value: "insurance-provider"
+              value: "insurance-provider",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Other",
-              value: "other"
-            }
-          ]
+              value: "other",
+            },
+          ],
         },
         {
           id: ncNanoId(),
@@ -440,35 +440,35 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Cost",
-              value: "cost"
+              value: "cost",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Stigma surrounding mental health",
-              value: "stigma"
+              value: "stigma",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Lack of time",
-              value: "lack-of-time"
+              value: "lack-of-time",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Difficulty finding a therapist/counselor",
-              value: "difficulty-finding"
+              value: "difficulty-finding",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Other",
-              value: "other"
-            }
-          ]
-        }
-      ]
+              value: "other",
+            },
+          ],
+        },
+      ],
     },
     {
       id: ncNanoId(),
@@ -486,10 +486,10 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -504,33 +504,33 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Anxiety",
-              value: "anxiety"
+              value: "anxiety",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Depression",
-              value: "depression"
+              value: "depression",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Relationship issues",
-              value: "relationship-issues"
+              value: "relationship-issues",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Trauma",
-              value: "trauma"
+              value: "trauma",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Other",
-              value: "other"
-            }
-          ]
+              value: "other",
+            },
+          ],
         },
         {
           id: ncNanoId(),
@@ -544,33 +544,33 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Video call",
-              value: "video-call"
+              value: "video-call",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Voice call",
-              value: "voice-call"
+              value: "voice-call",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Text chat",
-              value: "text-chat"
+              value: "text-chat",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Email",
-              value: "email"
+              value: "email",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Other",
-              value: "other"
-            }
-          ]
+              value: "other",
+            },
+          ],
         },
         {
           id: ncNanoId(),
@@ -585,37 +585,37 @@ export const surveyData: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Very comfortable",
-              value: "very-comfortable"
+              value: "very-comfortable",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Somewhat comfortable",
-              value: "somewhat-comfortable"
+              value: "somewhat-comfortable",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Neutral",
-              value: "neutral"
+              value: "neutral",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Somewhat uncomfortable",
-              value: "somewhat-uncomfortable"
+              value: "somewhat-uncomfortable",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Very uncomfortable",
-              value: "very-uncomfortable"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              value: "very-uncomfortable",
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
 
 export const surveySimple: Survey = {
@@ -640,10 +640,10 @@ export const surveySimple: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -656,10 +656,10 @@ export const surveySimple: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -673,10 +673,10 @@ export const surveySimple: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -690,10 +690,10 @@ export const surveySimple: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
         },
         {
           id: ncNanoId(),
@@ -708,33 +708,33 @@ export const surveySimple: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Referral from a doctor",
-              value: "referral-doctor"
+              value: "referral-doctor",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Referral from a friend/family member",
-              value: "referral-friend-family"
+              value: "referral-friend-family",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Online search",
-              value: "online-search"
+              value: "online-search",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Insurance provider directory",
-              value: "insurance-provider"
+              value: "insurance-provider",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Other",
-              value: "other"
-            }
-          ]
+              value: "other",
+            },
+          ],
         },
         {
           id: ncNanoId(),
@@ -750,33 +750,33 @@ export const surveySimple: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Cost",
-              value: "cost"
+              value: "cost",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Stigma surrounding mental health",
-              value: "stigma"
+              value: "stigma",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Lack of time",
-              value: "lack-of-time"
+              value: "lack-of-time",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Difficulty finding a therapist/counselor",
-              value: "difficulty-finding"
+              value: "difficulty-finding",
             },
             {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Other",
-              value: "other"
-            }
-          ]
+              value: "other",
+            },
+          ],
         },
         {
           id: ncNanoId(),
@@ -790,14 +790,14 @@ export const surveySimple: Survey = {
               id: ncNanoId(),
               defaultChecked: false,
               label: "Yes",
-              value: "yes"
+              value: "yes",
             },
-            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" }
-          ]
-        }
-      ]
-    }
-  ]
+            { id: ncNanoId(), defaultChecked: false, label: "No", value: "no" },
+          ],
+        },
+      ],
+    },
+  ],
 };
 /** ----------------- END Survey DATA ----------------------- */
 
@@ -851,7 +851,7 @@ export const initialFormState = {
   participatedOnline: "",
   primaryReason: [],
   preferredCommunicationMethod: [],
-  comfortWithTechnology: ""
+  comfortWithTechnology: "",
 };
 
 export const surveySchema = yup
@@ -882,7 +882,7 @@ export const surveySchema = yup
     preferredCommunicationMethod: yup
       .array(yup.string().required())
       .min(1, "Select at least one option"),
-    comfortWithTechnology: yup.string().required("This question is required")
+    comfortWithTechnology: yup.string().required("This question is required"),
   })
   .required();
 

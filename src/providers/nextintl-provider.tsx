@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import _ from "lodash";
 import { NextIntlClientProvider } from "next-intl";
+import _ from "lodash";
 
 /**
  * Next.js 13 internationalization library

@@ -12,7 +12,7 @@ const button = cva(
     "inline-flex",
     "transition-colors",
     "rounded-full",
-    "self-center"
+    "self-center",
   ],
   {
     variants: {
@@ -23,7 +23,7 @@ const button = cva(
           "bg-primary-6000",
           "text-neutral-50",
           "hover:bg-primary-700",
-          "disabled:bg-opacity-70"
+          "disabled:bg-opacity-70",
         ],
         secondary: [
           "border",
@@ -36,7 +36,7 @@ const button = cva(
           "dark:border-neutral-700",
           "dark:bg-neutral-900",
           "dark:text-neutral-300",
-          "dark:hover:bg-neutral-800"
+          "dark:hover:bg-neutral-800",
         ],
         circle: [
           "rounded-full",
@@ -46,28 +46,28 @@ const button = cva(
           "h-9",
           "disabled:bg-opacity-70",
           "transition-transform",
-          "hover:translate-y-[-2px]"
-        ]
+          "hover:translate-y-[-2px]",
+        ],
       },
       size: {
         none: [],
         sm: ["px-2", "py-1", "sm:px-2"],
         md: ["px-4", "py-3", "sm:px-6"],
-        lg: ["px-6", "py-4", "sm:px-8"]
+        lg: ["px-6", "py-4", "sm:px-8"],
       },
       fontSize: {
         normal: ["text-sm", "sm:text-base", "font-medium"],
         big: ["text-base", "sm:text-lg", "font-medium"],
-        bold: ["text-sm", "sm:text-base", "font-bold"]
+        bold: ["text-sm", "sm:text-base", "font-bold"],
       },
-      underline: { true: ["underline"], false: [] }
+      underline: { true: ["underline"], false: [] },
     },
     defaultVariants: {
       intent: "primary",
       size: "md",
-      fontSize: "normal"
-    }
-  }
+      fontSize: "normal",
+    },
+  },
 );
 
 export interface ButtonProps
@@ -125,7 +125,7 @@ export function Button({
     return (
       <Link
         className={twMerge(
-          button({ intent, size, className, underline, fontSize })
+          button({ intent, size, className, underline, fontSize }),
         )}
         href={href as Route}
         target={targetBlank ? "_blank" : undefined}

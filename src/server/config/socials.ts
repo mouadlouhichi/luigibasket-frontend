@@ -25,23 +25,23 @@ export const networkDefaults: Record<
   youtube: {
     label: "YouTube",
     IconComponent: googleSvg,
-    baseUrl: "https://youtube.com/"
+    baseUrl: "https://youtube.com/",
   },
   facebook: {
     label: "Facebook",
     IconComponent: facebookSvg,
-    baseUrl: "https://facebook.com/"
+    baseUrl: "https://facebook.com/",
   },
   twitter: {
     label: "X (formerly known as Twitter)",
     IconComponent: twitterSvg,
-    baseUrl: "https://x.com/"
+    baseUrl: "https://x.com/",
   },
   instagram: {
     label: "instagram",
     IconComponent: twitterSvg,
-    baseUrl: "https://instagram.com/"
-  }
+    baseUrl: "https://instagram.com/",
+  },
 };
 
 /**
@@ -50,7 +50,7 @@ export const networkDefaults: Record<
  * If an unknown network key is found, it collects them for an error message.
  */
 export const networks = (
-  input: Partial<Record<NetworkKey, string>>
+  input: Partial<Record<NetworkKey, string>>,
 ): Network[] => {
   // Array to collect invalid/unknown network keys.
   const invalidKeys: string[] = [];
@@ -70,7 +70,7 @@ export const networks = (
         id: key,
         url: `${baseUrl}${value}`,
         IconComponent,
-        label
+        label,
       };
     })
     .filter(Boolean); // this will filter out null values, which are placeholders for invalid keys
@@ -78,7 +78,7 @@ export const networks = (
   // If any unknown network keys were found, throw an error.
   if (invalidKeys.length) {
     throw new Error(
-      `Unknown social network key (app.ts): ${invalidKeys.join(", ")}`
+      `Unknown social network key (app.ts): ${invalidKeys.join(", ")}`,
     );
   }
 

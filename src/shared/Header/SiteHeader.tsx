@@ -16,14 +16,14 @@ export type SiteHeaders = "Header 1" | "Header 2" | "Header 3";
 const OPTIONS = {
   root: null,
   rootMargin: "0px",
-  threshold: 1.0
+  threshold: 1.0,
 };
 let OBSERVER: IntersectionObserver | null = null;
 const PAGES_HIDE_HEADER_BORDER: PathName[] = [
   "/" as PathName,
   "/account" as PathName,
   "/account-password" as PathName,
-  "/account-billing" as PathName
+  "/account-billing" as PathName,
 ];
 
 interface SiteHeaderProps {
@@ -35,7 +35,7 @@ interface SiteHeaderProps {
 const SiteHeader: FC<SiteHeaderProps> = ({
   type = "main",
   className = "",
-  hasBorder = false
+  hasBorder = false,
 }) => {
   const anchorRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +72,7 @@ const SiteHeader: FC<SiteHeaderProps> = ({
   const { isLoading, data } = trpc.user.profile.useQuery(undefined, {
     enabled: !!user,
     refetchOnWindowFocus: false,
-    onError: (err) => toast.error(err.message)
+    onError: (err) => toast.error(err.message),
   });
   const { setUser } = useSurveyStore();
 

@@ -5,13 +5,13 @@ import NcInputNumber from "./NcInputNumber";
 const meta: Meta<typeof NcInputNumber> = {
   title: "NcInputNumber",
   component: NcInputNumber,
-  args: {}
+  args: {},
 };
 
 type Story = StoryObj<typeof NcInputNumber>;
 
 export const Default: Story = {
-  render: (args) => <NcInputNumber {...args} />
+  render: (args) => <NcInputNumber {...args} />,
 };
 
 export default meta;

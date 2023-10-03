@@ -20,18 +20,18 @@ const cvaConfig = cva(["flex"], {
         "focus:outline-none",
         "dark:text-neutral-300",
         "dark:hover:bg-neutral-800",
-        "md:text-3xl"
+        "md:text-3xl",
       ],
-      toggle: ["h-12", "w-12"]
+      toggle: ["h-12", "w-12"],
     },
     size: {
-      md: ["h-12", "w-12"]
-    }
+      md: ["h-12", "w-12"],
+    },
   },
   defaultVariants: {
     type: "icon",
-    size: "md"
-  }
+    size: "md",
+  },
 });
 
 export interface SwitchDarkModeProps extends VariantProps<typeof cvaConfig> {
@@ -42,7 +42,7 @@ export interface SwitchDarkModeProps extends VariantProps<typeof cvaConfig> {
 const SwitchDarkMode = ({
   size,
   className,
-  type = "icon"
+  type = "icon",
 }: SwitchDarkModeProps) => {
   const { _toogleDarkMode, isDarkMode, toDark, toLight } = useThemeMode();
 

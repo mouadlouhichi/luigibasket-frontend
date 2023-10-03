@@ -8,27 +8,27 @@ const meta: Meta<typeof CustomRadio> = {
   args: {
     className: "",
     sizeType: "md",
-    intent: "primary"
+    intent: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     sizeType: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof CustomRadio>;
 
 export const Default: Story = {
-  render: (args) => <CustomRadio {...args} />
+  render: (args) => <CustomRadio {...args} />,
 };
 
 export default meta;

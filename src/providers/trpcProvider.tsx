@@ -15,9 +15,9 @@ export const trpc = createTRPCReact<AppRouter>({
       async onSuccess(opts) {
         await opts.originalFn();
         await opts.queryClient.invalidateQueries();
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 export function TRPCProvider(props: { children: React.ReactNode }) {
@@ -30,12 +30,12 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
         loggerLink({
           enabled: (opts) =>
             process.env.NODE_ENV === "development" ||
-            (opts.direction === "down" && opts.result instanceof Error)
+            (opts.direction === "down" && opts.result instanceof Error),
         }),
-        httpBatchLink({ url })
+        httpBatchLink({ url }),
       ],
-      transformer: superjson
-    })
+      transformer: superjson,
+    }),
   );
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>

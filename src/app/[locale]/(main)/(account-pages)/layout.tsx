@@ -1,6 +1,6 @@
-import { Nav } from "@/shared/Navigation/Nav";
 import React, { FC } from "react";
 
+import { Nav } from "@/shared/Navigation/Nav";
 
 export interface CommonLayoutProps {
   children?: React.ReactNode;

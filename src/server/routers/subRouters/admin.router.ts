@@ -7,7 +7,7 @@ import { router } from "../../trpc";
 
 export enum Sort {
   Desc = "Desc",
-  Asc = "Asc"
+  Asc = "Asc",
 }
 
 export const adminRouter = router({
@@ -16,8 +16,8 @@ export const adminRouter = router({
       z.object({
         take: z.number().default(10),
         cursor: z.string().optional(),
-        sort: z.nativeEnum(Sort).optional()
-      })
+        sort: z.nativeEnum(Sort).optional(),
+      }),
     )
     .query(async ({ ctx, input }) => {
       const { take, cursor, sort } = input;
@@ -25,9 +25,9 @@ export const adminRouter = router({
       const users = await fetchAllUsers(take, sort, ctx.prisma);
 
       return {
-        users
+        users,
       };
-    })
+    }),
 
   /*   createProduct: adminProcedure
     .input(createProductInputSchema)

@@ -23,7 +23,7 @@ const Step: FC<StepProps> = ({
   group,
   previousStep,
   control,
-  allFields
+  allFields,
 }) => {
   const { nextStep, activeStep, goToStep } = useWizard();
   useEffect(() => {

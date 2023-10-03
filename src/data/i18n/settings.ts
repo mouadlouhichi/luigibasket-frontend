@@ -7,20 +7,20 @@ export const headerLanguage = [
     lang: "en",
     name: "English",
     description: "United State",
-    href: "##"
+    href: "##",
   },
   {
     id: "Francais",
     lang: "fr",
     name: "Francais",
     description: "France",
-    href: "##"
+    href: "##",
   },
   {
     id: "Arabe",
     lang: "ar",
     name: "Arabe",
     description: "العربية",
-    href: "##"
-  }
+    href: "##",
+  },
 ];

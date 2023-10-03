@@ -6,21 +6,21 @@ const variants: Variants = {
   enter: (direction: number) => {
     return {
       x: direction > 0 ? 800 : -800,
-      opacity: 0
+      opacity: 0,
     };
   },
   center: {
     zIndex: 1,
     x: 0,
-    opacity: 1
+    opacity: 1,
   },
   exit: (direction: number) => {
     return {
       zIndex: 0,
       x: direction < 0 ? 800 : -800,
-      opacity: 0
+      opacity: 0,
     };
-  }
+  },
 };
 
 interface Props {
@@ -49,13 +49,13 @@ const AnimatedStep: React.FC<Props> = memo(
         transition={{
           type: "spring",
           stiffness: 200,
-          damping: 40
+          damping: 40,
         }}
       >
         {children}
       </motion.div>
     );
-  }
+  },
 );
 
 // Add the display name to the component

@@ -8,27 +8,27 @@ const meta: Meta<typeof Textarea> = {
   args: {
     className: "",
     sizeType: "md",
-    intent: "primary"
+    intent: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     sizeType: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Textarea>;
 
 export const Default: Story = {
-  render: (args) => <Textarea {...args} />
+  render: (args) => <Textarea {...args} />,
 };
 
 export default meta;

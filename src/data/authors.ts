@@ -43,13 +43,13 @@ const imgs = [
   avatar17,
   avatar18,
   avatar19,
-  avatar20
+  avatar20,
 ];
 
 const DEMO_AUTHORS: AuthorType[] = __authors.map((item, index) => ({
   ...item,
   avatar: imgs[index] || item.avatar,
-  href: item.href as Route
+  href: item.href as Route,
 }));
 
 export { DEMO_AUTHORS };

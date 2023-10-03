@@ -23,8 +23,8 @@ async function main() {
       const fees = [
         {
           service: faker.lorem.word(),
-          fee: `${faker.number.int({ min: 50, max: 500 })} Dhs` // Random fee in Dhs
-        }
+          fee: `${faker.number.int({ min: 50, max: 500 })} Dhs`, // Random fee in Dhs
+        },
       ];
 
       await prisma.therapist.create({
@@ -42,7 +42,7 @@ async function main() {
           methods,
           tools,
           fees: {
-            create: fees
+            create: fees,
           },
           user: {
             create: {
@@ -50,10 +50,10 @@ async function main() {
               name: faker.name.fullName(),
               email: faker.internet.email(),
               image: faker.image.urlPicsumPhotos({ width: 640, height: 640 }),
-              userType: "Therapist"
-            }
-          }
-        }
+              userType: "Therapist",
+            },
+          },
+        },
       });
 
       console.log(`Therapist ${i + 1} seeded.`);

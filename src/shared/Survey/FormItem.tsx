@@ -13,7 +13,7 @@ const FormItem: FC<FormItemProps> = ({
   children,
   className = "",
   label,
-  desc
+  desc,
 }) => {
   return (
     <div className={className}>

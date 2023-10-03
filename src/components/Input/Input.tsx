@@ -14,30 +14,30 @@ const cvaConfig = cva(
     "dark:border-neutral-700",
     "dark:bg-neutral-900",
     "dark:focus:ring-primary-6000",
-    "dark:focus:ring-opacity-25 "
+    "dark:focus:ring-opacity-25 ",
   ],
   {
     variants: {
       intent: {
-        primary: ["border-neutral-200"]
+        primary: ["border-neutral-200"],
       },
       sizeType: {
-        md: ["h-11", "px-4", "py-3"]
+        md: ["h-11", "px-4", "py-3"],
       },
       rounded: {
-        "rounded-2xl": ["rounded-2xl"]
+        "rounded-2xl": ["rounded-2xl"],
       },
       font: {
-        base: ["text-sm", "font-normal"]
-      }
+        base: ["text-sm", "font-normal"],
+      },
     },
     defaultVariants: {
       intent: "primary",
       sizeType: "md",
       rounded: "rounded-2xl",
-      font: "base"
-    }
-  }
+      font: "base",
+    },
+  },
 );
 
 export interface InputProps
@@ -54,19 +54,19 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     { className = "", sizeType, intent, rounded, font, type = "text", ...args },
-    ref
+    ref,
   ) => {
     return (
       <input
         className={twMerge(
-          cvaConfig({ intent, sizeType, className, rounded, font })
+          cvaConfig({ intent, sizeType, className, rounded, font }),
         )}
         ref={ref}
         type={type}
         {...args}
       />
     );
-  }
+  },
 );
 
 export default Input;

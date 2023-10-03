@@ -14,6 +14,6 @@ export function useRouter(): ReturnType<typeof useRouterOriginal> {
     replace: (href, options) => {
       if (shouldTriggerStartEvent(href)) onStart();
       router.replace(href, options);
-    }
+    },
   };
 }

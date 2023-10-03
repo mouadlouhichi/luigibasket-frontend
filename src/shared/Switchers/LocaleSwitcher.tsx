@@ -23,12 +23,12 @@ const mappedHeaderLanguage = (currentLang: string) => {
     if (item.lang === currentLang) {
       return {
         ...item,
-        active: true
+        active: true,
       };
     } else {
       return {
         ...item,
-        active: false
+        active: false,
       };
     }
   });
@@ -38,7 +38,7 @@ const LocaleSwitcher: FC<LocaleSwitcherProps> = ({
   panelClassName = "z-10 w-screen max-w-[140px] px-4 mt-4 right-0 sm:px-0 ",
   className = "",
 
-  isMobile = false
+  isMobile = false,
 }) => {
   const store = useAppStore();
   const router = useRouter();

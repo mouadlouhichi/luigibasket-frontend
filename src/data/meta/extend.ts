@@ -32,20 +32,20 @@ export function seo({ url, image, ...metadata }: SeoProps = {}): Metadata {
   metadata.openGraph = {
     title: title ?? undefined,
     description: description ?? undefined,
-    ...metadata.openGraph
+    ...metadata.openGraph,
   };
 
   metadata.twitter = {
     title: title ?? undefined,
     description: description ?? undefined,
-    ...metadata.twitter
+    ...metadata.twitter,
   };
 
   if (url) {
     metadata.openGraph.url = url;
     metadata.alternates = {
       canonical: url,
-      ...metadata.alternates
+      ...metadata.alternates,
     };
   }
 

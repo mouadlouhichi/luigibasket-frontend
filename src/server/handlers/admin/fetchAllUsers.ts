@@ -12,29 +12,29 @@ export const fetchAllUsers = async (
     Prisma.PrismaClientOptions,
     never,
     Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
-  >
+  >,
 ) => {
   const users = await (prisma ?? db).user.findMany({
     select: {
       id: true,
       name: true,
       email: true,
-      image: true
+      image: true,
     },
     take: take,
     ...(cursor && {
       skip: 1,
       cursor: {
-        id: cursor
-      }
+        id: cursor,
+      },
     }),
     orderBy: {
-      id: "desc"
-    }
+      id: "desc",
+    },
   });
 
   return {
     users,
-    cursor: users[take - 1]?.id
+    cursor: users[take - 1]?.id,
   };
 };

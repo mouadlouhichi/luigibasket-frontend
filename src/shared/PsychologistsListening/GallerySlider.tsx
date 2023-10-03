@@ -28,7 +28,7 @@ export default function GallerySlider({
   uniqueID = "uniqueID",
   galleryClass = "rounded-xl",
   href = "/listing-stay-detail" as Route,
-  navigation = true
+  navigation = true,
 }: GallerySliderProps) {
   const [loaded, setLoaded] = useState(false);
   const [index, setIndex] = useState(0);
@@ -55,7 +55,7 @@ export default function GallerySlider({
         changePhotoId(index - 1);
       }
     },
-    trackMouse: true
+    trackMouse: true,
   });
 
   const currentImage = images[index];
@@ -64,7 +64,7 @@ export default function GallerySlider({
     <MotionConfig
       transition={{
         x: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 }
+        opacity: { duration: 0.2 },
       }}
     >
       <div

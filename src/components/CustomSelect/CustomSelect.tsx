@@ -9,16 +9,16 @@ import { SurveyOption } from "@/data/survey";
 const select = cva(["block"], {
   variants: {
     intent: {
-      primary: ["bg-transparent"]
+      primary: ["bg-transparent"],
     },
     sizeType: {
-      md: ["w-full", "h-20"]
-    }
+      md: ["w-full", "h-20"],
+    },
   },
   defaultVariants: {
     intent: "primary",
-    sizeType: "md"
-  }
+    sizeType: "md",
+  },
 });
 
 export interface CustomSelectProps extends VariantProps<typeof select> {
@@ -34,7 +34,7 @@ export interface CustomSelectProps extends VariantProps<typeof select> {
   onChange?:
     | ((
         newValue: SingleValue<SurveyOption>,
-        actionMeta: ActionMeta<SurveyOption>
+        actionMeta: ActionMeta<SurveyOption>,
       ) => void)
     | undefined;
 }
@@ -52,7 +52,7 @@ const CustomSelect: FC<CustomSelectProps> = forwardRef(
       value,
       ...args
     },
-    ref: any
+    ref: any,
   ) => {
     return (
       <Select
@@ -66,7 +66,7 @@ const CustomSelect: FC<CustomSelectProps> = forwardRef(
         ref={ref}
       />
     );
-  }
+  },
 );
 
 CustomSelect.displayName = "CustomSelect";

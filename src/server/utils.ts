@@ -18,12 +18,12 @@ export const cls = cn;
 export function formatPrice(
   price: number | string,
   currency: "USD" | "EUR" | "GBP" | "BDT" = "USD",
-  notation: "compact" | "engineering" | "scientific" | "standard" = "standard"
+  notation: "compact" | "engineering" | "scientific" | "standard" = "standard",
 ) {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency,
-    notation
+    notation,
   }).format(Number(price));
 }
 
@@ -34,7 +34,7 @@ export function formatDate(date: Date | string | number) {
 export function formatBytes(
   bytes: number,
   decimals = 0,
-  sizeType: "accurate" | "normal" = "normal"
+  sizeType: "accurate" | "normal" = "normal",
 ) {
   const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
   const accurateSizes = ["Bytes", "KiB", "MiB", "GiB", "TiB"];
@@ -60,7 +60,7 @@ export function unslugify(str: string) {
 export function toTitleCase(str: string) {
   return str.replace(
     /\w\S*/g,
-    (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()
+    (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase(),
   );
 }
 

@@ -10,7 +10,7 @@ export const Nav = () => {
   const listNav: string[] = [
     "/account",
     "/account-password",
-    "/account-billing"
+    "/account-billing",
   ];
   const pathname = usePathname();
   const lng = useLocale();

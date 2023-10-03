@@ -9,7 +9,7 @@ export const DEFAULT_METADATA: Metadata = {
   metadataBase: fullURL(),
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
@@ -19,14 +19,14 @@ export const DEFAULT_METADATA: Metadata = {
   authors: [
     {
       name: siteConfig.author,
-      url: siteConfig.url.author
-    }
+      url: siteConfig.url.author,
+    },
   ],
   robots: "index, follow",
 
   applicationName: "Bleverse Relivator",
   alternates: {
-    canonical: "https://relivator.bleverse.com"
+    canonical: "https://relivator.bleverse.com",
   },
   openGraph: {
     type: "website",
@@ -41,18 +41,18 @@ export const DEFAULT_METADATA: Metadata = {
         url: "/og-image.png",
         width: 1280,
         height: 640,
-        alt: "Mindrested "
-      }
-    ]
+        alt: "Mindrested ",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
     images: [`${siteConfig.url.base}/og-image.png`],
-    creator: siteConfig.author
+    creator: siteConfig.author,
   },
   icons: {
-    icon: "/favicon.ico"
-  }
+    icon: "/favicon.ico",
+  },
 };

@@ -4,7 +4,7 @@ import {
   differenceInMinutes,
   differenceInMonths,
   differenceInSeconds,
-  differenceInYears
+  differenceInYears,
 } from "date-fns";
 
 export const getDateCompare = (after: Date) => {

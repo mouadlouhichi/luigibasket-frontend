@@ -31,11 +31,11 @@ export const surveyRouter = router({
           preferredCommunicationMethod: input.preferredCommunicationMethod,
           comfortWithTechnology: input.comfortWithTechnology,
           user: {
-            connect: { id: input.user.id }
-          }
-        }
+            connect: { id: input.user.id },
+          },
+        },
       });
-    })
+    }),
 });
 
 type SurveyRouterOutput = inferRouterOutputs<typeof surveyRouter>;

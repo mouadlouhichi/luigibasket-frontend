@@ -11,22 +11,22 @@ const checkbox = cva(
     "text-primary-500",
     "focus:ring-primary-500",
     "dark:bg-neutral-700",
-    "dark:checked:bg-primary-500"
+    "dark:checked:bg-primary-500",
   ],
   {
     variants: {
       intent: {
-        primary: ["border-neutral-500"]
+        primary: ["border-neutral-500"],
       },
       sizeType: {
-        md: ["h-6", "w-6"]
-      }
+        md: ["h-6", "w-6"],
+      },
     },
     defaultVariants: {
       intent: "primary",
-      sizeType: "md"
-    }
-  }
+      sizeType: "md",
+    },
+  },
 );
 
 export interface InputProps
@@ -60,7 +60,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, InputProps>(
       defaultChecked,
       ...args
     },
-    ref
+    ref,
   ) => {
     return (
       <div className={`flex text-sm sm:text-base `}>
@@ -92,7 +92,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 export default Checkbox;

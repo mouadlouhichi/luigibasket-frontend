@@ -197,6 +197,45 @@
     "pricing": "pricing",
     "tools": "utils"
   },
+  "islands": {
+    "command": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System",
+      "theme": "Theme",
+      "tools": "Features"
+    },
+    "copy-button": {
+      "copied": "Copied to clipboard!",
+      "copy": "Copy to clipboard"
+    },
+    "footer": "Developed by {author}. The source code is available on {github}.",
+    "links": {
+      "github": "My GitHub profile",
+      "twitter": "My Twitter profile"
+    },
+    "main": {
+      "about": "about",
+      "github": "github",
+      "tools": "features",
+      "twitter": "twitter"
+    },
+    "pricing": {
+      "toast": {
+        "description": "This project is open source and free to use. 🥳",
+        "title": "It's free! 😜"
+      }
+    },
+    "search": {
+      "placeholder": "Type a command or search",
+      "title": "Search..."
+    },
+    "toast": {
+      "error": "Error",
+      "success": "Success",
+      "warning": "Warning"
+    }
+  },
   "landing": {
     "features": {
       "clock": {
@@ -248,45 +287,6 @@
       "linkText": "Перейти до списку"
     },
     "title": "Відкрийте для себе найважливіше з React, Next.js тощо. \nСпеціально для вас."
-  },
-  "islands": {
-    "command": {
-      "dark": "Dark",
-      "light": "Light",
-      "system": "System",
-      "theme": "Theme",
-      "tools": "Features"
-    },
-    "copy-button": {
-      "copied": "Copied to clipboard!",
-      "copy": "Copy to clipboard"
-    },
-    "footer": "Developed by {author}. The source code is available on {github}.",
-    "links": {
-      "github": "My GitHub profile",
-      "twitter": "My Twitter profile"
-    },
-    "main": {
-      "about": "about",
-      "github": "github",
-      "tools": "features",
-      "twitter": "twitter"
-    },
-    "pricing": {
-      "toast": {
-        "description": "This project is open source and free to use. 🥳",
-        "title": "It's free! 😜"
-      }
-    },
-    "search": {
-      "placeholder": "Type a command or search",
-      "title": "Search..."
-    },
-    "toast": {
-      "error": "Error",
-      "success": "Success",
-      "warning": "Warning"
-    }
   },
   "meta": {
     "description": "Next.js 13 Starter",

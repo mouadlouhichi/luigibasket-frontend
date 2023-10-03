@@ -5,13 +5,13 @@ import Footer from "./index";
 const meta: Meta<typeof Footer> = {
   title: "Footer",
   component: Footer,
-  args: {}
+  args: {},
 };
 
 type Story = StoryObj<typeof Footer>;
 
 export const Default: Story = {
-  render: (args) => <Footer {...args} />
+  render: (args) => <Footer {...args} />,
 };
 
 export default meta;

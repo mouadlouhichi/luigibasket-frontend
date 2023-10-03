@@ -10,8 +10,8 @@ export const userProcedure = procedure.use(({ ctx, next }) => {
   return next({
     ctx: {
       ...ctx,
-      session: { ...ctx.session, user: ctx.session.user }
-    }
+      session: { ...ctx.session, user: ctx.session.user },
+    },
   });
 });
 
@@ -19,18 +19,18 @@ export const adminProcedure = userProcedure.use(async ({ ctx, next }) => {
   const { userType } =
     (await ctx.prisma.user.findFirst({
       where: {
-        id: ctx.session.user.id || ""
+        id: ctx.session.user.id || "",
       },
       select: {
-        userType: true
-      }
+        userType: true,
+      },
     })) || {};
 
   if (userType !== UserType.Admin) {
     throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
-    ctx
+    ctx,
   });
 });
 

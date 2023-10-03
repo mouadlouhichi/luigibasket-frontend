@@ -14,7 +14,7 @@ const Header: FC<HeaderProps> = ({
   className = "",
   type = "main",
   hasSurvey,
-  isLoading
+  isLoading,
 }) => {
   return (
     <header

@@ -49,6 +49,6 @@ export const useThemeMode = () => {
     isDarkMode,
     toDark,
     toLight,
-    _toogleDarkMode
+    _toogleDarkMode,
   };
 };

@@ -13,20 +13,20 @@ const cvaConfig = cva(
     "text-primary-6000",
     "focus:outline-none",
     "focus:ring-0",
-    "self-center"
+    "self-center",
   ],
   {
     variants: {
       size: {
         md: ["w-[8rem]"],
         lg: ["w-[8rem]", "md:w-[12rem]"],
-        xl: ["w-24", "md:w-[8rem]"]
-      }
+        xl: ["w-24", "md:w-[8rem]"],
+      },
     },
     defaultVariants: {
-      size: "md"
-    }
-  }
+      size: "md",
+    },
+  },
 );
 
 export interface LogoProps extends VariantProps<typeof cvaConfig> {

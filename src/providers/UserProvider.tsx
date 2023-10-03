@@ -12,7 +12,7 @@ interface UserContextValues {
 export const UserContext = createContext<UserContextValues>({
   user: undefined,
   setUser: () => {},
-  isAdmin: false
+  isAdmin: false,
 });
 
 export const useUserContext = () => useContext(UserContext);
@@ -26,7 +26,7 @@ interface UserContextProviderProps {
 const UserContextProvider = ({
   children,
   user,
-  isAdmin
+  isAdmin,
 }: UserContextProviderProps) => {
   const [userSession, setUserSession] = useState<UserSession>(user);
 
@@ -35,7 +35,7 @@ const UserContextProvider = ({
       value={{
         user: userSession,
         setUser: setUserSession,
-        isAdmin
+        isAdmin,
       }}
     >
       {children}

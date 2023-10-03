@@ -15,22 +15,22 @@ const radio = cva(
     "hover:bg-primary-6000",
     "hover:text-white",
     "dark:bg-neutral-700",
-    "dark:hover:bg-primary-6000"
+    "dark:hover:bg-primary-6000",
   ],
   {
     variants: {
       intent: {
-        primary: ["bg-primary-100"]
+        primary: ["bg-primary-100"],
       },
       sizeType: {
-        md: ["w-full"]
-      }
+        md: ["w-full"],
+      },
     },
     defaultVariants: {
       intent: "primary",
-      sizeType: "md"
-    }
-  }
+      sizeType: "md",
+    },
+  },
 );
 
 export interface InputProps
@@ -60,7 +60,7 @@ const Radio = React.forwardRef<HTMLInputElement, InputProps>(
       onClick,
       ...args
     },
-    ref
+    ref,
   ) => {
     return (
       <div
@@ -83,7 +83,7 @@ const Radio = React.forwardRef<HTMLInputElement, InputProps>(
         </label>
       </div>
     );
-  }
+  },
 );
 
 export default Radio;

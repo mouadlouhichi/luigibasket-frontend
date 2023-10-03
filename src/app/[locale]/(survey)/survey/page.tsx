@@ -15,7 +15,7 @@ const SurveyPage = () => {
   const { control, watch } = useForm<FieldValues>({
     resolver: yupResolver(surveySchema) as any,
     shouldUnregister: false,
-    defaultValues: initialFormState
+    defaultValues: initialFormState,
   });
 
   const previousStep = React.useRef<number>(0);
@@ -23,7 +23,7 @@ const SurveyPage = () => {
   // Callback version of watch.  It's your responsibility to unsubscribe when done.
   useEffect(() => {
     const subscription = watch((value, { name, type }) =>
-      console.log(value, name, type)
+      console.log(value, name, type),
     );
     return () => subscription.unsubscribe();
   }, [watch]);

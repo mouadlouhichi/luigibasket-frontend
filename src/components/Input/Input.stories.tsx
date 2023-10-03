@@ -7,27 +7,27 @@ const meta: Meta<typeof Input> = {
   component: Input,
   args: {
     className: "",
-    intent: "primary"
+    intent: "primary",
   },
   argTypes: {
     intent: {
       options: ["primary"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     size: {
       options: ["sm", "md", "lg"],
-      control: { type: "select" }
+      control: { type: "select" },
     },
     className: {
-      control: { type: "text" }
-    }
-  }
+      control: { type: "text" },
+    },
+  },
 };
 
 type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
-  render: (args) => <Input {...args} />
+  render: (args) => <Input {...args} />,
 };
 
 export default meta;

@@ -23,7 +23,7 @@ const HeaderFilter: FC<HeaderFilterProps> = ({
   subHeading = "",
   heading = "Latest Articles 🎈",
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClickTab = () => {}
+  onClickTab = () => {},
 }) => {
   const [tabActiveState, setTabActiveState] = useState(tabActive);
 

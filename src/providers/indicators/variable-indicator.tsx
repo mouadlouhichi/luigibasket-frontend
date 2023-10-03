@@ -1,7 +1,8 @@
 "use client";
 
-import { env } from "@/data/env/env.mjs";
 import { useTranslations } from "next-intl";
+
+import { env } from "@/data/env/env.mjs";
 
 /**
  * todo: implement environment variables indicator here

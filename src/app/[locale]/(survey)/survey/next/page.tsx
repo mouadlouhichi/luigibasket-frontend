@@ -22,15 +22,15 @@ function Next() {
       onSuccess: (res) => {
         toast.success(`${res.id} data successfully added`);
       },
-      onError: (err) => toast.error(err.message)
+      onError: (err) => toast.error(err.message),
     });
   const [surveyStorage] = useLocalStorage<StorageValue<SurveyStateProps>>(
     "survey-storage",
-    { ...initialSurveyState }
+    { ...initialSurveyState },
   );
   const surveyData = {
     ...surveyStorage.state.survey,
-    user: surveyStorage.state.user
+    user: surveyStorage.state.user,
   };
   console.log(surveyData);
   return (

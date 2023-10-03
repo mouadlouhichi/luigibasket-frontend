@@ -22,7 +22,7 @@ const errors = {
   EmailSignin: "Check your email address.",
   CredentialsSignin:
     "Sign in failed. Check the details you provided are correct.",
-  default: "Unable to sign in."
+  default: "Unable to sign in.",
 };
 
 interface SignInErrorProps {
@@ -46,7 +46,7 @@ function PageLogin() {
             hanging={24}
             className="min-w-[1.5rem]	 min-h-[1.5rem]	text-secondary-500"
           />
-        )
+        ),
       });
     }
   }, [error]);
