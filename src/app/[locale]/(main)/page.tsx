@@ -18,7 +18,7 @@ function PageHome() {
           <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
             <div className="mx-auto place-self-center">
               <h2 className="mb-4 max-w-2xl font-mono text-base font-medium leading-none  tracking-tight text-secondary-500 dark:text-white md:text-xl xl:text-2xl">
-                Help your inner peace with MindRested | Deploy v0.1.1
+                Help your inner peace with MindRested | Deploy new vercel
               </h2>
               <h1 className="mb-4 max-w-2xl text-4xl  font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
                 Empower Your Mental Health
