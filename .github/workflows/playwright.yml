@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - staging
       - devlop
   pull_request: null
   workflow_dispatch: null

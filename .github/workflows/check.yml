@@ -1,10 +1,11 @@
-name: Check
+name: Check Project Health
 
 on:
   push:
     branches:
       - main
-      - master
+      - staging
+      - develop
   pull_request:
   workflow_dispatch:
 
@@ -27,6 +28,9 @@ jobs:
       FACEBOOK_SECRET: ${{ secrets.FACEBOOK_SECRET }}
 
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - uses: actions/checkout@v3
       - run: echo "node_version=$(cat .github/nodejs.version)" >> $GITHUB_ENV
       - name: "use node ${{ env.node_version }}"
@@ -34,16 +38,16 @@ jobs:
         with:
           node-version: "${{ env.node_version }}"
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
       - name: Lint check
-        run: yarn lint
+        run: pnpm lint
       - name: Format check
-        run: yarn prettier
+        run: pnpm prettier
       - name: Unit & Integration tests
-        run: yarn test
+        run: pnpm test
       - name: Smoke & Acceptance tests
         run: |
-          yarn build-storybook --quiet
+          pnpm build-storybook --quiet
           npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "npx http-server storybook-static --port 6006 --silent" \
-            "npx wait-on tcp:127.0.0.1:6006 && yarn test-storybook"
+            "npx wait-on tcp:127.0.0.1:6006 && pnpm test-storybook"
