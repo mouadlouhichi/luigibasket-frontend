@@ -1,19 +1,18 @@
-
 name: CI/CD Build and Deploy to Digitalocean
 
 permissions: write-all
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-    push:
-      branches:
-        - main
-    workflow_dispatch:
-        inputs:
-            logLevel:
-                description: 'Log level'
-                required: true
-                default: 'warning'
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,27 +30,28 @@ jobs:
       - name: Build and Publish to Github Packages Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         env:
-            DATABASE_URL_ARG: ${{ secrets.DATABASE_URL }}
-            NEXTAUTH_SECRET_ARG: ${{ secrets.NEXTAUTH_SECRET }}
-            NEXTAUTH_URL_ARG: ${{ secrets.NEXTAUTH_URL }}
-            NEXT_PUBLIC_APP_URL_ARG: ${{ secrets.NEXT_PUBLIC_APP_URL }}
-            ANALYZE_ARG: ${{ secrets.ANALYZE }}
-            NEXT_PUBLIC_VERCEL_URL_ARG: ${{ secrets.NEXT_PUBLIC_VERCEL_URL }}
-            LOGLIB_API_KEY_ARG: ${{ secrets.LOGLIB_API_KEY }}
-            LOGLIB_SITE_ID_ARG: ${{ secrets.LOGLIB_SITE_ID }}
-            LINKEDIN_ID_ARG: ${{ secrets.LINKEDIN_ID }}
-            LINKEDIN_SECRET_ARG: ${{ secrets.LINKEDIN_SECRET }}
-            FACEBOOK_ID_ARG: ${{ secrets.FACEBOOK_ID }}
-            GOOGLE_ID_ARG: ${{ secrets.GOOGLE_ID }}
-            GOOGLE_SECRET_ARG: ${{ secrets.GOOGLE_SECRET }}
-            FACEBOOK_SECRET_ARG: ${{ secrets.FACEBOOK_SECRET }}
+          DATABASE_URL_ARG: ${{ secrets.DATABASE_URL }}
+          NEXTAUTH_SECRET_ARG: ${{ secrets.NEXTAUTH_SECRET }}
+          NEXTAUTH_URL_ARG: ${{ secrets.NEXTAUTH_URL }}
+          NEXT_PUBLIC_APP_URL_ARG: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+          ANALYZE_ARG: ${{ secrets.ANALYZE }}
+          NEXT_PUBLIC_VERCEL_URL_ARG: ${{ secrets.NEXT_PUBLIC_VERCEL_URL }}
+          LOGLIB_API_KEY_ARG: ${{ secrets.LOGLIB_API_KEY }}
+          LOGLIB_SITE_ID_ARG: ${{ secrets.LOGLIB_SITE_ID }}
+          LINKEDIN_ID_ARG: ${{ secrets.LINKEDIN_ID }}
+          LINKEDIN_SECRET_ARG: ${{ secrets.LINKEDIN_SECRET }}
+          FACEBOOK_ID_ARG: ${{ secrets.FACEBOOK_ID }}
+          GOOGLE_ID_ARG: ${{ secrets.GOOGLE_ID }}
+          GOOGLE_SECRET_ARG: ${{ secrets.GOOGLE_SECRET }}
+          FACEBOOK_SECRET_ARG: ${{ secrets.FACEBOOK_SECRET }}
+          NEXT_PUBLIC_BASE_URL_ARG: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
         with:
           name: mouadlouhichi/${{ secrets.USERNAME }}/${{ secrets.REPO_NAME }}
           registry: ghcr.io
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets. GITHUB_TOKEN }}
           dockerfile: Dockerfile
-          buildargs: DATABASE_URL_ARG,NEXTAUTH_SECRET_ARG,NEXTAUTH_URL_ARG,NEXT_PUBLIC_APP_URL_ARG,ANALYZE_ARG,NEXT_PUBLIC_VERCEL_URL_ARG,LOGLIB_API_KEY_ARG,LOGLIB_SITE_ID_ARG,LINKEDIN_ID_ARG,LINKEDIN_SECRET_ARG,FACEBOOK_ID_ARG,FACEBOOK_SECRET_ARG, GOOGLE_ID_ARG,GOOGLE_SECRET_ARG
+          buildargs: DATABASE_URL_ARG,NEXTAUTH_SECRET_ARG,NEXTAUTH_URL_ARG,NEXT_PUBLIC_APP_URL_ARG,ANALYZE_ARG,NEXT_PUBLIC_VERCEL_URL_ARG,LOGLIB_API_KEY_ARG,LOGLIB_SITE_ID_ARG,LINKEDIN_ID_ARG,LINKEDIN_SECRET_ARG,FACEBOOK_ID_ARG,FACEBOOK_SECRET_ARG, GOOGLE_ID_ARG,GOOGLE_SECRET_ARG,NEXT_PUBLIC_BASE_URL_ARG
           tags: latest
 
       - name: Deploy package to digitalocean
@@ -71,4 +71,3 @@ jobs:
             docker stop containername
             docker system prune -f
             docker run --name containername -dit -p 3000:3000 ghcr.io/mouadlouhichi/${{ secrets.USERNAME }}/${{ secrets.REPO_NAME }}:latest
-
