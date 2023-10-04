@@ -32,6 +32,7 @@ interface SignInErrorProps {
 function PageLogin() {
   const [error, setError] = useState<SignInErrorProps["error"]>();
   const lng = useLocale();
+  console.log(lng);
   const callbackUrl = `/${lng}`;
   const searchParams = useSearchParams();
   const errorParam = searchParams?.get("error");
