@@ -26,7 +26,7 @@ export const DEFAULT_METADATA: Metadata = {
 
   applicationName: "Bleverse Relivator",
   alternates: {
-    canonical: "https://relivator.bleverse.com",
+    canonical: "https://mindrested.com",
   },
   openGraph: {
     type: "website",
@@ -41,7 +41,7 @@ export const DEFAULT_METADATA: Metadata = {
         url: "/og-image.png",
         width: 1280,
         height: 640,
-        alt: "Mindrested ",
+        alt: "Mindrested",
       },
     ],
   },

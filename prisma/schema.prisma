@@ -86,6 +86,8 @@ model Survey {
   // Relationship with User
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
+  @@index([userId])
+
 }
 
 model VerificationToken {
@@ -105,7 +107,7 @@ model Therapist {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
 
-  // New 
+  // New
   credentials            String
   location               String
   languages              String[]

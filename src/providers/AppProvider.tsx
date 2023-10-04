@@ -9,14 +9,10 @@ import { TooltipProvider } from "@/shared/Primitives/Tooltip";
 
 export function ThemeProvider({
   children,
-  ...props
 }: WithChildren<ComponentProps<typeof NextThemeProvider>>) {
   return (
     <NextThemeProvider
       attribute="class"
-      defaultTheme="system"
-      enableSystem
-      {...props}
     >
       {children}
     </NextThemeProvider>
@@ -32,10 +28,10 @@ type Props = {
 export const AppProvider = ({ children, locale, messages }: Props) => {
   return (
     //handle theme rerendereing
-    <ThemeProvider>
-      <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <ThemeProvider>
         <TooltipProvider>{children}</TooltipProvider>
-      </NextIntlClientProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </NextIntlClientProvider>
   );
 };

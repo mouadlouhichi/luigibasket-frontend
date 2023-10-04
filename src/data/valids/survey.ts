@@ -24,11 +24,5 @@ export const surveySchema = z.object({
   comfortWithTechnology: z.string(),
   user: z.object({
     id: z.string(),
-    name: z.string().nullable(),
-    email: z.string().nullable(),
-    emailVerified: z.date().nullable(),
-    image: z.string().nullable(),
-    hasSurvey: z.boolean(),
-    userType: z.string(),
   }),
 });

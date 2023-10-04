@@ -77,7 +77,7 @@ export interface ButtonProps
   loading?: boolean;
   href?: string;
   targetBlank?: boolean;
-  onClick?: () => void;
+  onClick?: (e?: any) => void;
   disabled?: boolean;
   colorStyle?: "primary" | "secondary";
   fontSize?: "normal" | "big" | "bold";

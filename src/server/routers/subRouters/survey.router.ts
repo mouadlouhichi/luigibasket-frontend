@@ -1,5 +1,7 @@
 import { Survey } from "@prisma/client";
 import { inferRouterOutputs } from "@trpc/server";
+import { id } from "date-fns/locale";
+import { z } from "zod";
 
 import { surveySchema } from "@/data/valids/survey";
 
@@ -7,36 +9,50 @@ import { userProcedure } from "../../procedures";
 import { router } from "../../trpc";
 
 export const surveyRouter = router({
-  createSurvey: userProcedure
-    .input(surveySchema)
+  create: userProcedure.input(surveySchema).mutation(async ({ ctx, input }) => {
+    return ctx.prisma.survey.create({
+      data: {
+        gender: input.gender,
+        occupation: input.occupation,
+        education: input.education,
+        age: input.age,
+        diagnosed: input.diagnosed,
+        receivedTreatment: input.receivedTreatment,
+        currentSymptoms: input.currentSymptoms,
+        symptomsFrequency: input.symptomsFrequency,
+        suicidalThoughts: input.suicidalThoughts,
+        struggledAddiction: input.struggledAddiction,
+        experiencedTrauma: input.experiencedTrauma,
+        receivedTherapy: input.receivedTherapy,
+        foundTherapist: input.foundTherapist,
+        notSeekingTherapyReasons: input.notSeekingTherapyReasons,
+        participatedOnline: input.participatedOnline,
+        primaryReason: input.primaryReason,
+        preferredCommunicationMethod: input.preferredCommunicationMethod,
+        comfortWithTechnology: input.comfortWithTechnology,
+        user: {
+          connect: { id: input.user.id },
+        },
+      },
+    });
+  }),
+  toggle: userProcedure
+    .input(
+      z.object({
+        userId: z.string(),
+      }),
+    )
     .mutation(async ({ ctx, input }) => {
-      return ctx.prisma.survey.create({
+      return ctx.prisma.user.update({
+        where: {
+          id: input.userId,
+        },
         data: {
-          gender: input.gender,
-          occupation: input.occupation,
-          education: input.education,
-          age: input.age,
-          diagnosed: input.diagnosed,
-          receivedTreatment: input.receivedTreatment,
-          currentSymptoms: input.currentSymptoms,
-          symptomsFrequency: input.symptomsFrequency,
-          suicidalThoughts: input.suicidalThoughts,
-          struggledAddiction: input.struggledAddiction,
-          experiencedTrauma: input.experiencedTrauma,
-          receivedTherapy: input.receivedTherapy,
-          foundTherapist: input.foundTherapist,
-          notSeekingTherapyReasons: input.notSeekingTherapyReasons,
-          participatedOnline: input.participatedOnline,
-          primaryReason: input.primaryReason,
-          preferredCommunicationMethod: input.preferredCommunicationMethod,
-          comfortWithTechnology: input.comfortWithTechnology,
-          user: {
-            connect: { id: input.user.id },
-          },
+          hasSurvey: true,
         },
       });
     }),
 });
 
 type SurveyRouterOutput = inferRouterOutputs<typeof surveyRouter>;
-export type CreateProductResponse = SurveyRouterOutput["createSurvey"];
+export type CreateProductResponse = SurveyRouterOutput["create"];

@@ -16,14 +16,13 @@ import Button from "@/components/Button";
 
 function Next() {
   //   add new product
-  const { mutate: saveSurvey, isLoading } =
-    trpc.survey.createSurvey.useMutation({
-      retry: false,
-      onSuccess: (res) => {
-        toast.success(`${res.id} data successfully added`);
-      },
-      onError: (err) => toast.error(err.message),
-    });
+  const { mutate: saveSurvey, isLoading } = trpc.survey.create.useMutation({
+    retry: false,
+    onSuccess: (res) => {
+      toast.success(`${res.id} data successfully added`);
+    },
+    onError: (err) => toast.error(err.message),
+  });
   const [surveyStorage] = useLocalStorage<StorageValue<SurveyStateProps>>(
     "survey-storage",
     { ...initialSurveyState },

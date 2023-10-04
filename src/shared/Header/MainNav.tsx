@@ -28,7 +28,6 @@ const MainNav: FC<MainNavProps> = ({
   isLoading,
 }) => {
   const { user, isAdmin } = useUserContext();
-  console.log("MainNav.tsx: user: ", user);
   const renderUserLogin = () => {
     if (user) {
       return <AvatarDropdown user={user} />;
