@@ -12,7 +12,7 @@ type RouteHandlerContext = {
 };
 
 const handler = (req: NextRequest, context: RouteHandlerContext) => {
-  return NextAuth(req, context, authOptions);
+  return NextAuth(req, context, authOptions());
 };
 
 export { handler as GET, handler as POST };

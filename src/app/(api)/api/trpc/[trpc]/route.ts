@@ -3,14 +3,14 @@
  */
 
 import { getServerSession } from "next-auth";
-import { authOption } from "@/lib/authOptions";
+import { authOptions } from "@/lib/authOptions";
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
 import { appRouter } from "@/server/routers/_app";
 import { createContext } from "@/server/trpc";
 
 const handler = async (req: Request) => {
-  const session = await getServerSession(authOption());
+  const session = await getServerSession(authOptions());
   console.log("session@@", session);
 
   return fetchRequestHandler({
