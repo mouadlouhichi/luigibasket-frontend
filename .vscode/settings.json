@@ -77,5 +77,6 @@
       "allowed_elements": ["img", "p", "a"]
     }
   },
-  "i18n-ally.sourceLanguage": "en"
+  "i18n-ally.sourceLanguage": "en",
+  "cSpell.words": ["mindrested"]
 }
