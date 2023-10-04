@@ -10,13 +10,7 @@ import { TooltipProvider } from "@/shared/Primitives/Tooltip";
 export function ThemeProvider({
   children,
 }: WithChildren<ComponentProps<typeof NextThemeProvider>>) {
-  return (
-    <NextThemeProvider
-      attribute="class"
-    >
-      {children}
-    </NextThemeProvider>
-  );
+  return <NextThemeProvider attribute="class">{children}</NextThemeProvider>;
 }
 
 type Props = {
