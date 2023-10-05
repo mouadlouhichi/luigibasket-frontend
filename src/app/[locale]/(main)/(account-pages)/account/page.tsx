@@ -12,14 +12,6 @@ import Select from "@/components/Select";
 import Textarea from "@/components/Textarea";
 
 function AccountPage() {
-  const { isLoading, data } = trpc.admin.getAllUsers.useQuery(
-    {},
-    {
-      onError: (err) => toast.error(err.message),
-      refetchOnWindowFocus: false,
-    },
-  );
-
   return (
     <div className="space-y-6 sm:space-y-8">
       {/* HEADING */}

@@ -74,11 +74,7 @@ const SiteHeader: FC<SiteHeaderProps> = ({
     refetchOnWindowFocus: false,
     onError: (err) => toast.error(err.message),
   });
-  const { setUser } = useSurveyStore();
 
-  useEffect(() => {
-    data && setUser(data);
-  }, [data]);
   const renderHeader = () => {
     let headerClassName = " dark:border-b dark:border-neutral-700";
     if (PAGES_HIDE_HEADER_BORDER.includes(pathname as PathName)) {

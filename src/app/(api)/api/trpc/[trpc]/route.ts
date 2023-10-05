@@ -11,7 +11,6 @@ import { createContext } from "@/server/trpc";
 
 const handler = async (req: Request) => {
   const session = await getServerSession(authOptions());
-  console.log("session@@", session);
 
   return fetchRequestHandler({
     endpoint: "/api/trpc",

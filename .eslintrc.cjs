@@ -85,13 +85,13 @@ const config = defineConfig({
           // }
         ],
         "@typescript-eslint/no-unused-vars": [
-          "off",
-          // "warn",
-          // {
-          //   argsIgnorePattern: "^_",
-          //   caughtErrors: "none",
-          //   varsIgnorePattern: "^_"
-          // }
+          //"off",
+          "warn",
+          /* {
+            argsIgnorePattern: "^_",
+            caughtErrors: "none",
+            varsIgnorePattern: "^_",
+          }, */
         ],
         "@typescript-eslint/consistent-type-definitions": [
           /* "error", "type" */
