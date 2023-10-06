@@ -38,7 +38,6 @@ function LastStep({ survey }: Props) {
   if (user) {
     router.push(`/${lng}/survey/next`);
   }
-  console.log("survey__", survey);
   return (
     <>
       <Auth

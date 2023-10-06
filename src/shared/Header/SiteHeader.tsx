@@ -38,7 +38,6 @@ const SiteHeader: FC<SiteHeaderProps> = ({
   hasBorder = false,
 }) => {
   const anchorRef = useRef<HTMLDivElement>(null);
-  console.log("anchorRef", hasBorder);
 
   const [isTopOfPage, setIsTopOfPage] = useState(true);
 

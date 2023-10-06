@@ -1,7 +1,8 @@
-import { IUser } from "./src/data/routers/handlers/users";
+import { UserRole } from "@/types";
+import { DefaultSession } from "next-auth";
 
 type JwtPayload = {
-  userId?: IUser["id"];
+  userId?: string;
 };
 
 declare module "next-auth" {
@@ -9,7 +10,11 @@ declare module "next-auth" {
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
   interface Session {
-    userId?: IUser["id"];
+    user: {
+      id: string;
+      hasSurvey: boolean;
+      role: UserRole;
+    } & DefaultSession["user"];
   }
 }
 

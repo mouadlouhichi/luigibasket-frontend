@@ -1,10 +1,20 @@
-import React from "react";
-import { Link } from "@/lib/router-events";
+"use client";
 
+import React, { useCallback } from "react";
+import type { NextPage } from "next";
+import Head from "next/head";
+import { useRouter } from "next/navigation";
+import { Link } from "@/lib/router-events";
+import { trpc } from "@/providers/trpcProvider";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+
+import { authSchema, ISignUp } from "@/data/valids/auth";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 
 import SocialAuthProviders from "./SocialAuthProviders";
+import { signIn } from "next-auth/react";
 
 interface Props {
   heading: string;
@@ -40,6 +50,43 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
         break;
     }
   };
+  const { handleSubmit, control, reset } = useForm<ISignUp>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: zodResolver(authSchema),
+  });
+
+  const { mutateAsync } = trpc.auth.signup.useMutation();
+  const router = useRouter();
+  const onSubmit = useCallback(
+    async (data: ISignUp) => {
+      try {
+        const result = await mutateAsync(data);
+        if (result.status === 201) {
+          reset();
+          router.push("/home");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    [mutateAsync, router, reset],
+  );
+  const onSubmitLogin = useCallback(
+    async (data: ISignUp) => {
+      try {
+        await signIn("credentials", { ...data, callbackUrl: "/home" });
+        reset();
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    [reset]
+  );
+
+  const onSubmitHandler = type === "login" ? onSubmitLogin : onSubmit;
   return (
     <>
       <div className={`nc-PageLogin  relative row-start-3 md:row-start-2`}>
@@ -57,22 +104,38 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
             <div className="absolute left-0 top-1/2 w-full -translate-y-1/2 border border-neutral-100 dark:border-neutral-800"></div>
           </div>
           {/* FORM */}
-          <form className="grid grid-cols-1 gap-6" action="#" method="post">
+          <form
+            className="grid grid-cols-1 gap-6"
+            onSubmit={handleSubmit(onSubmitHandler)}
+          >
             <label className="block">
               <span className="text-neutral-800 dark:text-neutral-200">
                 Email address
               </span>
-              <Input
-                type="email"
-                placeholder="example@example.com"
-                className="mt-1"
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    type="email"
+                    placeholder="example@example.com"
+                    className="mt-1"
+                    {...field}
+                  />
+                )}
               />
             </label>
             <label className="block">
               <span className="flex items-center justify-between text-neutral-800 dark:text-neutral-200">
                 Password
               </span>
-              <Input type="password" className="mt-1" />
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <Input type="password" className="mt-1" {...field} />
+                )}
+              />
             </label>
             <Button type="submit">Continue</Button>
           </form>

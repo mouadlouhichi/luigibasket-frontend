@@ -15,6 +15,7 @@ export const authSchema = z.object({
         "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
     }),
 });
+export type ISignUp = z.infer<typeof authSchema>;
 
 export const verfifyEmailSchema = z.object({
   code: z

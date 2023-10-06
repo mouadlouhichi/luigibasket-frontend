@@ -50,7 +50,7 @@ async function main() {
               name: faker.name.fullName(),
               email: faker.internet.email(),
               image: faker.image.urlPicsumPhotos({ width: 640, height: 640 }),
-              userType: "Therapist",
+              userRole: "Therapist",
             },
           },
         },

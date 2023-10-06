@@ -74,6 +74,8 @@ export default withAuth(
       return redirect(req, defaultBlockedPage);
     }
 
+
+
     return intlMiddleware(req);
   },
   {

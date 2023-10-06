@@ -1,6 +1,8 @@
 import type { NextAuthOptions } from "next-auth";
 import { prisma } from "@/lib/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { User } from "@prisma/client";
+import Credentials from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";
 //import EmailProvider from "next-auth/providers/email";
 //import GithubProvider from "next-auth/providers/github";
@@ -9,6 +11,7 @@ import type { Provider } from "next-auth/providers/index";
 import LinkedInProvider from "next-auth/providers/linkedin";
 
 import { env } from "@/data/env/env.mjs";
+import { authSchema } from "@/data/valids/auth";
 
 const providers = [
   /**
@@ -44,6 +47,29 @@ const providers = [
       clientId: env.LINKEDIN_ID,
       clientSecret: env.LINKEDIN_SECRET,
     }),
+  Credentials({
+    name: "credentials",
+    credentials: {
+      email: {
+        label: "Email",
+        type: "email",
+        placeholder: "jsmith@gmail.com",
+      },
+      password: { label: "Password", type: "password" },
+    },
+    authorize: async (credentials, request) => {
+      const creds = await authSchema.parseAsync(credentials);
+
+      const user = await prisma.user.findFirst({
+        where: { email: creds.email },
+      });
+
+      if (!user) {
+        return null;
+      }
+      return user;
+    },
+  }),
 ].filter(Boolean) as Provider[];
 
 export const authOptions = () => {
@@ -131,12 +157,12 @@ export const authOptions = () => {
        *
        * https://next-auth.js.org/configuration/callbacks#session-callback
        */
-      async session({ session, token, user }) {
+      session({ session, token, user }) {
         if (session.user && token.userId) {
           session.user.id = token.userId;
         }
 
-        return Promise.resolve(session);
+        return session;
       },
 
       /**
@@ -146,13 +172,14 @@ export const authOptions = () => {
        *
        * https://next-auth.js.org/configuration/callbacks#jwt-callback
        */
-      async jwt({ token, user /*, account, profile, trigger */ }) {
+      jwt({ token, user, account, profile, trigger }) {
         if (user) {
           token.userId = user.id;
           token.email = user.email;
         }
+        console.log("jwt______", token, user, account, profile, trigger);
 
-        return Promise.resolve(token);
+        return token;
       },
     },
   };

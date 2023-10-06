@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import type { DefaultSession } from "next-auth";
 import { User } from "next-auth";
 import { type FileWithPath } from "react-dropzone";
 import { LucideProps } from "lucide-react";
@@ -13,22 +12,13 @@ export type UserSession =
     })
   | undefined;
 
-declare module "next-auth" {
-  interface Session {
-    user?: User & {
-      id: string;
-      hasSurvey: boolean;
-    };
-  }
-}
-
-declare module "next-auth/jwt" {
+/* declare module "next-auth/jwt" {
   interface JWT {
     userId?: string | null;
     email?: string | null;
   }
 }
-
+ */
 export type WithChildren<T = unknown> = T & { children: React.ReactNode };
 
 export type PageParams = { params: { locale: string } };
