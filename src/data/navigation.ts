@@ -1,5 +1,16 @@
+import { Icons } from "@/images/icons/index";
 import { PathName, Route } from "@/routers/types";
 import ncNanoId from "@/utils/ncNanoId";
+import {
+  ArrowTrendingUpIcon,
+  BookmarkIcon,
+  CalendarDaysIcon,
+  ChatBubbleLeftEllipsisIcon,
+  GiftIcon,
+  GlobeAltIcon,
+  HomeIcon,
+  QuestionMarkCircleIcon,
+} from "@heroicons/react/24/outline";
 
 import { CustomLink } from "@/data/types";
 import { MegamenuItem, NavItemType } from "@/shared/Navigation/NavigationItem";
@@ -405,6 +416,68 @@ export const NAVIGATION: NavItemType[] = [
     href: "/" as PathName,
     name: "Contact",
     type: "none",
+  },
+];
+
+export const USER_RIGHT_NAVIGATION: NavItemType[] = [
+  {
+    id: ncNanoId(),
+    href: "/home" as PathName,
+    name: "Home",
+    type: "icon",
+    icon: HomeIcon,
+  },
+  {
+    id: ncNanoId(),
+    href: "/" as PathName,
+    name: "Insights",
+    type: "icon",
+    icon: ArrowTrendingUpIcon,
+  },
+  {
+    id: ncNanoId(),
+    href: "/" as PathName,
+    name: "Discover",
+    type: "icon",
+    icon: GlobeAltIcon,
+  },
+  {
+    id: ncNanoId(),
+    href: "/" as PathName,
+    name: "Schedule",
+    type: "icon",
+    icon: CalendarDaysIcon,
+  },
+];
+
+export const USER_LEFT_NAVIGATION: NavItemType[] = [
+  /* {
+    id: ncNanoId(),
+    href: "/" as PathName,
+    name: "Refer",
+    type: "icon",
+    icon: GiftIcon,
+  }, */
+  {
+    id: ncNanoId(),
+    href: "/" as PathName,
+    name: "Messages",
+    type: "icon",
+    icon: ChatBubbleLeftEllipsisIcon,
+  },
+  {
+    id: ncNanoId(),
+    href: "/" as PathName,
+    name: "Saved",
+    type: "icon",
+    icon: BookmarkIcon,
+  },
+  {
+    id: ncNanoId(),
+    href: "/" as PathName,
+    name: "Help",
+    type: "icon",
+    icon: QuestionMarkCircleIcon,
   },
 ];
 

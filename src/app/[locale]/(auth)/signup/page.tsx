@@ -10,7 +10,6 @@ import Auth from "@/shared/Auth/Auth";
 function PageSignup() {
   const lng = useLocale();
   const callbackUrl = `/${lng}`;
-  console.log("callbackUrl", callbackUrl);
   return (
     <>
       <div className="relative h-[30vh] md:row-span-2 md:h-screen">

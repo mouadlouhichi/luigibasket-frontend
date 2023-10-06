@@ -4,6 +4,8 @@ import type { FieldValues } from "react-hook-form";
 import { useWizard } from "react-use-wizard";
 
 import { SurveyGroup, SurveyQuestion } from "@/data/survey";
+import { useIsClient } from "@/hooks/use-is-client";
+import useSurveyStore from "@/hooks/useSurvey";
 
 import AnimatedStep from "./AnimatedStep";
 import Message from "./Message";
@@ -26,12 +28,14 @@ const Step: FC<StepProps> = ({
   allFields,
 }) => {
   const { nextStep, activeStep, goToStep } = useWizard();
+
   useEffect(() => {
     const isBrowser = () => typeof window !== "undefined"; //The approach recommended by Next.js
     if (isBrowser()) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, []);
+  const { setShowParagraph, showParagraph } = useSurveyStore();
 
   useEffect(() => {
     if (!Array.isArray(item)) {
@@ -46,6 +50,18 @@ const Step: FC<StepProps> = ({
       }
     }
   }, [allFields, activeStep, goToStep, item]);
+
+  const mounted = useIsClient();
+  useEffect(() => {
+    if (mounted) {
+      if (activeStep > 2) {
+        setShowParagraph(false);
+      } else {
+        setShowParagraph(true);
+      }
+    }
+  }, [activeStep, setShowParagraph, mounted]);
+
   if (Array.isArray(item)) {
     return (
       <>

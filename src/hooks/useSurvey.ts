@@ -10,6 +10,8 @@ export type SurveyStateProps = {
   setSurvey: (survey: any) => void;
   isNextDisabled: boolean;
   setIsNextDisabled: (value: boolean) => void;
+  showParagraph: boolean;
+  setShowParagraph: (value: boolean) => void;
 };
 
 export const initialSurveyState: StorageValue<SurveyStateProps> = {
@@ -21,6 +23,8 @@ export const initialSurveyState: StorageValue<SurveyStateProps> = {
     setSurvey: () => {},
     isNextDisabled: false,
     setIsNextDisabled: () => {},
+    showParagraph: true,
+    setShowParagraph: () => {},
   },
 };
 const useSurveyStore = create<SurveyStateProps>()(
@@ -34,6 +38,9 @@ const useSurveyStore = create<SurveyStateProps>()(
       user: null,
       setUser: (user: User) => set((state) => ({ ...state, user })),
       setSurvey: (survey: any) => set((state) => ({ ...state, survey })),
+      showParagraph: true,
+      setShowParagraph: (value: boolean) =>
+        set((state) => ({ ...state, showParagraph: value })),
     }),
     {
       name: "survey-storage", // name of the item in the storage (must be unique)

@@ -38,6 +38,7 @@ const SiteHeader: FC<SiteHeaderProps> = ({
   hasBorder = false,
 }) => {
   const anchorRef = useRef<HTMLDivElement>(null);
+  console.log("anchorRef", hasBorder);
 
   const [isTopOfPage, setIsTopOfPage] = useState(true);
 
@@ -67,35 +68,17 @@ const SiteHeader: FC<SiteHeaderProps> = ({
     }
   }, [pathname]);
 
-  const { user } = useUserContext();
-
-  const { isLoading, data } = trpc.user.profile.useQuery(undefined, {
-    enabled: !!user,
-    refetchOnWindowFocus: false,
-    onError: (err) => toast.error(err.message),
-  });
-  const { setUser } = useSurveyStore();
-
-  useEffect(() => {
-    data && setUser(data);
-  }, [data]);
   const renderHeader = () => {
-    let headerClassName = " dark:border-b dark:border-neutral-700";
+    let headerClassName =
+      "border-b border-neutral-200 dark:border-b dark:border-neutral-700";
     if (PAGES_HIDE_HEADER_BORDER.includes(pathname as PathName)) {
       headerClassName =
         isTopOfPage && !hasBorder
           ? ""
-          : " shadow-sm dark:border-b dark:border-neutral-700 okok";
+          : " shadow-sm border-b border-neutral-200 dark:border-b dark:border-neutral-700";
     }
     // add logic for partner
-    return (
-      <Header
-        className={className + headerClassName}
-        type={type}
-        hasSurvey={data?.hasSurvey}
-        isLoading={isLoading}
-      />
-    );
+    return <Header className={className + headerClassName} type={type} />;
   };
 
   return (

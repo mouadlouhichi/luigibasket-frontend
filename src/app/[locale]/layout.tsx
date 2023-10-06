@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Manrope, Montserrat, Raleway } from "next/font/google";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
-import { getCurrentUser, isAdmin } from "@/lib/getCurrentUser";
+import { getCurrentUser, getHasSurvey, isAdmin } from "@/lib/getCurrentUser";
 import { HandleOnComplete } from "@/lib/router-events";
 import { AppProvider } from "@/providers/AppProvider";
 import ClientCommons from "@/providers/ClientCommons";
@@ -73,6 +73,7 @@ export default function RootLayout({
 
   const user = use(getCurrentUser());
   const admin = use(isAdmin(user?.id));
+  const hasSurvey = use(getHasSurvey(user?.id));
   return (
     <html
       suppressHydrationWarning
@@ -81,7 +82,7 @@ export default function RootLayout({
       className={`${manrope.className} ${montserrat.variable}  ${raleway.variable} ${sharp.variable} `}
     >
       <body className="bg-white  font-sans text-base text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200">
-        <UserContextProvider user={user} isAdmin={admin}>
+        <UserContextProvider user={user} isAdmin={admin} hasSurvey={hasSurvey}>
           <TRPCProvider>
             <AppProvider locale={locale} messages={messages}>
               <ClientCommons />

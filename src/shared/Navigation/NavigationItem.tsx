@@ -4,7 +4,8 @@ import React, { FC, Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PathName } from "@/routers/types";
+import { useLocale } from "next-intl";
+import { PathName, Route } from "@/routers/types";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
@@ -23,11 +24,13 @@ export interface NavItemType {
   targetBlank?: boolean;
   children?: NavItemType[];
   megaMenu?: MegamenuItem[];
-  type?: "dropdown" | "megaMenu" | "none";
+  type?: "dropdown" | "megaMenu" | "none" | "icon";
+  icon?: React.FC<{ width: number; hanging: number } | any>;
 }
 
 export interface NavigationItemProps {
   menuItem: NavItemType;
+  type?: "moderated" | "main" | "dashboard";
 }
 
 type NavigationItemWithRouterProps = NavigationItemProps;
@@ -37,6 +40,8 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({ menuItem }) => {
 
   // CLOSE ALL MENU OPENING WHEN CHANGE HISTORY
   const locationPathName = usePathname();
+  const locale = useLocale();
+
   useEffect(() => {
     setMenuCurrentHovers([]);
   }, [locationPathName]);
@@ -259,24 +264,45 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({ menuItem }) => {
         href={item.href || "/"}
       >
         {item.name}
-        {item.type !== "none" && (
-          <ChevronDownIcon
-            className="-mr-1 ml-1 h-4 w-4 text-neutral-400"
-            aria-hidden="true"
-          />
-        )}
       </Link>
     );
   };
 
+  // ===================== ICON MENU =====================
+  const renderIconItem = (item: NavItemType) => {
+    const href = "/" + locale + item.href;
+    const active = locationPathName === href;
+    return (
+      <li
+        className={`${
+          active ? " border-b border-primary-6000" : ""
+        } menu-item flex items-center`}
+      >
+        <Link
+          rel="noopener noreferrer"
+          className={`${
+            active ? "text-primary-6000" : ""
+          } inline-flex flex-col items-center rounded-lg px-4 py-2  font-normal text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-200 xl:px-5 xl:text-base`}
+          href={href as Route}
+        >
+          {item.icon && <item.icon width={24} height={24} />}
+          <span className="text-xs leading-5 tracking-wide font-semibold mt-1">
+            {item.name}
+          </span>
+        </Link>
+      </li>
+    );
+  };
   switch (menuItem.type) {
     case "megaMenu":
       return renderMegaMenu(menuItem);
     case "dropdown":
       return renderDropdownMenu(menuItem);
+    case "icon":
+      return renderIconItem(menuItem);
     default:
       return (
-        <li className="menu-item ok flex items-center">
+        <li className="menu-item flex items-center">
           {renderMainItem(menuItem)}
         </li>
       );

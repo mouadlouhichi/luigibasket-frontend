@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Control, Controller, FieldValues } from "react-hook-form";
 
 import { SurveyQuestion } from "@/data/survey";
-import useSurveyStore from "@/hooks/useSurvey";
 import Checkbox from "@/components/Checkbox";
 import CustomRadio from "@/components/CustomRadio";
 import CustomSelect from "@/components/CustomSelect";
@@ -22,8 +21,6 @@ const Questions: FC<QuestionsProps> = ({
   nextStep,
   control,
 }) => {
-  const { setIsNextDisabled } = useSurveyStore();
-
   switch (question.type) {
     case "radio":
       return (
@@ -75,7 +72,6 @@ const Questions: FC<QuestionsProps> = ({
                 nextStep={nextStep}
                 onChange={(value) => {
                   field.onChange(value?.value);
-                  setIsNextDisabled(false);
                   nextStep && nextStep();
                 }}
               />

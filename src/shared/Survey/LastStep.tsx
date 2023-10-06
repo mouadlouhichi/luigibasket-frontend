@@ -9,6 +9,7 @@
 "use client";
 
 import { use, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { trpc } from "@/providers/trpcProvider";
@@ -33,44 +34,11 @@ function LastStep({ survey }: Props) {
     setSurvey(survey);
   }, []);
 
-  const renderLastStep = () => {
-    if (!user) {
-      return (
-        <Auth
-          heading="Create account"
-          description="Login with Social Media or enter your details."
-          callbackUrl={callbackUrl}
-        />
-      );
-    } else {
-      return <Button onClick={(e) => save(e)}>Save</Button>;
-    }
-  };
-
-  const toggleSurveyMutation = trpc.survey.toggle.useMutation({
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
-  const createSurveyMutation = trpc.survey.create.useMutation({
-    onSuccess: () => {
-      toggleSurveyMutation.mutateAsync({ userId: user?.id || "" });
-      toast.success("Added to My List");
-    },
-    onError: (error) => {
-      toast.error(error.message);
-    },
-  });
-
-  const save = (e: any) => {
-    e.preventDefault();
-    createSurveyMutation.mutate({
-      ...survey,
-      user: {
-        id: user?.id,
-      },
-    });
-  };
+  const router = useRouter();
+  if (user) {
+    router.push(`/${lng}/survey/next`);
+  }
+  console.log("survey__", survey);
   return (
     <>
       <Auth
@@ -78,7 +46,6 @@ function LastStep({ survey }: Props) {
         description="Login with Social Media or enter your details."
         callbackUrl={callbackUrl}
       />
-      <button onClick={(e) => save(e)}>Save</button>
     </>
   );
 }
