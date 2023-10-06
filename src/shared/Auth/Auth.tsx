@@ -4,6 +4,7 @@ import React, { useCallback } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { Link } from "@/lib/router-events";
 import { trpc } from "@/providers/trpcProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,7 +15,6 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 
 import SocialAuthProviders from "./SocialAuthProviders";
-import { signIn } from "next-auth/react";
 
 interface Props {
   heading: string;
@@ -58,7 +58,17 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
     resolver: zodResolver(authSchema),
   });
 
-  const { mutateAsync } = trpc.auth.signup.useMutation();
+  const { mutateAsync } = trpc.auth.signup.useMutation({
+    onSuccess: async (_,validate) => {
+      reset();
+      try {
+        await signIn("credentials", { ...validate, callbackUrl: "/home" });
+        reset();
+      } catch (err) {
+        console.error(err);
+      }
+    },
+  });
   const router = useRouter();
   const onSubmit = useCallback(
     async (data: ISignUp) => {
@@ -83,7 +93,7 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
         console.error(err);
       }
     },
-    [reset]
+    [reset],
   );
 
   const onSubmitHandler = type === "login" ? onSubmitLogin : onSubmit;
