@@ -62,8 +62,8 @@ function Next() {
   let validate: any;
   try {
     validate = surveySchema.parse(surveyData);
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    //console.log(err);
   }
   const router = useRouter();
   const lng = useLocale();

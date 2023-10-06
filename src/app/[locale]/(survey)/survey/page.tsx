@@ -7,6 +7,8 @@ import { FieldValues, Resolver, useForm } from "react-hook-form";
 import { useWizard, Wizard } from "react-use-wizard";
 
 import { initialFormState, surveyData, surveySchema } from "@/data/survey";
+import { useIsClient } from "@/hooks/use-is-client";
+import useSurveyStore from "@/hooks/useSurvey";
 import IntroStep from "@/shared/Survey/IntroStep";
 import LastStep from "@/shared/Survey/LastStep";
 import Step from "@/shared/Survey/Step";
@@ -47,6 +49,9 @@ const SurveyPage = () => {
     });
   };
 
+  const { showParagraph } = useSurveyStore();
+  const mounted = useIsClient();
+
   return (
     <>
       <div className=" mx-auto mt-20 max-w-3xl text-center md:mt-8">
@@ -54,7 +59,7 @@ const SurveyPage = () => {
           Help us match you to{" "}
           <span className="text-primary-500">the right therapist</span>
         </h2>
-        {activeStep <= 3 && (
+        {mounted && showParagraph && (
           <p className="mt-4 hidden text-neutral-500 dark:text-neutral-400 md:block">
             Please fill out this short questionnaire to provide some background
             information about you and the issues you&apos; d like to deal with

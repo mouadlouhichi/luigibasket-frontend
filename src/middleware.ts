@@ -21,7 +21,7 @@ function doesPathMatchPages(req: NextRequest, pages: string[]) {
 }
 
 // TODO : list all protected routes
-const protectedPages = ["/account"];
+const protectedPages = ["/home", "/account"];
 
 const defaultPublicPage = "";
 const blockedPages = ["/account"];

@@ -13,14 +13,13 @@ export interface HeaderProps {
 const Header: FC<HeaderProps> = ({
   className = "",
   type = "main",
-  hasSurvey,
   isLoading,
 }) => {
   return (
     <header
       className={`nc-Header h-fit nc-header-bg sticky inset-x-0 top-0 z-40 w-full ${className}`}
     >
-      <MainNav type={type} hasSurvey={hasSurvey} isLoading={isLoading} />
+      <MainNav type={type} isLoading={isLoading} />
     </header>
   );
 };
