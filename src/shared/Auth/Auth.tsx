@@ -74,6 +74,7 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
   const onSubmit = useCallback(
     async (data: ISignUp) => {
       const hashedPassword = await getHashedPassword(data.password);
+      console.log(hashedPassword);
       try {
         const result = await mutateAsync({
           email: data.email,
