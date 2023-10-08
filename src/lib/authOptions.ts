@@ -1,7 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
+import { baseUrl } from "@/app";
 import { prisma } from "@/lib/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { User } from "@prisma/client";
 import Credentials from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";
 //import EmailProvider from "next-auth/providers/email";
@@ -60,9 +60,22 @@ const providers = [
     authorize: async (credentials, request) => {
       const creds = await authSchema.parseAsync(credentials);
 
-      const user = await prisma.user.findFirst({
-        where: { email: creds.email },
+      const res = await fetch(`${baseUrl}/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: credentials?.email,
+          password: credentials?.password,
+        }),
       });
+
+      const user = await res.json();
+
+      /* const user = await prisma.user.findFirst({
+        where: { email: creds.email },
+      }); */
 
       if (!user) {
         return null;
@@ -132,7 +145,8 @@ export const authOptions = () => {
        *
        * https://next-auth.js.org/configuration/callbacks#sign-in-callback
        */
-      async signIn(/* { user, account, profile, email, credentials } */) {
+      async signIn({ user, account, profile, email, credentials }) {
+        //TODO provider linking
         return Promise.resolve(true);
       },
       /**
@@ -161,6 +175,8 @@ export const authOptions = () => {
         if (session.user && token.userId) {
           session.user.id = token.userId;
         }
+        if (token.hasSurvey && token.hasSurvey) session.user.role = token.role;
+        session.user.hasSurvey = token.hasSurvey;
 
         return session;
       },
@@ -172,13 +188,18 @@ export const authOptions = () => {
        *
        * https://next-auth.js.org/configuration/callbacks#jwt-callback
        */
-      jwt({ token, user, account, profile, trigger }) {
+      async jwt({ token, user, account, profile, trigger }) {
         if (user) {
           token.userId = user.id;
           token.email = user.email;
+          const existUser = await prisma.user.findFirst({
+            where: { id: user.id },
+          });
+          if (existUser) {
+            token.role = existUser.userRole;
+            token.hasSurvey = existUser.hasSurvey;
+          }
         }
-        console.log("jwt______", token, user, account, profile, trigger);
-
         return token;
       },
     },

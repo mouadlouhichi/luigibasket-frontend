@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/app";
+import { fallbackLng, languages } from "@/i18n/settings";
 
 import { fullURL } from "@/data/meta/builder";
-
-import { fallbackLng, languages } from "../i18n/settings";
 
 export const DEFAULT_METADATA: Metadata = {
   metadataBase: fullURL(),

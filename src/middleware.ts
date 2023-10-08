@@ -2,8 +2,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { withAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
-
-import { fallbackLng, languages } from "@/data/i18n/settings";
+import { fallbackLng, languages } from "@/i18n/settings";
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
@@ -24,8 +23,11 @@ function doesPathMatchPages(req: NextRequest, pages: string[]) {
 const protectedPages = ["/home", "/account"];
 
 const defaultPublicPage = "";
-const blockedPages = ["/account"];
 const defaultBlockedPage = "/";
+const defaultUserPage = "/home";
+const blockedPages = ["/account"];
+const surveyPages = ["/survey", "/survey/next"];
+
 const authPages = ["/login", "/signup"];
 const adminPages = ["/admin"];
 const publicPages = [""];
@@ -70,11 +72,14 @@ export default withAuth(
     //   return redirect(req, defaultPublicPage);
     // }
 
-    if (!doesPathMatchPages(req, blockedPages) && token.isBlocked) {
-      return redirect(req, defaultBlockedPage);
+    // controle access to survey pages
+    if (doesPathMatchPages(req, surveyPages) && token.hasSurvey) {
+      return redirect(req, defaultUserPage);
     }
-
-
+    // controle access to home page
+    if (doesPathMatchPages(req, publicPages) && !token.isAdmin) {
+      return redirect(req, defaultUserPage);
+    }
 
     return intlMiddleware(req);
   },

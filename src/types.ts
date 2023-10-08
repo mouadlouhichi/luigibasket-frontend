@@ -1,10 +1,9 @@
 import { Metadata } from "next";
-import { User } from "next-auth";
+import { User as DefaultUser } from "next-auth";
 import { type FileWithPath } from "react-dropzone";
+import { User, UserRole } from "@prisma/client";
 import { LucideProps } from "lucide-react";
 import { type z } from "zod";
-
-import { type userPrivateMetadataSchema } from "@/data/valids/auth";
 
 export type UserSession =
   | (User & {
@@ -12,13 +11,15 @@ export type UserSession =
     })
   | undefined;
 
-/* declare module "next-auth/jwt" {
+declare module "next-auth/jwt" {
   interface JWT {
     userId?: string | null;
     email?: string | null;
+    role: UserRole;
+    hasSurvey: boolean;
   }
 }
- */
+
 export type WithChildren<T = unknown> = T & { children: React.ReactNode };
 
 export type PageParams = { params: { locale: string } };
@@ -57,8 +58,6 @@ export interface FooterItem {
 export type MainNavItem = NavItemWithOptionalChildren;
 
 export type SidebarNavItem = NavItemWithChildren;
-
-export type UserRole = z.infer<typeof userPrivateMetadataSchema.shape.role>;
 
 export interface Option {
   label: string;

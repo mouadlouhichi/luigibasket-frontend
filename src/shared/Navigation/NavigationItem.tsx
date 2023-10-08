@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
+import { fallbackLng } from "@/i18n/settings";
 import { PathName, Route } from "@/routers/types";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
@@ -271,7 +272,13 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({ menuItem }) => {
   // ===================== ICON MENU =====================
   const renderIconItem = (item: NavItemType) => {
     const href = "/" + locale + item.href;
-    const active = locationPathName === href;
+    const active =
+      fallbackLng === locale
+        ? locationPathName === item.href
+        : locationPathName === href;
+
+    console.log(locationPathName, item.href);
+
     return (
       <li
         className={`${

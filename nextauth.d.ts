@@ -1,5 +1,5 @@
-import { UserRole } from "@/types";
 import { DefaultSession } from "next-auth";
+import { UserRole } from "@prisma/client";
 
 type JwtPayload = {
   userId?: string;
