@@ -34,6 +34,10 @@ jobs:
       LINKEDIN_SECRET: ${{ secrets.LINKEDIN_SECRET }}
       FACEBOOK_ID: ${{ secrets.FACEBOOK_ID }}
       FACEBOOK_SECRET: ${{ secrets.FACEBOOK_SECRET }}
+      GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+      GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      
     steps:
       - uses: pnpm/action-setup@v2
         with:

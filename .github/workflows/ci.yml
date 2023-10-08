@@ -44,6 +44,7 @@ jobs:
           GOOGLE_ID_ARG: ${{ secrets.GOOGLE_ID }}
           GOOGLE_SECRET_ARG: ${{ secrets.GOOGLE_SECRET }}
           FACEBOOK_SECRET_ARG: ${{ secrets.FACEBOOK_SECRET }}
+          SECRET_KEY_ARG: ${{ secrets.SECRET_KEY }}
         with:
           name: mouadlouhichi/${{ secrets.USERNAME }}/${{ secrets.REPO_NAME }}
           registry: ghcr.io
