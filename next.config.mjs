@@ -42,6 +42,7 @@ const hostnames = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
   output: "standalone",
   swcMinify: true,
   /**
@@ -56,7 +57,7 @@ const nextConfig = {
       ],
     },
     serverActions: true,
-    typedRoutes: true,
+    typedRoutes: false,
 
     mdxRs: true,
   },

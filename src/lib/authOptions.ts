@@ -1,6 +1,8 @@
 import type { NextAuthOptions } from "next-auth";
+import { baseUrl } from "@/app";
 import { prisma } from "@/lib/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import Credentials from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";
 //import EmailProvider from "next-auth/providers/email";
 //import GithubProvider from "next-auth/providers/github";
@@ -9,6 +11,7 @@ import type { Provider } from "next-auth/providers/index";
 import LinkedInProvider from "next-auth/providers/linkedin";
 
 import { env } from "@/data/env/env.mjs";
+import { authSchema } from "@/data/valids/auth";
 
 const providers = [
   /**
@@ -44,6 +47,42 @@ const providers = [
       clientId: env.LINKEDIN_ID,
       clientSecret: env.LINKEDIN_SECRET,
     }),
+  Credentials({
+    name: "credentials",
+    credentials: {
+      email: {
+        label: "Email",
+        type: "email",
+        placeholder: "jsmith@gmail.com",
+      },
+      password: { label: "Password", type: "password" },
+    },
+    authorize: async (credentials, request) => {
+      const creds = await authSchema.parseAsync(credentials);
+
+      const res = await fetch(`${baseUrl}/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: credentials?.email,
+          password: credentials?.password,
+        }),
+      });
+
+      const user = await res.json();
+
+      /* const user = await prisma.user.findFirst({
+        where: { email: creds.email },
+      }); */
+
+      if (!user) {
+        return null;
+      }
+      return user;
+    },
+  }),
 ].filter(Boolean) as Provider[];
 
 export const authOptions = () => {
@@ -106,7 +145,8 @@ export const authOptions = () => {
        *
        * https://next-auth.js.org/configuration/callbacks#sign-in-callback
        */
-      async signIn(/* { user, account, profile, email, credentials } */) {
+      async signIn({ user, account, profile, email, credentials }) {
+        //TODO provider linking
         return Promise.resolve(true);
       },
       /**
@@ -131,12 +171,14 @@ export const authOptions = () => {
        *
        * https://next-auth.js.org/configuration/callbacks#session-callback
        */
-      async session({ session, token, user }) {
+      session({ session, token, user }) {
         if (session.user && token.userId) {
           session.user.id = token.userId;
         }
+        if (token.hasSurvey && token.hasSurvey) session.user.role = token.role;
+        session.user.hasSurvey = token.hasSurvey;
 
-        return Promise.resolve(session);
+        return session;
       },
 
       /**
@@ -146,13 +188,19 @@ export const authOptions = () => {
        *
        * https://next-auth.js.org/configuration/callbacks#jwt-callback
        */
-      async jwt({ token, user /*, account, profile, trigger */ }) {
+      async jwt({ token, user, account, profile, trigger }) {
         if (user) {
           token.userId = user.id;
           token.email = user.email;
+          const existUser = await prisma.user.findFirst({
+            where: { id: user.id },
+          });
+          if (existUser) {
+            token.role = existUser.userRole;
+            token.hasSurvey = existUser.hasSurvey;
+          }
         }
-
-        return Promise.resolve(token);
+        return token;
       },
     },
   };

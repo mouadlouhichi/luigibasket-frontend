@@ -1,4 +1,4 @@
-import { UserType } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 import * as trpc from "@trpc/server";
 
 import { procedure } from "./trpc";
@@ -16,17 +16,17 @@ export const userProcedure = procedure.use(({ ctx, next }) => {
 });
 
 export const adminProcedure = userProcedure.use(async ({ ctx, next }) => {
-  const { userType } =
+  const { userRole } =
     (await ctx.prisma.user.findFirst({
       where: {
         id: ctx.session.user.id || "",
       },
       select: {
-        userType: true,
+        userRole: true,
       },
     })) || {};
 
-  if (userType !== UserType.Admin) {
+  if (userRole !== UserRole.Admin) {
     throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({

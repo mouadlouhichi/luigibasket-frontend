@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useCallback } from "react";
+import type { NextPage } from "next";
+import Head from "next/head";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { Link } from "@/lib/router-events";
+import { trpc } from "@/providers/trpcProvider";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
+import { getHashedPassword } from "@/server/actions/auth";
+import { authSchema, ISignUp } from "@/data/valids/auth";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 
+import AuthForm from "./AuthForm";
 import SocialAuthProviders from "./SocialAuthProviders";
 
 interface Props {
@@ -40,6 +51,64 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
         break;
     }
   };
+  //TODO add form error
+  const { handleSubmit, control, reset } = useForm<ISignUp>({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    resolver: zodResolver(authSchema),
+  });
+
+  const { mutateAsync } = trpc.auth.signup.useMutation({
+    onSuccess: async (_, validate) => {
+      reset();
+      handleSignIn(validate);
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+  const router = useRouter();
+
+  const onSubmit = useCallback(
+    async (data: ISignUp) => {
+      const hashedPassword = await getHashedPassword(data.password);
+      console.log(hashedPassword);
+      try {
+        const result = await mutateAsync({
+          email: data.email,
+          password: hashedPassword,
+          username: data.username,
+        });
+        if (result.status === 201) {
+          reset();
+          router.push("/home");
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    [mutateAsync, router, reset],
+  );
+  const handleSignIn = async (data: ISignUp) => {
+    try {
+      await signIn("credentials", { ...data, callbackUrl: "/home" });
+      reset();
+    } catch (err) {
+      toast.error("Error signing in");
+      console.error(err);
+    }
+  };
+
+  const onSubmitLogin = useCallback(
+    async (data: ISignUp) => {
+      await handleSignIn(data);
+    },
+    [reset],
+  );
+
+  const onSubmitHandler = type === "login" ? onSubmitLogin : onSubmit;
   return (
     <>
       <div className={`nc-PageLogin  relative row-start-3 md:row-start-2`}>
@@ -57,22 +126,63 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
             <div className="absolute left-0 top-1/2 w-full -translate-y-1/2 border border-neutral-100 dark:border-neutral-800"></div>
           </div>
           {/* FORM */}
-          <form className="grid grid-cols-1 gap-6" action="#" method="post">
+          {/*  <AuthForm
+            type={type}
+            control={control}
+            onSubmit={handleSubmit(onSubmitHandler)}
+          /> */}
+
+          <form
+            className="grid grid-cols-1 gap-6"
+            onSubmit={handleSubmit(onSubmitHandler)}
+          >
+            {type === "signup" && (
+              <label className="block">
+                <span className="text-neutral-800 dark:text-neutral-200">
+                  Username
+                </span>
+                <Controller
+                  name="username"
+                  control={control}
+                  render={({ field }) => (
+                    <Input
+                      type="text"
+                      placeholder="Adon Shaka"
+                      className="mt-1"
+                      {...field}
+                    />
+                  )}
+                />
+              </label>
+            )}
             <label className="block">
               <span className="text-neutral-800 dark:text-neutral-200">
                 Email address
               </span>
-              <Input
-                type="email"
-                placeholder="example@example.com"
-                className="mt-1"
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    type="email"
+                    placeholder="example@example.com"
+                    className="mt-1"
+                    {...field}
+                  />
+                )}
               />
             </label>
             <label className="block">
               <span className="flex items-center justify-between text-neutral-800 dark:text-neutral-200">
                 Password
               </span>
-              <Input type="password" className="mt-1" />
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => (
+                  <Input type="password" className="mt-1" {...field} />
+                )}
+              />
             </label>
             <Button type="submit">Continue</Button>
           </form>

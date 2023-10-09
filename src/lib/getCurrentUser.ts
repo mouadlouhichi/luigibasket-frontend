@@ -1,4 +1,4 @@
-import { UserType } from "@prisma/client";
+import { UserRole } from "@prisma/client";
 
 import { prisma as db } from "./prisma";
 import { getSession } from "./servers/session";
@@ -25,15 +25,15 @@ export const getHasSurvey = async (userId?: string) => {
 export const isAdmin = async (userId?: string) => {
   if (!userId) return false;
 
-  const { userType } =
+  const { userRole } =
     (await db.user.findFirst({
       where: {
         id: userId,
       },
       select: {
-        userType: true,
+        userRole: true,
       },
     })) || {};
 
-  return userType === UserType.Admin;
+  return userRole === UserRole.Admin;
 };

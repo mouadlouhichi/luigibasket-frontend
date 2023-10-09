@@ -51,6 +51,7 @@ export const env = createEnv({
 
     // AUTHENTICATION
     NEXTAUTH_SECRET: z.string().trim().min(1),
+    SECRET_KEY : z.string().trim().min(1),
     NEXTAUTH_URL: z.string().url(),
     GOOGLE_ID: optionalString,
     GOOGLE_SECRET: optionalString,

@@ -3,12 +3,12 @@
 import { FC, Fragment, useRef, useTransition } from "react";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next-intl/client";
+import { headerLanguage } from "@/i18n//settings";
 import useAppStore from "@/store";
 import { Popover, Transition } from "@headlessui/react";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
-import { headerLanguage } from "@/data/i18n//settings";
 import { OutSideCloser } from "@/hooks/useOutsideAlerter";
 
 interface LocaleSwitcherProps {

@@ -34,7 +34,6 @@ const AnimatedStep: React.FC<Props> = memo(
     const { activeStep } = useWizard();
 
     useEffect(() => {
-      console.log("activeStep", activeStep, previousStepIndex);
       previousStepIndex.current = activeStep;
     }, [activeStep, previousStepIndex]);
 

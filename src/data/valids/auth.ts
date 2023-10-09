@@ -4,6 +4,12 @@ export const authSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address",
   }),
+  username: z
+    .string()
+    .min(3, {
+      message: "Username must be at least 3 characters long",
+    })
+    .optional(),
   password: z
     .string()
     .min(8, {
@@ -15,6 +21,25 @@ export const authSchema = z.object({
         "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
     }),
 });
+
+export const loginSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email address",
+  }),
+  password: z
+    .string()
+    .min(8, {
+      message: "Password must be at least 8 characters long",
+    })
+    .max(100)
+    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, {
+      message:
+        "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character",
+    }),
+});
+
+export type ISignUp = z.infer<typeof authSchema>;
+export type ILogin = z.infer<typeof loginSchema>;
 
 export const verfifyEmailSchema = z.object({
   code: z
@@ -42,8 +67,4 @@ export const resetPasswordSchema = z
 
 export const userPrivateMetadataSchema = z.object({
   role: z.enum(["user", "admin"]).optional().nullable(),
-  stripePriceId: z.string().optional().nullable(),
-  stripeSubscriptionId: z.string().optional().nullable(),
-  stripeCustomerId: z.string().optional().nullable(),
-  stripeCurrentPeriodEnd: z.string().optional().nullable(),
 });
