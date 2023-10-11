@@ -1,14 +1,19 @@
 import React from "react";
-import { hash } from "bcrypt";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, FormState } from "react-hook-form";
 
 import { ISignUp } from "@/data/valids/auth";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 
 interface Props {
+  loading?: boolean;
   onSubmit: any;
   type?: "login" | "signup";
+  formState: FormState<{
+    email: string;
+    password: string;
+    username?: string | undefined;
+  }>;
   control: Control<
     {
       email: string;
@@ -19,23 +24,19 @@ interface Props {
   >;
 }
 
-const AuthForm: React.FC<Props> = ({ onSubmit, type, control }) => {
+const AuthForm: React.FC<Props> = ({
+  onSubmit,
+  type,
+  control,
+  loading,
+  formState,
+}) => {
   // Define the component's logic and rendering here
 
-  const handleSubmit = async (data: any) => {
-    const { password } = data;
-    const hashedPassword = await hash(password, 10);
-    const payload = {
-      ...data,
-      password: hashedPassword,
-    };
-    return onSubmit(payload);
-  };
-
   return (
-    <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
+    <form className="grid grid-cols-1 gap-6" onSubmit={onSubmit}>
       {type === "signup" && (
-        <label className="block">
+        <label className="block relative">
           <span className="text-neutral-800 dark:text-neutral-200">
             Username
           </span>
@@ -51,9 +52,14 @@ const AuthForm: React.FC<Props> = ({ onSubmit, type, control }) => {
               />
             )}
           />
+          {formState.errors.username && (
+            <p className="text-sm text-red-500 dark:text-red-500 absolute">
+              {formState.errors.username.message}
+            </p>
+          )}
         </label>
       )}
-      <label className="block">
+      <label className="block relative">
         <span className="text-neutral-800 dark:text-neutral-200">
           Email address
         </span>
@@ -62,15 +68,20 @@ const AuthForm: React.FC<Props> = ({ onSubmit, type, control }) => {
           control={control}
           render={({ field }) => (
             <Input
-              type="email"
+              type="text"
               placeholder="example@example.com"
               className="mt-1"
               {...field}
             />
           )}
         />
+        {formState.errors.email && (
+          <p className="text-sm text-red-500 dark:text-red-500 absolute ">
+            {formState.errors.email.message}
+          </p>
+        )}
       </label>
-      <label className="block">
+      <label className="block relative">
         <span className="flex items-center justify-between text-neutral-800 dark:text-neutral-200">
           Password
         </span>
@@ -81,8 +92,26 @@ const AuthForm: React.FC<Props> = ({ onSubmit, type, control }) => {
             <Input type="password" className="mt-1" {...field} />
           )}
         />
+        {formState.errors.password && (
+          <p className="text-sm text-red-500 dark:text-red-500 ">
+            {formState.errors.password.message}
+          </p>
+        )}
       </label>
-      <Button type="submit">Continue</Button>
+      <Button
+        type="submit"
+        loading={loading}
+        disabled={
+          !formState.isValid ||
+          !!(
+            formState.errors?.password?.message ||
+            formState.errors?.email?.message ||
+            formState.errors?.username?.message
+          )
+        }
+      >
+        Continue
+      </Button>
     </form>
   );
 };

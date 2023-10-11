@@ -8,6 +8,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Account {
@@ -42,10 +43,9 @@ model Session {
 model User {
   id            String        @id @default(cuid())
   name          String?
-  password      String?
   email         String?       @unique
   emailVerified DateTime?
-  image         String?
+  image         String?       @default("https://res.cloudinary.com/dqo2aggjs/image/upload/v1696596420/default-avatar_kqqse2.jpg")
   accounts      Account[]
   sessions      Session[]
   survey        Survey?

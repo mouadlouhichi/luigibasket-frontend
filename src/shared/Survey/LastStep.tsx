@@ -17,7 +17,7 @@ import { useUserContext } from "@/providers/UserProvider";
 import toast from "react-hot-toast";
 
 import useSurveyStore from "@/hooks/useSurvey";
-import Auth from "@/shared/Auth/Auth";
+import Auth from "@/shared/Auth/Signup";
 import Button from "@/components/Button";
 
 interface Props {

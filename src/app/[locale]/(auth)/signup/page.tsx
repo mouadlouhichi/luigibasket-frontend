@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useLocale } from "next-intl";
 import authBackground from "@/images/backgrounds/authBackground-l.jpg";
 
-import Auth from "@/shared/Auth/Auth";
+import Auth from "@/shared/Auth/Signup";
 
 function PageSignup() {
   const lng = useLocale();

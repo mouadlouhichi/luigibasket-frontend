@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
-import { loginSocials } from "@/app";
+import { BASE_URL, loginSocials } from "@/app";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Provider } from "@supabase/supabase-js";
 
 import Button from "@/components/Button";
 
 function SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
   const [isLoading, setIsloading] = useState(false);
+  const supabase = createClientComponentClient();
 
   return (
     <div className="flex justify-center gap-10">
@@ -20,7 +22,12 @@ function SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
           className="h-[3rem] w-[3rem] bg-primary-50  dark:bg-neutral-800 "
           onClick={async () => {
             setIsloading(true);
-            await signIn(item.provider, { callbackUrl });
+            supabase.auth.signInWithOAuth({
+              provider: item.provider as Provider,
+              options: {
+                redirectTo: `${BASE_URL}/auth/callback`,
+              },
+            });
           }}
         >
           {item.icon && item.icon}

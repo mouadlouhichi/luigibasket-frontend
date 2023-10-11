@@ -1,8 +1,9 @@
 //TODO: refactor and improve auth
 import { NextResponse, type NextRequest } from "next/server";
-import { withAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
 import { fallbackLng, languages } from "@/i18n/settings";
+import type { Database } from "@/lib/database.types";
+import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
@@ -12,7 +13,16 @@ const intlMiddleware = createMiddleware({
   defaultLocale: fallbackLng,
 });
 
-function doesPathMatchPages(req: NextRequest, pages: string[]) {
+export async function middleware(req: NextRequest) {
+  const res = NextResponse.next();
+  const supabase = createMiddlewareClient<Database>({ req, res });
+  // TODO: handle session and user
+  const result = await supabase.auth.getSession();
+
+  return intlMiddleware(req);
+}
+
+/* function doesPathMatchPages(req: NextRequest, pages: string[]) {
   return RegExp(
     `^(/(${languages.join("|")}))?(${pages.join("|")})/?$`,
     "i",
@@ -46,7 +56,7 @@ export default withAuth(
       if (true) return NextResponse.next();
     }
 
-    /* if (!token) {
+     if (!token) {
       if (
         !doesPathMatchPages(req, authPages) &&
         !doesPathMatchPages(req, publicPages)
@@ -54,7 +64,7 @@ export default withAuth(
         return null;
       }
       return intlMiddleware(req);
-    } */
+    }
 
     if (!token) {
       if (doesPathMatchPages(req, protectedPages)) {
@@ -89,7 +99,7 @@ export default withAuth(
     },
   },
 );
-
+ */
 export const config = {
   // Skip all paths that should not be internationalized. This example skips the
   // folders "api", "_next" and all files with an extension (e.g. favicon.ico)

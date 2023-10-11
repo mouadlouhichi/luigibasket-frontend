@@ -1,24 +1,9 @@
 import { Metadata } from "next";
-import { User as DefaultUser } from "next-auth";
 import { type FileWithPath } from "react-dropzone";
-import { User, UserRole } from "@prisma/client";
+import { UserRole } from "@prisma/client";
+import { User } from "@supabase/auth-helpers-nextjs";
 import { LucideProps } from "lucide-react";
 import { type z } from "zod";
-
-export type UserSession =
-  | (User & {
-      id: string;
-    })
-  | undefined;
-
-declare module "next-auth/jwt" {
-  interface JWT {
-    userId?: string | null;
-    email?: string | null;
-    role: UserRole;
-    hasSurvey: boolean;
-  }
-}
 
 export type WithChildren<T = unknown> = T & { children: React.ReactNode };
 
@@ -86,3 +71,10 @@ export interface PropertyType {
 export type ClassOfProperties = PropertyType;
 
 export type DateRage = [Date | null, Date | null];
+
+export type AppUser = {
+  id: string;
+  name: string;
+  email: string | undefined;
+  image: string;
+};

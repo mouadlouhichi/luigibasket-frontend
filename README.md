@@ -62,14 +62,14 @@ This roadmap outlines the key features and improvements to be implemented in thi
 1. [x] 🌍 **[Next.js 13.5](https://nextjs.org)**, **[React 18](https://react.dev)**, and **[TypeScript 5](https://typescriptlang.org)** used as core.
 2. [x] ✅ Perfectly configured `next.config.mjs` with i18n and mdx support implementation.
 3. [x] 📚 Everything is tried to be as well-documented as possible, and beginner-friendly.
-4. [x] 🧱 Nicely configured and explained `middleware.ts` for i18n and next-auth.
+4. [x] 🧱 Nicely configured and explained `middleware.ts` for i18n and supabase-auth.
 5. [x] 🍭 Cleanly composed modern user interface, built with **[Radix](https://radix-ui.com)** and stunning UI components, all thanks to **[shadcn/ui](https://ui.shadcn.com)** and **[@auth/drizzle-adapter](https://authjs.dev/reference/adapter/drizzle)**..
 6. [x] 🌐 Comprehensive implementations for i18n, means internationalization, with 8 languages included, using **[next-intl](https://next-intl-docs.vercel.app/docs/getting-started/app-router-server-components)**, some things from **[next-international](https://github.com/QuiiBz/next-international)**, but in the future we want to use our very own solutions.
 7. [x] 🦫 **[Drizzle ORM](https://orm.drizzle.team)** and **[DrizzleKit](https://orm.drizzle.team/kit-docs/overview)** configured for serverless-first environments, for services like **[Neon](https://neon.tech)** and **[Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)**.
 8. [x] 🦺 Usage of [Cuid2](https://github.com/paralleldrive/cuid2) to automatically generate collision-free modern IDs in the database models.
 9. [x] 📊 Data fetching, which works on server and client, using **[tRPC](https://trpc.io)** & **[TanStack Query](https://tanstack.com/query)**.
 10. [x] ✳️ Awesomely crafted VSCode settings and recommended extensions.
-11. [x] 🌿 Authentication via **[NextAuth](https://authjs.dev)** (previously known as NextAuth.js and next-auth) with account linking implementation.
+11. [x] 🌿 Authentication via **[Supabase Auth](https://authjs.dev)** (previously known as Supabase.js and next-auth) with account linking implementation.
 12. [x] 🛍️ Implementation of storefront with products, categories, and subcategories.
 13. [x] 🧫 Indicator implementation for TailwindCSS screen sizes.
 14. [x] 💰 Implementation of user subscriptions and checkout system via **Stripe**.

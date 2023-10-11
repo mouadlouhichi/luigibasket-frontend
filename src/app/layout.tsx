@@ -7,6 +7,8 @@ import "@/styles/index.scss";
 import "rc-slider/assets/index.css";
 import "@/styles/globals.css";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Relivator Next.js Starter",
   description:

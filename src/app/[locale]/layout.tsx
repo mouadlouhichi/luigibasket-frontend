@@ -2,22 +2,14 @@ import { use } from "react";
 import type { Metadata } from "next";
 import { Manrope, Montserrat, Raleway } from "next/font/google";
 import localFont from "next/font/local";
-import { notFound } from "next/navigation";
 import { getMessages } from "@/i18n/server";
 import { languages } from "@/i18n/settings";
 import { getCurrentUser, getHasSurvey, isAdmin } from "@/lib/getCurrentUser";
-import { HandleOnComplete } from "@/lib/router-events";
 import { AppProvider } from "@/providers/AppProvider";
-import ClientCommons from "@/providers/ClientCommons";
 import LoglibAnalytics from "@/providers/LoglibAnalytics";
-import { TRPCProvider } from "@/providers/trpcProvider";
-import UserContextProvider from "@/providers/UserProvider";
-import { UserSession } from "@/types";
-import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "react-hot-toast";
 
 import { DEFAULT_METADATA } from "@/data/meta";
-import { TailwindIndicator } from "@/shared/TailwindIndicator";
 
 // Manrope : Primary Font
 const manrope = Manrope({
@@ -76,24 +68,17 @@ export default function RootLayout({
       className={`${manrope.className} ${montserrat.variable}  ${raleway.variable} ${sharp.variable} `}
     >
       <body className="bg-white  font-sans text-base text-neutral-900 dark:bg-neutral-900 dark:text-neutral-200">
-        <UserContextProvider
-          user={user as UserSession}
-          isAdmin={admin}
+        <AppProvider
+          locale={locale}
+          messages={messages}
+          user={user}
+          admin={admin}
           hasSurvey={hasSurvey}
         >
-          <TRPCProvider>
-            <AppProvider locale={locale} messages={messages}>
-              <ClientCommons />
-              {children}
-
-              <TailwindIndicator />
-              <LoglibAnalytics />
-              <Analytics />
-              <HandleOnComplete />
-              <Toaster position="top-right" />
-            </AppProvider>
-          </TRPCProvider>
-        </UserContextProvider>
+          {children}
+          <LoglibAnalytics />
+          <Toaster position="top-right" />
+        </AppProvider>
       </body>
     </html>
   );

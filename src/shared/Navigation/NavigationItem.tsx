@@ -277,8 +277,6 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({ menuItem }) => {
         ? locationPathName === item.href
         : locationPathName === href;
 
-    console.log(locationPathName, item.href);
-
     return (
       <li
         className={`${

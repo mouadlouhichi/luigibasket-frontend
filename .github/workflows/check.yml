@@ -27,6 +27,9 @@ jobs:
       FACEBOOK_ID: ${{ secrets.FACEBOOK_ID }}
       FACEBOOK_SECRET: ${{ secrets.FACEBOOK_SECRET }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
 
     steps:
       - uses: pnpm/action-setup@v2

@@ -8,6 +8,7 @@
 /out
 
 # production
+.next/
 /build
 /dist
 

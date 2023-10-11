@@ -8,7 +8,7 @@ import authBackground from "@/images/backgrounds/authBackground-l.jpg";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
 
-import Auth from "@/shared/Auth/Auth";
+import Auth from "@/shared/Auth/Login";
 
 const errors = {
   Signin: "Try signing with a different account.",

@@ -1,13 +1,9 @@
-import { Session } from "next-auth";
+import { Session } from "@supabase/auth-helpers-nextjs";
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
-import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
-import { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { prisma as db } from "@/data/db";
-
-import { getServerAuthSession } from "./common/get-server-auth-session";
 
 // eslint-disable-next-line
 interface CreateContextOptions {

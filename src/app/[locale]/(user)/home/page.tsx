@@ -1,9 +1,12 @@
 import React from "react";
+import { cookies } from "next/headers";
+import { Database } from "@/lib/database.types";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import PsychologistsListening from "@/shared/PsychologistsListening";
 import BackgroundSection from "@/shared/PsychologistsListening/BackgroundSection";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="min-h-[50vh] container">
       <h1 className="text-center font-bold text-4xl text-primary-6000 mt-12 font-sans">

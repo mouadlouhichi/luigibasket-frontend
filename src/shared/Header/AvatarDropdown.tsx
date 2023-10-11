@@ -1,9 +1,15 @@
 import { Fragment, useRef, useState } from "react";
-import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { ImageSvgIcons } from "@/images/icons";
 import { Link } from "@/lib/router-events";
 import { Route } from "@/routers/types";
+import { AppUser } from "@/types";
 import { Popover, Transition } from "@headlessui/react";
+import {
+  createClientComponentClient,
+  User,
+} from "@supabase/auth-helpers-nextjs";
+import toast from "react-hot-toast";
 
 import { OutSideCloser } from "@/hooks/useOutsideAlerter";
 import Avatar from "@/components/Avatar";
@@ -12,14 +18,7 @@ import Loading from "@/components/Loading";
 interface Props {
   isMobile?: boolean;
   className?: string;
-  user?:
-    | {
-        id?: string | null | undefined;
-        name?: string | null | undefined;
-        email?: string | null | undefined;
-        image?: string | null | undefined;
-      }
-    | undefined;
+  user: AppUser;
 }
 
 export default function AvatarDropdown({
@@ -29,6 +28,10 @@ export default function AvatarDropdown({
 }: Props) {
   const [loading, SetLoading] = useState<boolean>(false);
   const ref = useRef(null);
+
+  const supabase = createClientComponentClient();
+  const router = useRouter();
+
   return (
     <>
       <Popover className={` relative flex ${className}`} ref={ref}>
@@ -38,7 +41,7 @@ export default function AvatarDropdown({
             <Popover.Button
               className={`flex h-10 w-10 items-center justify-center self-center rounded-full text-slate-700 hover:bg-slate-100 focus:outline-none dark:text-slate-300 dark:hover:bg-slate-800 sm:h-12 sm:w-12`}
             >
-              <Avatar size="md" imgUrl={user?.image} userName={user?.name} />
+              <Avatar size="md" imgUrl={user.image} userName={user.name} />
             </Popover.Button>
             <Transition
               as={Fragment}
@@ -62,11 +65,13 @@ export default function AvatarDropdown({
                           <Avatar
                             borderRadius="rounded-full"
                             size="lg"
-                            imgUrl={user?.image}
+                            imgUrl={user.image}
                           />
 
                           <div className="grow">
-                            <h4 className="font-semibold">{user?.name}</h4>
+                            <h4 className="font-semibold capitalize">
+                              {user.name}
+                            </h4>
                             <p className="mt-0.5 text-xs">Welcome</p>
                           </div>
                         </div>
@@ -138,7 +143,9 @@ export default function AvatarDropdown({
                       className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 dark:hover:bg-neutral-700"
                       onClick={async () => {
                         SetLoading(true);
-                        await signOut();
+                        const { error } = await supabase.auth.signOut();
+                        if (error) toast.error(error.message);
+                        router.refresh();
                       }}
                     >
                       <div className="flex shrink-0 items-center justify-center text-neutral-500 dark:text-neutral-300">
@@ -158,7 +165,7 @@ export default function AvatarDropdown({
           </>
         )}
       </Popover>
-      {isMobile && <span className="block w-full pl-2"> {user?.name} </span>}
+      {isMobile && <span className="block w-full pl-2"> {user.image} </span>}
     </>
   );
 }
