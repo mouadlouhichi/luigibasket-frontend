@@ -20,19 +20,15 @@ export async function GET(request: Request) {
       where: { email },
     });
 
-    if (exists) {
-      await supabase.auth.signOut();
-      return NextResponse.redirect(
-        BASE_URL + "/login?error=OAuthAccountNotLinked",
-      );
+    if (!exists) {
+      await prisma.user.create({
+        data: {
+          id: id,
+          name: result.data.user?.user_metadata?.username || "User",
+          email: result.data.user?.email,
+        },
+      });
     }
-    await prisma.user.create({
-      data: {
-        id: id,
-        name: result.data.user?.user_metadata?.username || "User",
-        email: result.data.user?.email,
-      },
-    });
   }
 
   return NextResponse.redirect(BASE_URL + "/home");

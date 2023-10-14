@@ -2,11 +2,12 @@ import { Session } from "@supabase/auth-helpers-nextjs";
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
 import { prisma as db } from "@/data/db";
 
 // eslint-disable-next-line
-interface CreateContextOptions {
+interface CreateContextOptions  extends FetchCreateContextFnOptions{
   session: Session | null;
 }
 
@@ -14,14 +15,15 @@ interface CreateContextOptions {
  * - testing, where we dont have to Mock Next.js' req/res
  * - trpc's `createSSGHelpers` where we don't have req/res
  **/
-export const createContextInner = async (opts: CreateContextOptions) => {
+export const createContext = async (opts: CreateContextOptions) => {
   return {
     session: opts.session,
     prisma: db,
+    resHeaders: opts.resHeaders,
   };
 };
 
-export async function createContext(session: Session | null) {
+export async function _createContext(session: Session | null) {
   return { user: session?.user, prisma: db, session };
 }
 

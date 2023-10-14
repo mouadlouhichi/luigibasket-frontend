@@ -1,12 +1,19 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { getUserFromSession } from "@/lib/getUserFromSession";
+/* import { getUserFromSession } from "@/lib/getCurrentUser";
+ */
 import { AppUser } from "@/types";
-import { User } from "@supabase/auth-helpers-nextjs";
+import {
+  createClientComponentClient,
+  Session,
+  User,
+} from "@supabase/auth-helpers-nextjs";
 
 interface UserContextValues {
-  user: AppUser;
+  user: AppUser | null;
   setUser: (user: AppUser) => void;
   isAdmin: boolean;
   hasSurvey: boolean;
@@ -22,7 +29,7 @@ export const useUserContext = () => useContext(UserContext);
 
 interface UserContextProviderProps {
   children: React.ReactNode;
-  user: AppUser;
+  user: AppUser | null;
   isAdmin: boolean;
   hasSurvey: boolean;
 }
@@ -33,7 +40,32 @@ const UserContextProvider = ({
   isAdmin,
   hasSurvey,
 }: UserContextProviderProps) => {
-  const [userSession, setUserSession] = useState<AppUser>(user);
+  const [userSession, setUserSession] = useState<AppUser>(user as AppUser);
+  const [session, setSession] = useState<Session | null>(null);
+  const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) return;
+      const user = getUserFromSession(session);
+      user && setUserSession(user);
+      setSession(session);
+    });
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (!session) return;
+        const user = getUserFromSession(session);
+        user && setUserSession(user);
+        setSession(session);
+      },
+    );
+    console.log("userSession___ form context", userSession, "session", session);
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
 
   return (
     <UserContext.Provider

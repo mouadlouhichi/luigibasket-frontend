@@ -5,6 +5,32 @@ import { fallbackLng, languages } from "@/i18n/settings";
 import type { Database } from "@/lib/database.types";
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
+// TODO : list all protected routes
+const protectedPages = ["/home", "/account"];
+
+const defaultPublicPage = "";
+const defaultBlockedPage = "/";
+const defaultUserPage = "/home";
+const blockedPages = ["/account"];
+const surveyPages = ["/survey", "/survey/next"];
+
+const authPages = ["/login", "/signup"];
+const adminPages = ["/admin"];
+const publicPages = [""];
+
+function redirect(req: NextRequest, redirectURL: string) {
+  return NextResponse.redirect(
+    new URL(redirectURL, req.nextUrl.origin).toString(),
+  );
+}
+
+function doesPathMatchPages(req: NextRequest, pages: string[]) {
+  return RegExp(
+    `^(/(${languages.join("|")}))?(${pages.join("|")})/?$`,
+    "i",
+  ).test(req.nextUrl.pathname);
+}
+
 const intlMiddleware = createMiddleware({
   // A list of all locales that are supported
   locales: languages,
@@ -18,13 +44,37 @@ export async function middleware(req: NextRequest) {
   const supabase = createMiddlewareClient<Database>({ req, res });
   // TODO: handle session and user
   const result = await supabase.auth.getSession();
+  const token = result.data?.session?.access_token;
+  if (!token) {
+    if (doesPathMatchPages(req, protectedPages)) {
+      return redirect(req, defaultPublicPage);
+    }
+    return intlMiddleware(req);
+  } else {
+    if (doesPathMatchPages(req, authPages)) {
+      return redirect(req, defaultUserPage);
+    }
+  }
+
+  //TODO: handle routes
+  /*   if (doesPathMatchPages(req, surveyPages) && token.hasSurvey) {
+    return redirect(req, defaultUserPage);
+  }
+  // controle access to home page
+  if (doesPathMatchPages(req, publicPages) && !token.isAdmin) {
+    return redirect(req, defaultUserPage);
+  } */
+
+  if (req.nextUrl.pathname.startsWith("/api")) {
+    if (true) return NextResponse.next();
+  }
 
   return intlMiddleware(req);
 }
 
 /* function doesPathMatchPages(req: NextRequest, pages: string[]) {
   return RegExp(
-    `^(/(${languages.join("|")}))?(${pages.join("|")})/?$`,
+    `^(/(${languages.join("|")}))?(${pages.join("|")  })/?$`,
     "i",
   ).test(req.nextUrl.pathname);
 }

@@ -1,7 +1,10 @@
 import { Fragment, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+import { BASE_URL } from "@/app";
 import { ImageSvgIcons } from "@/images/icons";
 import { Link } from "@/lib/router-events";
+import { useUserContext } from "@/providers/UserProvider";
 import { Route } from "@/routers/types";
 import { AppUser } from "@/types";
 import { Popover, Transition } from "@headlessui/react";
@@ -28,10 +31,18 @@ export default function AvatarDropdown({
 }: Props) {
   const [loading, SetLoading] = useState<boolean>(false);
   const ref = useRef(null);
-
   const supabase = createClientComponentClient();
-  const router = useRouter();
 
+  const { setUser } = useUserContext();
+
+  const handleSignOut = async () => {
+    fetch(`${BASE_URL}/api/auth/logout`, {
+      cache: "no-cache",
+    }).then(() => {
+      setUser({} as AppUser);
+      toast.success("Logout Success");
+    });
+  };
   return (
     <>
       <Popover className={` relative flex ${className}`} ref={ref}>
@@ -141,12 +152,7 @@ export default function AvatarDropdown({
                     <Link
                       href={"/#" as Route}
                       className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-neutral-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50 dark:hover:bg-neutral-700"
-                      onClick={async () => {
-                        SetLoading(true);
-                        const { error } = await supabase.auth.signOut();
-                        if (error) toast.error(error.message);
-                        router.refresh();
-                      }}
+                      onClick={handleSignOut}
                     >
                       <div className="flex shrink-0 items-center justify-center text-neutral-500 dark:text-neutral-300">
                         {ImageSvgIcons.LogoutSvg}

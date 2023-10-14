@@ -19,7 +19,8 @@ const handler = async (req: Request) => {
     endpoint: "/api/trpc",
     req,
     router: appRouter,
-    createContext: async () => await createContext(session),
+    createContext: async ({ req, resHeaders }) =>
+      await createContext({ session, req, resHeaders }),
   });
 };
 

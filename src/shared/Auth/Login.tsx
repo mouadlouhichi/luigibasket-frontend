@@ -1,19 +1,16 @@
 import React, { useCallback } from "react";
-import type { NextPage } from "next";
-import Head from "next/head";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
-import { BASE_URL } from "@/app";
+import { useLocale } from "next-intl";
 import { Link } from "@/lib/router-events";
 import { trpc } from "@/providers/trpcProvider";
+import { useUserContext } from "@/providers/UserProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { Controller, useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-import { authSchema, ILogin, ISignUp } from "@/data/valids/auth";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import { authSchema, ILogin } from "@/data/valids/auth";
 
 import AuthForm from "./AuthForm";
 import SocialAuthProviders from "./SocialAuthProviders";
@@ -26,6 +23,7 @@ interface Props {
 }
 
 function Auth({ heading, description, callbackUrl, type }: Props) {
+  const { setUser } = useUserContext();
   //TODO add form error
   const { handleSubmit, control, reset, formState } = useForm<ILogin>({
     defaultValues: {
@@ -36,38 +34,55 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
   });
 
   const router = useRouter();
-  const supabase = createClientComponentClient();
 
-  const onSubmit = useCallback(async (data: ILogin) => {
-    try {
-      await supabase.auth.signInWithPassword({
-        email: data.email,
-        password: data.password,
+  const { mutateAsync, isLoading } = useMutation({
+    mutationFn: (data: ILogin) => {
+      return fetch("/api/auth/login", {
+        method: "POST",
+        cache: "no-cache",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
       });
-      router.refresh();
-    } catch (err) {
-      console.error(err);
-      toast.error("Error signing in");
-    }
-  }, []);
-  const handleSignIn = async (data: ISignUp) => {
-    try {
-      await signIn("credentials", { ...data, callbackUrl: "/home" });
-      reset();
-    } catch (err) {
-      toast.error("Error signing in");
-      console.error(err);
-    }
-  };
-
-  const onSubmitLogin = useCallback(
-    async (data: ISignUp) => {
-      await handleSignIn(data);
     },
-    [reset],
+
+    onSuccess: async (data) => {
+      const user = await data.json();
+      /*   setUser({
+        id: user.id,
+        email: user.email,
+        name: user.user_metadata.username,
+        image: user.user_metadata.image,
+        hasSurvey: user.app_metadata.hasSurvey,
+        userRole: user.app_metadata.userRole,
+      });
+
+      console.log(user, "user from login___"); */
+      toast.success("Login successfully");
+      router.push("/home");
+    },
+    onError: () => {
+      toast.error("Error signing");
+    },
+  });
+
+  const onSubmit = useCallback(
+    async (data: ILogin) => {
+      try {
+        await mutateAsync({
+          email: data.email,
+          password: data.password,
+        });
+      } catch (err) {
+        console.error(err);
+        toast.error("Error signing up");
+      }
+    },
+    [mutateAsync, router, reset],
   );
 
-  const onSubmitHandler = type === "login" ? onSubmitLogin : onSubmit;
   return (
     <>
       <div className={`nc-PageLogin  relative row-start-3 md:row-start-2`}>
@@ -89,7 +104,8 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
             type={type}
             control={control}
             formState={formState}
-            onSubmit={handleSubmit(onSubmitHandler)}
+            onSubmit={handleSubmit(onSubmit)}
+            loading={isLoading}
           />
 
           <span className="block text-center text-neutral-700 dark:text-neutral-300">

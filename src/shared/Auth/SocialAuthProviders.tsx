@@ -8,7 +8,7 @@ import { Provider } from "@supabase/supabase-js";
 import Button from "@/components/Button";
 
 function SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
-  const [isLoading, setIsloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const supabase = createClientComponentClient();
 
   return (
@@ -21,13 +21,15 @@ function SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
           disabled={isLoading}
           className="h-[3rem] w-[3rem] bg-primary-50  dark:bg-neutral-800 "
           onClick={async () => {
-            setIsloading(true);
-            supabase.auth.signInWithOAuth({
+            setIsLoading(true);
+            const res = await supabase.auth.signInWithOAuth({
               provider: item.provider as Provider,
               options: {
                 redirectTo: `${BASE_URL}/auth/callback`,
+
               },
             });
+            console.log(res, "res______@@@@@@");
           }}
         >
           {item.icon && item.icon}

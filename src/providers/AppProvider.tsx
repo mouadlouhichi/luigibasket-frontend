@@ -42,7 +42,7 @@ export const AppProvider = ({
     //handle theme rerendereing
     <TRPCProvider>
       <UserContextProvider
-        user={user as AppUser}
+        user={user}
         isAdmin={admin}
         hasSurvey={hasSurvey}
       >

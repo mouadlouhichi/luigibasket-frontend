@@ -28,8 +28,9 @@ const MainNav: FC<MainNavProps> = ({
   isLoading,
 }) => {
   const { user, isAdmin, hasSurvey } = useUserContext();
+  console.log(user, "user from NAV");
   const renderUserLogin = () => {
-    if (user) {
+    if (user && user?.name) {
       return <AvatarDropdown user={user} />;
     } else if (isAdmin) {
       return (

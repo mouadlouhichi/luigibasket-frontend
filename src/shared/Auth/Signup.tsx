@@ -47,6 +47,8 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
 
           data: {
             username: data.result.username,
+            hasSurvey: false,
+            userRole: "User",
             image:
               "https://res.cloudinary.com/dqo2aggjs/image/upload/v1696596420/default-avatar_kqqse2.jpg",
           },
@@ -74,12 +76,7 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
           password: data.password,
           username: data.username,
         });
-        /*  if (result.status === 201) {
-          reset();
-          toast.success(
-            "Account created successfully, please check your email for verification",
-          );
-        } */
+
       } catch (err) {
         console.error(err);
         toast.error("Error signing up");

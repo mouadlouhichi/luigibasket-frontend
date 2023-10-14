@@ -4,12 +4,17 @@ import { Manrope, Montserrat, Raleway } from "next/font/google";
 import localFont from "next/font/local";
 import { getMessages } from "@/i18n/server";
 import { languages } from "@/i18n/settings";
-import { getCurrentUser, getHasSurvey, isAdmin } from "@/lib/getCurrentUser";
+import {
+  getCurrentUser,
+  getHasSurvey,
+  isAdmin,
+} from "@/lib/getCurrentUser";
 import { AppProvider } from "@/providers/AppProvider";
 import LoglibAnalytics from "@/providers/LoglibAnalytics";
 import { Toaster } from "react-hot-toast";
 
 import { DEFAULT_METADATA } from "@/data/meta";
+import { getUserFromSession } from "@/lib/getUserFromSession";
 
 // Manrope : Primary Font
 const manrope = Manrope({
@@ -57,7 +62,8 @@ export default function RootLayout({
 }: RootLayoutProps) {
   const messages = use(getMessages(locale));
 
-  const user = use(getCurrentUser());
+  const session = use(getCurrentUser());
+  const user = getUserFromSession(session);
   const admin = use(isAdmin(user?.id));
   const hasSurvey = use(getHasSurvey(user?.id));
   return (

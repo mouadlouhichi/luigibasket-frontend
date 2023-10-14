@@ -77,4 +77,6 @@ export type AppUser = {
   name: string;
   email: string | undefined;
   image: string;
+  userRole?: UserRole;
+  hasSurvey?: boolean;
 };
