@@ -27,7 +27,7 @@ import Button from "@/components/Button";
 
 function Next() {
   const mounted = useIsClient();
-  const { user } = useUserContext();
+  const  user  = null
   const { survey, setSurvey } = useSurveyStore();
 
   const toggleSurveyMutation = trpc.survey.toggle.useMutation({

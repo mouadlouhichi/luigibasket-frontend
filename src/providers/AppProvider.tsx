@@ -41,22 +41,23 @@ export const AppProvider = ({
   return (
     //handle theme rerendereing
     <TRPCProvider>
-      <UserContextProvider
+      {/*       <UserContextProvider
         user={user}
         isAdmin={admin}
         hasSurvey={hasSurvey}
-      >
-        <NextIntlProvider locale={locale} messages={messages}>
-          <TooltipProvider>
-            {children}
+      > */}
+      <NextIntlProvider locale={locale} messages={messages}>
+        <TooltipProvider>
+          {children}
 
-            <ClientCommons />
-            <HandleOnComplete />
-            <TailwindIndicator />
-            <Analytics />
-          </TooltipProvider>
-        </NextIntlProvider>
-      </UserContextProvider>
+          <ClientCommons />
+          <HandleOnComplete />
+          <TailwindIndicator />
+          <Analytics />
+        </TooltipProvider>
+      </NextIntlProvider>
+      {/*       </UserContextProvider>
+       */}{" "}
     </TRPCProvider>
   );
 };

@@ -6,9 +6,13 @@ import { prisma } from "@/lib/prisma";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { TRPCError } from "@trpc/server";
 
+import { getCookie, getCookies } from "@/server/common/cookie";
+
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
+  const callbackUrl = getCookie(request, "authCallbackUrl");
+  const cookiesAll = getCookies(request);
 
   if (code) {
     const supabase = createRouteHandlerClient<Database>({ cookies });
@@ -31,5 +35,5 @@ export async function GET(request: Request) {
     }
   }
 
-  return NextResponse.redirect(BASE_URL + "/home");
+  return NextResponse.redirect(BASE_URL + callbackUrl);
 }

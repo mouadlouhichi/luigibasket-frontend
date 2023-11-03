@@ -50,16 +50,15 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
 
     onSuccess: async (data) => {
       const user = await data.json();
-      /*   setUser({
+      /* setUser({
         id: user.id,
         email: user.email,
         name: user.user_metadata.username,
         image: user.user_metadata.image,
         hasSurvey: user.app_metadata.hasSurvey,
         userRole: user.app_metadata.userRole,
-      });
+      }); */
 
-      console.log(user, "user from login___"); */
       toast.success("Login successfully");
       router.push("/home");
     },

@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { BASE_URL } from "@/app";
 import { ImageSvgIcons } from "@/images/icons";
+import { Database } from "@/lib/database.types";
 import { Link } from "@/lib/router-events";
 import { useUserContext } from "@/providers/UserProvider";
 import { Route } from "@/routers/types";
@@ -31,17 +32,15 @@ export default function AvatarDropdown({
 }: Props) {
   const [loading, SetLoading] = useState<boolean>(false);
   const ref = useRef(null);
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
 
   const { setUser } = useUserContext();
 
-  const handleSignOut = async () => {
-    fetch(`${BASE_URL}/api/auth/logout`, {
-      cache: "no-cache",
-    }).then(() => {
-      setUser({} as AppUser);
+  const handleSignOut = () => {
+    supabase.auth.signOut().then(() => {
       toast.success("Logout Success");
-    });
+/*       setUser({} as AppUser);
+ */    });
   };
   return (
     <>
@@ -171,7 +170,7 @@ export default function AvatarDropdown({
           </>
         )}
       </Popover>
-      {isMobile && <span className="block w-full pl-2"> {user.image} </span>}
+      {isMobile && <span className="block w-full pl-2"> {user.name} </span>}
     </>
   );
 }

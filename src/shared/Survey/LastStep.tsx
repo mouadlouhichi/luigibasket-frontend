@@ -35,12 +35,13 @@ function LastStep({ survey }: Props) {
   }, []);
 
   const router = useRouter();
-  if (user) {
+  if (user?.name) {
     router.push(`/${lng}/survey/next`);
   }
   return (
     <>
       <Auth
+        type="signup"
         heading="Create account"
         description="Login with Social Media or enter your details."
         callbackUrl={callbackUrl}
