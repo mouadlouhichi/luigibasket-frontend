@@ -6,7 +6,7 @@ import { PathName } from "@/routers/types";
 
 import { FOOTER_NAVIGATION } from "@/data/navigation";
 import { CustomLink } from "@/data/types";
-import Logo from "@/shared/Logo";
+import Logo from "@/components/Logo";
 import SocialsList1 from "@/shared/SocialsList1";
 import FooterNav from "@/components/FooterNav/";
 
@@ -50,7 +50,6 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
 
   return (
     <>
-      {PAGES_WITH_FOOTER_NAV.includes(pathname as PathName) && <FooterNav />}
 
       <div
         className={`nc-Footer relative border-t border-neutral-200 py-24 dark:border-neutral-700 lg:py-28 ${className}`}
@@ -64,7 +63,6 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
               <SocialsList1 className="flex items-center space-x-3 lg:flex-col lg:items-start lg:space-x-0 lg:space-y-2.5" />
             </div>
           </div>
-          {FOOTER_NAVIGATION.map(renderWidgetMenuItem)}
         </div>
       </div>
     </>

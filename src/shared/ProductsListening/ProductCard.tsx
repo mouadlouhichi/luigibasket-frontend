@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import React, { FC, useState } from "react";
 import Link from "next/link";
 import { useTimeoutFn } from "react-use";
@@ -50,6 +51,24 @@ const ProductCard: FC<ProductCardProps> = ({
     );
   };
 
+  const renderContent = () => {
+    return (
+      <div className={size === "default" ? "p-4 space-y-4" : "p-3 space-y-1"}>
+        <div className={size === "default" ? "space-y-2" : "space-y-1"}>
+          <div className="flex items-center space-x-2">
+            <h2
+              className={`font-semibold capitalize text-neutral-900 dark:text-white ${
+                size === "default" ? "text-base" : "text-base"
+              }`}
+            >
+              <span className="line-clamp-1">{data?.name}</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <div
@@ -62,6 +81,7 @@ const ProductCard: FC<ProductCardProps> = ({
         data-nc-id="ProductCard"
       >
         {renderSliderGallery()}
+        {renderContent()}
         <AddProductModal
           product={data}
           showModal={showModal}

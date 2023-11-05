@@ -1,15 +1,103 @@
 "use client";
 
-import React, { useState } from "react";
-import converSelectedDateToString from "@/utils/converSelectedDateToString";
+import React from "react";
+import { Control, Controller, FormState } from "react-hook-form";
 
-const AddProductForm = () => {
+import Input from "@/components/Input";
+
+interface Props {
+  loading?: boolean;
+  formState: FormState<{
+    price: number;
+    quantity: number;
+    total: number;
+  }>;
+  control: Control<
+    {
+      price: number;
+      quantity: number;
+      total: number;
+    },
+    any
+  >;
+}
+
+const AddProductForm: React.FC<Props> = ({ control, formState }) => {
+  // Define the component's logic and rendering here
+
   return (
-    <div>
-      <div className="w-full space-y-5">
-        <div
-          className={`w-full bg-white dark:bg-neutral-800 overflow-hidden `}
-        ></div>
+    <div className="w-full space-y-5 mt-12">
+      <div
+        className={`w-full bg-white dark:bg-neutral-800 overflow-hidden rounded-2xl shadow-lg `}
+      >
+        <div className="p-5">
+          <span className="block font-semibold text-xl sm:text-2xl my-4">
+            Ajoutez ce produit
+          </span>
+          <label className="block relative">
+            <span className="font-medium text-neutral-800 dark:text-neutral-200">
+              Prix
+            </span>
+            <Controller
+              name="price"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  type="text"
+                  placeholder="Adon Shaka"
+                  className="mt-1"
+                  {...field}
+                />
+              )}
+            />
+            {formState.errors.price && (
+              <p className="text-sm text-red-500 dark:text-red-500 absolute">
+                {formState.errors.price.message}
+              </p>
+            )}
+          </label>
+
+          <label className="block relative">
+            <span className="text-neutral-800 dark:text-neutral-200">
+              Quantité
+            </span>
+            <Controller
+              name="quantity"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  type="text"
+                  placeholder="example@example.com"
+                  className="mt-1"
+                  {...field}
+                />
+              )}
+            />
+            {formState.errors.quantity && (
+              <p className="text-sm text-red-500 dark:text-red-500 absolute ">
+                {formState.errors.quantity.message}
+              </p>
+            )}
+          </label>
+          <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+          <label className="block relative">
+            <span className="flex items-center justify-between text-neutral-800 dark:text-neutral-200">
+              Total
+            </span>
+            <Controller
+              name="total"
+              control={control}
+              render={({ field }) => (
+                <Input type="number" className="mt-1" {...field} />
+              )}
+            />
+            {formState.errors.total && (
+              <p className="text-sm text-red-500 dark:text-red-500 ">
+                {formState.errors.total.message}
+              </p>
+            )}
+          </label>
+        </div>
       </div>
     </div>
   );

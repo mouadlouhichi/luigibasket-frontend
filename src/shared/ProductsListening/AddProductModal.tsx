@@ -1,12 +1,16 @@
 "use client";
 
-import React, { FC, Fragment, useState } from "react";
-import { Dialog, Tab, Transition } from "@headlessui/react";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import React, { FC, Fragment } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Product } from "@prisma/client";
+import { useForm } from "react-hook-form";
 
+import { basketItemSchema, IBasketForm } from "@/data/valids/cart";
 import ButtonSubmit from "@/components/Button";
+
+import AddProductForm from "./AddProductForm";
 
 interface AddProductModalProps {
   className?: string;
@@ -26,6 +30,14 @@ const AddProductModal: FC<AddProductModalProps> = ({
   setShowDialog = () => {},
   resetIsShowingDialog = () => {},
 }) => {
+  const { handleSubmit, control, reset, formState } = useForm<IBasketForm>({
+    defaultValues: {
+      price: 0,
+      quantity: 0,
+      total: 0,
+    },
+    resolver: zodResolver(basketItemSchema),
+  });
   return (
     <div className="AddProductModal">
       <Transition appear show={showModal} as={Fragment}>
@@ -47,13 +59,18 @@ const AddProductModal: FC<AddProductModalProps> = ({
               >
                 <Dialog.Panel className="relative h-full overflow-hidden flex-1 flex flex-col justify-between ">
                   {showDialog && (
-                    <Tab.Group manual>
+                    <>
                       <div className="absolute left-4 top-4">
                         <button className="" onClick={closeModal}>
                           <XMarkIcon className="w-5 h-5 text-black dark:text-white" />
                         </button>
                       </div>
-                      <div className="flex-1 pt-3 px-1.5 sm:px-4 flex overflow-hidden"></div>
+                      <div className="flex-1 pt-3 px-1.5 sm:px-4 flex overflow-hidden">
+                        <AddProductForm
+                          control={control}
+                          formState={formState}
+                        />
+                      </div>
                       <div className="px-4 py-3 bg-white dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-700 flex justify-between">
                         <button
                           type="button"
@@ -75,7 +92,7 @@ const AddProductModal: FC<AddProductModalProps> = ({
                           <PlusIcon className="w-5 h-5 ml-2 text-white dark:text-primary-6000" />
                         </ButtonSubmit>
                       </div>
-                    </Tab.Group>
+                    </>
                   )}
                 </Dialog.Panel>
               </Transition.Child>

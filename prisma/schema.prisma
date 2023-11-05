@@ -40,7 +40,7 @@ model BasketItem {
   basketId   String
   basket     Basket  @relation(fields: [basketId], references: [id], onDelete: Cascade)
 
-  // Add other fields if needed
+
 }
 
 enum UserRole {
