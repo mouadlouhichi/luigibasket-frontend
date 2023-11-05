@@ -55,7 +55,6 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
         email: user.email,
         name: user.user_metadata.username,
         image: user.user_metadata.image,
-        hasSurvey: user.app_metadata.hasSurvey,
         userRole: user.app_metadata.userRole,
       });
 

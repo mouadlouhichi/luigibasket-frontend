@@ -8,8 +8,6 @@ import { TRPCError } from "@trpc/server";
 
 import { getCookie, getCookies } from "@/server/common/cookie";
 
-export const dynamic = "force-dynamic";
-
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
@@ -20,7 +18,7 @@ export async function GET(request: Request) {
     const supabase = createRouteHandlerClient<Database>({ cookies });
     const result = await supabase.auth.exchangeCodeForSession(code);
     await supabase.auth.updateUser({
-      data: { hasSurvey: false, userRole: USER_ROLE },
+      data: { userRole: USER_ROLE },
     });
     const id = result.data.user?.id;
     const email = result.data.user?.email as string;
@@ -38,7 +36,7 @@ export async function GET(request: Request) {
       });
     } else {
       await supabase.auth.updateUser({
-        data: { hasSurvey: exists.hasSurvey, userRole: exists.userRole },
+        data: { userRole: exists.userRole },
       });
     }
   }

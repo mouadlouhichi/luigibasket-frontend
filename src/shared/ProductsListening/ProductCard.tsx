@@ -12,24 +12,23 @@ import StartRating from "./StartRating";
 
 export interface ProductCardProps {
   className?: string;
-  data?: Product;
+  data: Product;
   size?: "default" | "small";
 }
-
-const DEMO_DATA = DEMO_STAY_LISTINGS[0];
 
 const ProductCard: FC<ProductCardProps> = ({
   size = "default",
   className = "",
-  data = DEMO_DATA,
+  data,
 }) => {
+  
   const renderSliderGallery = () => {
     return (
       <div className="relative w-full">
         <GallerySlider
           uniqueID={`ProductCard_${data?.id}`}
           ratioClass="aspect-w-4 aspect-h-3 "
-          galleryImgs={[data?.image]}
+          galleryImgs={[data.image]}
           galleryClass={size === "default" ? undefined : ""}
         />
       </div>

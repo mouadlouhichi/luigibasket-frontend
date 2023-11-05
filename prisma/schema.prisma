@@ -19,6 +19,7 @@ model User {
   image         String?   @default("https://res.cloudinary.com/dqo2aggjs/image/upload/v1696596420/default-avatar_kqqse2.jpg")
   userRole      UserRole  @default(User)
   basket        Basket?
+  Survey        Survey?
 }
 
 model Basket {
@@ -65,4 +66,32 @@ model Product {
   category    ProductCategory // Add this field to associate products with a category
 
   BasketItem BasketItem[]
+}
+
+model Survey {
+  id                           String   @id @default(cuid())
+  gender                       String
+  occupation                   String
+  education                    String
+  age                          String
+  diagnosed                    String
+  receivedTreatment            String
+  currentSymptoms              String
+  symptomsFrequency            String
+  suicidalThoughts             String
+  struggledAddiction           String
+  experiencedTrauma            String
+  receivedTherapy              String
+  foundTherapist               String[]
+  notSeekingTherapyReasons     String[]
+  participatedOnline           String
+  primaryReason                String[]
+  preferredCommunicationMethod String[]
+  comfortWithTechnology        String
+
+  // Relationship with User
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+
+  @@index([userId])
 }

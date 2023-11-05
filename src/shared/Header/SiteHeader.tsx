@@ -1,6 +1,6 @@
 import React, { FC, use, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { getCurrentUser, getHasSurvey } from "@/lib/getCurrentUser";
+import { getCurrentUser } from "@/lib/getCurrentUser";
 import { getUserFromSession } from "@/lib/getUserFromSession";
 import { trpc } from "@/providers/trpcProvider";
 import { PathName } from "@/routers/types";
@@ -22,7 +22,7 @@ interface SiteHeaderProps {
 const SiteHeader: FC<SiteHeaderProps> = ({ type = "main", className = "" }) => {
   const session = use(getCurrentUser());
   const user = getUserFromSession(session);
-  const hasSurvey = use(getHasSurvey(user?.id));
+
 
   return (
     <>
@@ -30,7 +30,6 @@ const SiteHeader: FC<SiteHeaderProps> = ({ type = "main", className = "" }) => {
         className={className}
         type={type}
         user={user as AppUser}
-        hasSurvey={hasSurvey}
       />
       <div className="invisible absolute h-1"></div>
     </>

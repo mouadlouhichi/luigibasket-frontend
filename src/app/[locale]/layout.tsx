@@ -4,7 +4,7 @@ import { Manrope, Montserrat, Raleway } from "next/font/google";
 import localFont from "next/font/local";
 import { getMessages } from "@/i18n/server";
 import { languages } from "@/i18n/settings";
-import { getCurrentUser, getHasSurvey, isAdmin } from "@/lib/getCurrentUser";
+import { getCurrentUser, isAdmin } from "@/lib/getCurrentUser";
 import { getUserFromSession } from "@/lib/getUserFromSession";
 import { AppProvider } from "@/providers/AppProvider";
 import LoglibAnalytics from "@/providers/LoglibAnalytics";
@@ -62,7 +62,6 @@ export default function RootLayout({
   const user = getUserFromSession(session);
 
   const admin = use(isAdmin(user?.id));
-  const hasSurvey = use(getHasSurvey(user?.id));
   return (
     <html
       suppressHydrationWarning
@@ -76,7 +75,7 @@ export default function RootLayout({
           messages={messages}
           user={user}
           admin={admin}
-          hasSurvey={hasSurvey}
+          hasSurvey={false}
         >
           {children}
           <LoglibAnalytics />

@@ -35,7 +35,7 @@ const MainNav: FC<MainNavProps> = ({
   className = "",
   type = "main",
   isLoading,
-  hasSurvey,
+  hasSurvey = false,
   user,
 }) => {
   const { isAdmin } = useAppStore();
