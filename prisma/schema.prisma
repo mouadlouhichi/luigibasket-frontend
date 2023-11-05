@@ -33,6 +33,7 @@ model BasketItem {
   id         Int     @id @default(autoincrement())
   product    Product @relation(fields: [productId], references: [id])
   productId  Int
+  price      Decimal
   quantity   Int
   totalPrice Float
   basketId   String
@@ -50,20 +51,17 @@ enum UserRole {
 }
 
 enum ProductCategory {
-  ELECTRONICS
-  CLOTHING
-  FOOD
-  BEAUTY
+  FRUIT
+  LEGUME
+  EPICE
 }
 
 model Product {
   id          Int             @id @default(autoincrement())
   name        String
   description String?
-  price       Decimal
-  quantity    Int
+  price       Decimal?
   image       String
-  total       Decimal
   category    ProductCategory // Add this field to associate products with a category
 
   BasketItem BasketItem[]

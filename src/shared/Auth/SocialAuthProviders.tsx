@@ -4,11 +4,11 @@ import { useState } from "react";
 import { BASE_URL, loginSocials } from "@/app";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Provider } from "@supabase/supabase-js";
-import { setCookie } from 'cookies-next';
+import { setCookie } from "cookies-next";
 
 import Button from "@/components/Button";
 
-function  SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
+function SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
   const [isLoading, setIsLoading] = useState(false);
   const supabase = createClientComponentClient();
 
@@ -23,10 +23,10 @@ function  SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
           className="h-[3rem] w-[3rem] bg-primary-50  dark:bg-neutral-800 "
           onClick={async () => {
             setIsLoading(true);
-            setCookie('authCallbackUrl', callbackUrl, {
+            setCookie("authCallbackUrl", callbackUrl, {
               expires: new Date(Date.now() + 900000),
-              path: '/',
-              });
+              path: "/",
+            });
 
             const res = await supabase.auth.signInWithOAuth({
               provider: item.provider as Provider,
@@ -35,7 +35,6 @@ function  SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
                 queryParams: {
                   callbackUrl,
                 },
-
               },
             });
           }}

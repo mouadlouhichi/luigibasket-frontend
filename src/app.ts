@@ -165,7 +165,7 @@ export const siteConfig = {
     "Product Selection",
     "Basket Summary PDF",
     "Web Shopping",
-    "Digital Shopping"
+    "Digital Shopping",
   ],
   url: {
     base: baseUrl,

@@ -42,7 +42,11 @@ function PageHome() {
         <div className="relative py-16  mt-44">
           <BackgroundSection className="bg-orange-50 dark:bg-black/20" />
 
-          <ProductsListening id="products" />
+          <ProductsListening
+            id="products"
+            heading="Parcourez le catalogue de produits"
+            subHeading="Ajoutez des articles à votre panier et cliquez sur Terminer pour générer un récapitulatif PDF en un instant"
+          />
         </div>
 
         <section className="bg-white dark:bg-gray-900">

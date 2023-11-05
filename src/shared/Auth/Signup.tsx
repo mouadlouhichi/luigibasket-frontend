@@ -76,7 +76,6 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
           password: data.password,
           username: data.username,
         });
-
       } catch (err) {
         console.error(err);
         toast.error("Error signing up");

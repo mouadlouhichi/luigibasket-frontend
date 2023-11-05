@@ -1,13 +1,13 @@
 import { Session } from "@supabase/auth-helpers-nextjs";
 import { inferAsyncReturnType, initTRPC } from "@trpc/server";
+import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
 import { prisma as db } from "@/data/db";
 
 // eslint-disable-next-line
-interface CreateContextOptions  extends FetchCreateContextFnOptions{
+interface CreateContextOptions extends FetchCreateContextFnOptions {
   session: Session | null;
 }
 
@@ -22,10 +22,6 @@ export const createContext = async (opts: CreateContextOptions) => {
     resHeaders: opts.resHeaders,
   };
 };
-
-export async function _createContext(session: Session | null) {
-  return { user: session?.user, prisma: db, session };
-}
 
 type Context = inferAsyncReturnType<typeof createContext>;
 // Avoid exporting the entire t-object

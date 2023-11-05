@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { settings } from "@/app";
 import { Route } from "@/routers/types";
+import useAppStore from "@/store";
 import twFocusClass from "@/utils/twFocusClass";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
@@ -19,7 +20,6 @@ import SwitchDarkMode from "@/components/SwitchDarkMode";
 import AvatarDropdown from "../Header/AvatarDropdown";
 import LocaleSwitcher from "../Switchers/LocaleSwitcher";
 import { NavItemType } from "./NavigationItem";
-import useAppStore from "@/store";
 
 export interface NavMobileProps {
   data?: NavItemType[];

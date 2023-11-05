@@ -34,4 +34,10 @@ export const adminProcedure = userProcedure.use(async ({ ctx, next }) => {
   });
 });
 
+export const productProcedure = procedure.use(({ ctx, next }) => {
+  return next({
+    ctx,
+  });
+});
+
 // Add more procedures here

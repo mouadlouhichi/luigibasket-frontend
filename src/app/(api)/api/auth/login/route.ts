@@ -2,9 +2,9 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { BASE_URL } from "@/app";
 import type { Database } from "@/lib/database.types";
+import { prisma } from "@/lib/prisma";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { z } from "zod";
-import { prisma } from "@/lib/prisma";
 
 const bodySchema = z.object({
   email: z.string(),
@@ -31,9 +31,7 @@ export async function POST(req: Request, res: Response) {
     const result = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
-      options: {
-
-      },
+      options: {},
     });
 
     /* if (result.data.session) {

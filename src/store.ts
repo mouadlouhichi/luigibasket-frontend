@@ -25,10 +25,10 @@ const useAppStore = create<initialState>((set) => ({
   userRole: "User",
   isAdmin: false,
   hasSurvey: false,
-  setHasSurvey: (hasSurvey: boolean) => set((state) => ({ ...state, hasSurvey })),
+  setHasSurvey: (hasSurvey: boolean) =>
+    set((state) => ({ ...state, hasSurvey })),
   setRole: (userRole: UserRole) => set((state) => ({ ...state, userRole })),
   setIsAdmin: (isAdmin: boolean) => set((state) => ({ ...state, isAdmin })),
-
 }));
 
 /* const useFeedbackStore = create<initialState>((set) => ({

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
+import { AppUser } from "@/types";
 
 import MainNav from "./MainNav";
-import { AppUser } from "@/types";
 
 export interface HeaderProps {
   type?: "moderated" | "main" | "dashboard";
@@ -9,7 +9,7 @@ export interface HeaderProps {
 
   hasSurvey?: boolean;
   isLoading?: boolean;
-  user : AppUser
+  user: AppUser;
 }
 
 const Header: FC<HeaderProps> = ({
@@ -17,13 +17,19 @@ const Header: FC<HeaderProps> = ({
   type = "main",
   isLoading,
   hasSurvey,
-  user
+  user,
 }) => {
   return (
     <header
       className={`nc-Header h-fit nc-header-bg sticky inset-x-0 top-0 z-40 w-full ${className}`}
     >
-      <MainNav type={type} isLoading={isLoading}  user={user} hasSurvey={hasSurvey}/>
+      <MainNav
+        type={type}
+        isLoading={isLoading}
+        user={user}
+        hasSurvey={hasSurvey}
+        hasBorder={false}
+      />
     </header>
   );
 };

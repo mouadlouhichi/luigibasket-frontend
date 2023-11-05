@@ -54,18 +54,6 @@ const HeaderFilter: FC<HeaderFilterProps> = ({
             </NavItem>
           ))}
         </Nav>
-        <span className="hidden sm:block flex-shrink-0">
-          <Button
-            intent={"secondary"}
-            href="/listing-stay"
-            className="!leading-none"
-          >
-            <div className="flex items-center justify-center">
-              <span>View all</span>
-              <ArrowRightIcon className="w-5 h-5 ml-3" />
-            </div>
-          </Button>
-        </span>
       </div>
     </div>
   );

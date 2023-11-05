@@ -418,9 +418,7 @@ export const NAVIGATION_OLD: NavItemType[] = [
   },
 ];
 
-export const NAVIGATION: NavItemType[] = [
-
-];
+export const NAVIGATION: NavItemType[] = [];
 
 export const USER_RIGHT_NAVIGATION: NavItemType[] = [
   {

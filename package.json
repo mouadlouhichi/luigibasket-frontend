@@ -18,6 +18,7 @@
     "code:prepare": "pnpm lint:fix & pnpm format",
     "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|e2e/|README.md|.storybook/|.eslintrc.js' --image graph.svg",
     "db:dev": "dotenv -e .env prisma migrate dev ",
+    "db:format": "npx prisma format",
     "db:generate": "npx prisma generate",
     "db:migrate": "npx prisma migrate dev --name \"$(date +%s)\"",
     "db:push": "npx prisma db push",

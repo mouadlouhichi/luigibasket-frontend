@@ -29,7 +29,6 @@ RUN npx prisma generate
 # env vars
 # add environment variables to client code
 ARG DATABASE_URL_ARG="postgresql://postgres:test@db.test.supabase.co:5432/postgres"
-ARG NEXTAUTH_SECRET_ARG="secret"
 ARG NEXTAUTH_URL_ARG="https://mindrested-app.vercel.app"
 ARG ANALYZE_ARG="false"
 ARG NEXT_PUBLIC_APP_URL_ARG="https://mindrested-app.vercel.app"
@@ -42,7 +41,6 @@ ARG FACEBOOK_ID_ARG="secret"
 ARG FACEBOOK_SECRET_ARG="secret"
 
 ENV DATABASE_URL=$DATABASE_URL_ARG
-ENV NEXTAUTH_SECRET=$NEXTAUTH_SECRET_ARG
 ENV NEXTAUTH_URL=$NEXTAUTH_URL_ARG
 ENV ANALYZE=$ANALYZE_ARG
 ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL_ARG

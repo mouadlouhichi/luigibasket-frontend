@@ -13,13 +13,12 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { getCurrentUser } from "@/lib/getCurrentUser";
 import { trpc } from "@/providers/trpcProvider";
-
+import useAppStore from "@/store";
 import toast from "react-hot-toast";
 
 import useSurveyStore from "@/hooks/useSurvey";
 import Auth from "@/shared/Auth/Signup";
 import Button from "@/components/Button";
-import useAppStore from "@/store";
 
 interface Props {
   survey: any;

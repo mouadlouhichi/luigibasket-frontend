@@ -5,11 +5,9 @@ import { Provider } from "@supabase/supabase-js";
 import { prisma as db } from "./prisma";
 import { getSession } from "./servers/session";
 
-
-
 export const getCurrentUser = async () => {
   const session = await getSession();
-  return  session as Session;
+  return session as Session;
 };
 export const getHasSurvey = async (userId?: string) => {
   if (!userId) return false;

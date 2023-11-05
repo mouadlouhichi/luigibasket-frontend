@@ -44,7 +44,7 @@ const UserContextProvider = ({
   const [session, setSession] = useState<Session | null>(null);
   const supabase = createClientComponentClient();
 
- /*  useEffect(() => {
+  /*  useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (!session) return;
       const user = getUserFromSession(session);
