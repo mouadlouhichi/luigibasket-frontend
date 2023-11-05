@@ -23,14 +23,9 @@ const SiteHeader: FC<SiteHeaderProps> = ({ type = "main", className = "" }) => {
   const session = use(getCurrentUser());
   const user = getUserFromSession(session);
 
-
   return (
     <>
-      <Header
-        className={className}
-        type={type}
-        user={user as AppUser}
-      />
+      <Header className={className} type={type} user={user as AppUser} />
       <div className="invisible absolute h-1"></div>
     </>
   );

@@ -47,14 +47,15 @@ const ProductsListening: FC<ProductsListeningProps> = ({
       >
         {!isLoading &&
           data &&
-          data.map((product: Product) =>
-            product && (
-              <ProductCard
-                key={product.id}
-                className="relative"
-                data={product}
-              />
-            )
+          data.map(
+            (product: Product) =>
+              product && (
+                <ProductCard
+                  key={product.id}
+                  className="relative"
+                  data={product}
+                />
+              ),
           )}
       </div>
     </div>

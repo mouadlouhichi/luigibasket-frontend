@@ -68,7 +68,7 @@ const MainNav: FC<MainNavProps> = ({
     case "main":
       return (
         <div className={` relative z-10 ${className}`}>
-          <div className="relative flex h-20 justify-between px-8 2xl:container">
+          <div className="relative flex h-20 justify-between px-4 md:px-8 2xl:container">
             <div className="hidden flex-1 justify-start space-x-4 sm:space-x-10 md:flex">
               <Logo className=" -mt-2 " size="lg" />
               <Navigation />
@@ -172,7 +172,7 @@ const MainNav: FC<MainNavProps> = ({
     case "dashboard":
       return (
         <div className={` relative z-10 ${className}`}>
-          <div className="relative flex h-20 justify-between px-8 2xl:container">
+          <div className="relative flex h-20 justify-between px-4 md:px-8 2xl:container">
             <div className="hidden flex-1 justify-start space-x-4 sm:space-x-10 md:flex">
               <Logo className=" -mt-2 " size="lg" />
               <Navigation type="dashboard" />

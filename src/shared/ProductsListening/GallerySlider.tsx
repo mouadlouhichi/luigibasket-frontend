@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import Link from "next/link";
 import { useSwipeable } from "react-swipeable";
 import { Route } from "@/routers/types";
 import { variants } from "@/utils/animationVariants";
@@ -73,8 +72,7 @@ export default function GallerySlider({
       >
         {/* Main image */}
         <div className={`w-full overflow-hidden ${galleryClass}`}>
-          <Link
-            href={href}
+          <div
             className={`relative flex items-center justify-center ${ratioClass}`}
           >
             <AnimatePresence initial={false} custom={direction}>
@@ -97,7 +95,7 @@ export default function GallerySlider({
                 />
               </motion.div>
             </AnimatePresence>
-          </Link>
+          </div>
         </div>
       </div>
     </MotionConfig>
