@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import loadingSvg from "@/images/animations/walking.gif";
 import { trpc } from "@/providers/trpcProvider";
-import { useUserContext } from "@/providers/UserProvider";
+import useAppStore from "@/store";
 import toast from "react-hot-toast";
 import { StateStorage, StorageValue } from "zustand/middleware";
 
@@ -27,7 +27,8 @@ import Button from "@/components/Button";
 
 function Next() {
   const mounted = useIsClient();
-  const  user  = null
+
+  const { user } = useAppStore();
   const { survey, setSurvey } = useSurveyStore();
 
   const toggleSurveyMutation = trpc.survey.toggle.useMutation({

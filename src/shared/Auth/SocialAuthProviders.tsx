@@ -38,7 +38,6 @@ function  SocialAuthProviders({ callbackUrl }: { callbackUrl: string }) {
 
               },
             });
-            console.log(res, "res______@@@@@@");
           }}
         >
           {item.icon && item.icon}

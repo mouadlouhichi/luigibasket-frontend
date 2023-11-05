@@ -1,24 +1,34 @@
-import { User } from "@prisma/client";
+import { User, UserRole } from "@prisma/client";
 import { create } from "zustand";
 
+import { AppUser } from "./types";
+
 type initialState = {
-  page_loading: boolean;
-  setPageLoading: (loading: boolean) => void;
   language: string;
+  user: AppUser | null;
+  isAdmin: boolean;
+  userRole: UserRole;
+  hasSurvey: boolean;
   setCurrentLanguage: (language: string) => void;
-  user: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: AppUser) => void;
+  setHasSurvey: (hasSurvey: boolean) => void;
+  setRole: (userRole: UserRole) => void;
+  setIsAdmin: (isAdmin: boolean) => void;
 };
 
 const useAppStore = create<initialState>((set) => ({
-  page_loading: false,
-  setPageLoading: (loading: boolean) =>
-    set((state) => ({ ...state, page_loading: loading })),
   language: "en",
   setCurrentLanguage: (language: string) =>
     set((state) => ({ ...state, language })),
   user: null,
-  setUser: (user: User) => set((state) => ({ ...state, user })),
+  setUser: (user: AppUser) => set((state) => ({ ...state, user })),
+  userRole: "User",
+  isAdmin: false,
+  hasSurvey: false,
+  setHasSurvey: (hasSurvey: boolean) => set((state) => ({ ...state, hasSurvey })),
+  setRole: (userRole: UserRole) => set((state) => ({ ...state, userRole })),
+  setIsAdmin: (isAdmin: boolean) => set((state) => ({ ...state, isAdmin })),
+
 }));
 
 /* const useFeedbackStore = create<initialState>((set) => ({

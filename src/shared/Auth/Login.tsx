@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { Link } from "@/lib/router-events";
 import { trpc } from "@/providers/trpcProvider";
-import { useUserContext } from "@/providers/UserProvider";
+import useAppStore from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useMutation } from "@tanstack/react-query";
@@ -23,7 +23,6 @@ interface Props {
 }
 
 function Auth({ heading, description, callbackUrl, type }: Props) {
-  const { setUser } = useUserContext();
   //TODO add form error
   const { handleSubmit, control, reset, formState } = useForm<ILogin>({
     defaultValues: {
@@ -34,6 +33,7 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
   });
 
   const router = useRouter();
+  const { setUser } = useAppStore();
 
   const { mutateAsync, isLoading } = useMutation({
     mutationFn: (data: ILogin) => {
@@ -50,14 +50,14 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
 
     onSuccess: async (data) => {
       const user = await data.json();
-      /* setUser({
+      setUser({
         id: user.id,
         email: user.email,
         name: user.user_metadata.username,
         image: user.user_metadata.image,
         hasSurvey: user.app_metadata.hasSurvey,
         userRole: user.app_metadata.userRole,
-      }); */
+      });
 
       toast.success("Login successfully");
       router.push("/home");

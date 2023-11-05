@@ -5,6 +5,8 @@ import { fallbackLng, languages } from "@/i18n/settings";
 import type { Database } from "@/lib/database.types";
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 
+import { ADMIN_ROLE } from "./app";
+
 // TODO : list all protected routes
 const protectedPages = ["/home", "/account"];
 
@@ -42,9 +44,11 @@ const intlMiddleware = createMiddleware({
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const supabase = createMiddlewareClient<Database>({ req, res });
-  // TODO: handle session and user
+
   const result = await supabase.auth.getSession();
   const token = result.data?.session?.access_token;
+
+  //PAGES ACCESS CONTROL
   if (!token) {
     if (doesPathMatchPages(req, protectedPages)) {
       return redirect(req, defaultPublicPage);
@@ -56,14 +60,20 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  //TODO: handle routes
-  /*   if (doesPathMatchPages(req, surveyPages) && token.hasSurvey) {
+  //TODO: handle routes based on role and survey
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const role = user?.user_metadata?.role;
+  const hasSurvey = user?.user_metadata?.hasSurvey;
+  if (doesPathMatchPages(req, surveyPages) && hasSurvey) {
     return redirect(req, defaultUserPage);
   }
   // controle access to home page
-  if (doesPathMatchPages(req, publicPages) && !token.isAdmin) {
+  if (doesPathMatchPages(req, adminPages) && role !== ADMIN_ROLE) {
     return redirect(req, defaultUserPage);
-  } */
+  }
 
   if (req.nextUrl.pathname.startsWith("/api")) {
     if (true) return NextResponse.next();

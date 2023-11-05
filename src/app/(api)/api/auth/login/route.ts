@@ -39,7 +39,6 @@ export async function POST(req: Request, res: Response) {
     /* if (result.data.session) {
       const { access_token, refresh_token, expires_in } = result.data.session;
       const session = await supabase.auth.setSession(result.data.session);
-      console.log("session________-@_____", session);
     } */
 
     if (result.error) {

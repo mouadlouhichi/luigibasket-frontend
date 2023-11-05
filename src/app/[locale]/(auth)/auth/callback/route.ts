@@ -1,12 +1,14 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { BASE_URL } from "@/app";
+import { BASE_URL, USER_ROLE } from "@/app";
 import { Database } from "@/lib/database.types";
 import { prisma } from "@/lib/prisma";
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 import { TRPCError } from "@trpc/server";
 
 import { getCookie, getCookies } from "@/server/common/cookie";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
@@ -17,7 +19,9 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = createRouteHandlerClient<Database>({ cookies });
     const result = await supabase.auth.exchangeCodeForSession(code);
-
+    await supabase.auth.updateUser({
+      data: { hasSurvey: false, userRole: USER_ROLE },
+    });
     const id = result.data.user?.id;
     const email = result.data.user?.email as string;
     const exists = await prisma.user.findFirst({
@@ -31,6 +35,10 @@ export async function GET(request: Request) {
           name: result.data.user?.user_metadata?.username || "User",
           email: result.data.user?.email,
         },
+      });
+    } else {
+      await supabase.auth.updateUser({
+        data: { hasSurvey: exists.hasSurvey, userRole: exists.userRole },
       });
     }
   }

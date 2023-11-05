@@ -4,17 +4,13 @@ import { Manrope, Montserrat, Raleway } from "next/font/google";
 import localFont from "next/font/local";
 import { getMessages } from "@/i18n/server";
 import { languages } from "@/i18n/settings";
-import {
-  getCurrentUser,
-  getHasSurvey,
-  isAdmin,
-} from "@/lib/getCurrentUser";
+import { getCurrentUser, getHasSurvey, isAdmin } from "@/lib/getCurrentUser";
+import { getUserFromSession } from "@/lib/getUserFromSession";
 import { AppProvider } from "@/providers/AppProvider";
 import LoglibAnalytics from "@/providers/LoglibAnalytics";
 import { Toaster } from "react-hot-toast";
 
 import { DEFAULT_METADATA } from "@/data/meta";
-import { getUserFromSession } from "@/lib/getUserFromSession";
 
 // Manrope : Primary Font
 const manrope = Manrope({
@@ -64,6 +60,7 @@ export default function RootLayout({
 
   const session = use(getCurrentUser());
   const user = getUserFromSession(session);
+
   const admin = use(isAdmin(user?.id));
   const hasSurvey = use(getHasSurvey(user?.id));
   return (
@@ -83,7 +80,12 @@ export default function RootLayout({
         >
           {children}
           <LoglibAnalytics />
-          <Toaster position="top-right" />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 5000,
+            }}
+          />
         </AppProvider>
       </body>
     </html>

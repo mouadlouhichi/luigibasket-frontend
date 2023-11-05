@@ -1,3 +1,5 @@
+"user client";
+
 import { Fragment, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
@@ -5,8 +7,8 @@ import { BASE_URL } from "@/app";
 import { ImageSvgIcons } from "@/images/icons";
 import { Database } from "@/lib/database.types";
 import { Link } from "@/lib/router-events";
-import { useUserContext } from "@/providers/UserProvider";
 import { Route } from "@/routers/types";
+import useAppStore from "@/store";
 import { AppUser } from "@/types";
 import { Popover, Transition } from "@headlessui/react";
 import {
@@ -34,14 +36,14 @@ export default function AvatarDropdown({
   const ref = useRef(null);
   const supabase = createClientComponentClient<Database>();
 
-  const { setUser } = useUserContext();
+  const { setUser } = useAppStore();
+  const router = useRouter();
 
-  const handleSignOut = () => {
-    supabase.auth.signOut().then(() => {
-      toast.success("Logout Success");
-/*       setUser({} as AppUser);
- */    });
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
   };
+
   return (
     <>
       <Popover className={` relative flex ${className}`} ref={ref}>

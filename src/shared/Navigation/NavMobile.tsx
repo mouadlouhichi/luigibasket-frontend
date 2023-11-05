@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { settings } from "@/app";
-import { useUserContext } from "@/providers/UserProvider";
 import { Route } from "@/routers/types";
 import twFocusClass from "@/utils/twFocusClass";
 import { Disclosure } from "@headlessui/react";
@@ -20,6 +19,7 @@ import SwitchDarkMode from "@/components/SwitchDarkMode";
 import AvatarDropdown from "../Header/AvatarDropdown";
 import LocaleSwitcher from "../Switchers/LocaleSwitcher";
 import { NavItemType } from "./NavigationItem";
+import useAppStore from "@/store";
 
 export interface NavMobileProps {
   data?: NavItemType[];
@@ -114,10 +114,10 @@ const NavMobile: React.FC<NavMobileProps> = ({
   const [isLoading, setIsloading] = useState(false);
   const router = useRouter();
 
-  const { user } = useUserContext();
+  const { user } = useAppStore();
 
   const renderUserLogin = () => {
-    if (user) {
+    if (user?.name) {
       return <AvatarDropdown user={user} isMobile={true} />;
     } else {
       return (

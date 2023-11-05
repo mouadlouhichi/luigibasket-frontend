@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import { BASE_URL } from "@/app";
+import { BASE_URL, USER_ROLE } from "@/app";
 import { Link } from "@/lib/router-events";
 import { trpc } from "@/providers/trpcProvider";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -48,7 +48,7 @@ function Auth({ heading, description, callbackUrl, type }: Props) {
           data: {
             username: data.result.username,
             hasSurvey: false,
-            userRole: "User",
+            userRole: USER_ROLE,
             image:
               "https://res.cloudinary.com/dqo2aggjs/image/upload/v1696596420/default-avatar_kqqse2.jpg",
           },

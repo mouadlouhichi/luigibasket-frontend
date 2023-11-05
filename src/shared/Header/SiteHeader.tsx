@@ -1,10 +1,10 @@
-"use client";
-
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, use, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { getCurrentUser, getHasSurvey } from "@/lib/getCurrentUser";
+import { getUserFromSession } from "@/lib/getUserFromSession";
 import { trpc } from "@/providers/trpcProvider";
-import { useUserContext } from "@/providers/UserProvider";
 import { PathName } from "@/routers/types";
+import { AppUser } from "@/types";
 import toast from "react-hot-toast";
 
 import useSurveyStore from "@/hooks/useSurvey";
@@ -18,7 +18,7 @@ const OPTIONS = {
   rootMargin: "0px",
   threshold: 1.0,
 };
-let OBSERVER: IntersectionObserver | null = null;
+//let OBSERVER: IntersectionObserver | null = null;
 const PAGES_HIDE_HEADER_BORDER: PathName[] = [
   "/" as PathName,
   "/account" as PathName,
@@ -37,15 +37,15 @@ const SiteHeader: FC<SiteHeaderProps> = ({
   className = "",
   hasBorder = false,
 }) => {
-  const anchorRef = useRef<HTMLDivElement>(null);
+  //const anchorRef = useRef<HTMLDivElement>(null);
 
-  const [isTopOfPage, setIsTopOfPage] = useState(true);
+  //const [isTopOfPage, setIsTopOfPage] = useState(true);
+  // const pathname = usePathname();
 
-  useEffect(() => {
+  /*   useEffect(() => {
     setIsTopOfPage(window.pageYOffset < 5);
   }, []);
 
-  const pathname = usePathname();
 
   const intersectionCallback = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
@@ -66,8 +66,8 @@ const SiteHeader: FC<SiteHeaderProps> = ({
       anchorRef.current && OBSERVER.observe(anchorRef.current);
     }
   }, [pathname]);
-
-  const renderHeader = () => {
+ */
+  /* const renderHeader = () => {
     let headerClassName =
       "border-b border-neutral-200 dark:border-b dark:border-neutral-700";
     if (PAGES_HIDE_HEADER_BORDER.includes(pathname as PathName)) {
@@ -78,12 +78,21 @@ const SiteHeader: FC<SiteHeaderProps> = ({
     }
     // add logic for partner
     return <Header className={className + headerClassName} type={type} />;
-  };
+  }; */
+
+  const session = use(getCurrentUser());
+  const user = getUserFromSession(session);
+  const hasSurvey = use(getHasSurvey(user?.id));
 
   return (
     <>
-      {renderHeader()}
-      <div ref={anchorRef} className="invisible absolute h-1"></div>
+      <Header
+        className={className}
+        type={type}
+        user={user as AppUser}
+        hasSurvey={hasSurvey}
+      />
+      <div className="invisible absolute h-1"></div>
     </>
   );
 };

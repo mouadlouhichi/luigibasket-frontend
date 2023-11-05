@@ -1,9 +1,10 @@
 "use client";
 
-import { type ComponentProps } from "react";
+import { useEffect, type ComponentProps } from "react";
 import { AbstractIntlMessages } from "next-intl";
 import { ThemeProvider as NextThemeProvider } from "next-themes";
 import { HandleOnComplete } from "@/lib/router-events";
+import useAppStore from "@/store";
 import { AppUser, WithChildren } from "@/types";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -38,6 +39,17 @@ export const AppProvider = ({
   admin,
   hasSurvey,
 }: Props) => {
+  const { setUser, setIsAdmin, setHasSurvey } = useAppStore();
+
+  useEffect(() => {
+    console.log("user", user);
+    if (user) {
+      setUser(user);
+      setIsAdmin(admin);
+      setHasSurvey(hasSurvey);
+    }
+  }, [user]);
+
   return (
     //handle theme rerendereing
     <TRPCProvider>

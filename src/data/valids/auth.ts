@@ -66,5 +66,5 @@ export const resetPasswordSchema = z
   });
 
 export const userPrivateMetadataSchema = z.object({
-  role: z.enum(["user", "admin"]).optional().nullable(),
+  userRole: z.enum(["user", "admin"]).optional().nullable(),
 });

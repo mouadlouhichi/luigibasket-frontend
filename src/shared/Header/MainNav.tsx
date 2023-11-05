@@ -1,9 +1,14 @@
+"use client";
+
 // TODO handle survey Button
 import React, { FC } from "react";
 import { settings } from "@/app";
+import { getCurrentUser } from "@/lib/getCurrentUser";
 import { Link } from "@/lib/router-events";
 import { useUserContext } from "@/providers/UserProvider";
 import { Route } from "@/routers/types";
+import useAppStore from "@/store";
+import { AppUser } from "@/types";
 
 import MenuBar from "@/shared/MenuBar";
 import Navigation from "@/shared/Navigation/Navigation";
@@ -20,28 +25,21 @@ export interface MainNavProps {
   type?: "moderated" | "main" | "dashboard";
   isLoading?: boolean;
   hasSurvey?: boolean;
+  user: AppUser;
 }
 
 const MainNav: FC<MainNavProps> = ({
   className = "",
   type = "main",
   isLoading,
+  hasSurvey,
+  user,
 }) => {
-  const { user, isAdmin, hasSurvey } = useUserContext();
-  console.log(user, "user from NAV");
+  const { isAdmin } = useAppStore();
+
   const renderUserLogin = () => {
     if (user && user?.name) {
       return <AvatarDropdown user={user} />;
-    } else if (isAdmin) {
-      return (
-        <div className="flex h-12 w-12 items-center justify-center self-center my-2">
-          <Skeleton
-            circle
-            height="100%"
-            containerClassName="w-full h-full leading-none"
-          />
-        </div>
-      );
     } else {
       return (
         <Button intent={"secondary"} className="mr-2 " href="/login">
