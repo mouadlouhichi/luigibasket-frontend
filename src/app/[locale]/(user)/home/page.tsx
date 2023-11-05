@@ -3,8 +3,8 @@ import { cookies } from "next/headers";
 import { Database } from "@/lib/database.types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
-import PsychologistsListening from "@/shared/PsychologistsListening";
-import BackgroundSection from "@/shared/PsychologistsListening/BackgroundSection";
+import ProductsListening from "@/shared/ProductsListening";
+import BackgroundSection from "@/shared/ProductsListening/BackgroundSection";
 
 export default async function Home() {
   return (
@@ -15,7 +15,7 @@ export default async function Home() {
       <div className="relative py-16  mt-12">
         <BackgroundSection className="bg-orange-50 dark:bg-black/20" />
 
-        <PsychologistsListening />
+        <ProductsListening />
       </div>
     </main>
   );

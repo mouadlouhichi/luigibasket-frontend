@@ -33,9 +33,10 @@ const Navigation: FC<NavigationProps> = ({ type = "main" }) => {
     case "main":
       return (
         <ul className="relative hidden w-full justify-center  lg:flex lg:flex-wrap  lg:space-x-1 xl:justify-end">
-          {NAVIGATION.map((item) => (
-            <NavigationItem key={item.id} menuItem={item} />
-          ))}
+          {NAVIGATION.length > 0 &&
+            NAVIGATION.map((item) => (
+              <NavigationItem key={item.id} menuItem={item} />
+            ))}
         </ul>
       );
   }

@@ -4,8 +4,8 @@ import React from "react";
 import { useTranslations } from "next-intl";
 
 import { LP_GRID_ITEMS } from "@/data/lp-items";
-import PsychologistsListening from "@/shared/PsychologistsListening";
-import BackgroundSection from "@/shared/PsychologistsListening/BackgroundSection";
+import ProductsListening from "@/shared/ProductsListening";
+import BackgroundSection from "@/shared/ProductsListening/BackgroundSection";
 import { Button } from "@/components/Button/Button";
 
 function PageHome() {
@@ -13,15 +13,15 @@ function PageHome() {
 
   return (
     <>
-      <main className="bg-white container dark:bg-gray-900">
+      <main className="bg-white container dark:bg-gray-900 scroll-smooth">
         <section className="bg-white dark:bg-gray-900">
           <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
             <div className="mx-auto place-self-center">
               <h2 className="mb-4 max-w-2xl font-mono text-base font-medium leading-none  tracking-tight text-secondary-500 dark:text-white md:text-xl xl:text-2xl">
-                Help your inner peace with MindRested | Deploy new vercel auth
+                Bienvenue sur LUIGI BASKET
               </h2>
               <h1 className="mb-4 max-w-2xl text-4xl  font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
-                Empower Your Mental Health
+                Votre Assistant Shopping Personnel
               </h1>
               <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
                 {t.rich("description", {
@@ -30,11 +30,11 @@ function PageHome() {
                   ),
                 })}
               </p>
-              <Button href="https://github.com/" className="mr-3">
-                Get started
+              <Button href="#products" className="mr-3">
+                Nouveau Achats
               </Button>
               <Button href="https://vercel.com/" intent="secondary">
-                Deploy Now
+                Historique
               </Button>
             </div>
           </div>
@@ -42,7 +42,7 @@ function PageHome() {
         <div className="relative py-16  mt-44">
           <BackgroundSection className="bg-orange-50 dark:bg-black/20" />
 
-          <PsychologistsListening />
+          <ProductsListening id="products" />
         </div>
 
         <section className="bg-white dark:bg-gray-900">

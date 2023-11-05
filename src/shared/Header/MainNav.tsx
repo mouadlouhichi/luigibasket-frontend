@@ -9,6 +9,7 @@ import { useUserContext } from "@/providers/UserProvider";
 import { Route } from "@/routers/types";
 import useAppStore from "@/store";
 import { AppUser } from "@/types";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 import MenuBar from "@/shared/MenuBar";
 import Navigation from "@/shared/Navigation/Navigation";
@@ -76,6 +77,20 @@ const MainNav: FC<MainNavProps> = ({
                 <div className="flex items-center justify-between">
                   <Logo className="-ml-1 -mt-2 " />
                   <MenuBar />
+                  {settings.carteEnabled && (
+                  <Link href={"/carte" as Route} className="flex items-center">
+                    <div className="relative flex h-fit">
+                      <ShoppingCartIcon
+                        width={24}
+                        hanging={24}
+                        className="min-w-[1.5rem]	 min-h-[1.5rem]	"
+                      />
+                      <span className="absolute top-[-4px] left-[1rem] w-4 h-4 bg-black text-white rounded-full text-xs flex items-center justify-center">
+                        0
+                      </span>
+                    </div>
+                  </Link>
+                )}
                 </div>
               </div>
             </div>
@@ -86,20 +101,49 @@ const MainNav: FC<MainNavProps> = ({
                 {settings.internationalizationEnabled && (
                   <LocaleSwitcher className="flex h-12 items-center justify-center self-center" />
                 )}
-                {renderUserLogin()}
-                {!hasSurvey && (
+                {settings.authEnabled && renderUserLogin()}
+                {settings.surveyEnabled && !hasSurvey && (
                   <Link href={"/survey" as Route} className="flex">
                     <Button className="self-center" intent={"primary"}>
                       Get Started
                     </Button>
                   </Link>
                 )}
+                {settings.carteEnabled && (
+                  <Link href={"/carte" as Route} className="flex items-center">
+                    <div className="relative flex h-fit">
+                      <ShoppingCartIcon
+                        width={24}
+                        hanging={24}
+                        className="min-w-[1.5rem]	 min-h-[1.5rem]	"
+                      />
+                      <span className="absolute top-[-4px] left-[1rem] w-4 h-4 bg-black text-white rounded-full text-xs flex items-center justify-center">
+                        0
+                      </span>
+                    </div>
+                  </Link>
+                )}
               </div>
 
               <div className="flex items-center xl:hidden">
                 {settings.themeToggleEnabled && <ThemeSwitcher />}
-                <div className="px-0.5" />
+
                 <MenuBar />
+                <div className="px-0.5" />
+                {settings.carteEnabled && (
+                  <Link href={"/carte" as Route} className="flex items-center">
+                    <div className="relative flex h-fit">
+                      <ShoppingCartIcon
+                        width={24}
+                        hanging={24}
+                        className="min-w-[1.5rem]	 min-h-[1.5rem]	"
+                      />
+                      <span className="absolute top-[-4px] left-[1rem] w-4 h-4 bg-black text-white rounded-full text-xs flex items-center justify-center">
+                        0
+                      </span>
+                    </div>
+                  </Link>
+                )}
               </div>
             </div>
           </div>

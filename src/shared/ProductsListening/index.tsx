@@ -11,7 +11,7 @@ import StayCard from "./StayCard";
 const DEMO_DATA: StayDataType[] = DEMO_STAY_LISTINGS.filter((_, i) => i < 8);
 
 //
-export interface PsychologistsListeningProps {
+export interface ProductsListeningProps {
   stayListings?: StayDataType[];
   gridClass?: string;
   heading?: ReactNode;
@@ -19,9 +19,10 @@ export interface PsychologistsListeningProps {
   headingIsCenter?: boolean;
   tabs?: string[];
   cardType?: "card1" | "card2";
+  id?: string;
 }
 
-const PsychologistsListening: FC<PsychologistsListeningProps> = ({
+const ProductsListening: FC<ProductsListeningProps> = ({
   stayListings = DEMO_DATA,
   gridClass = "",
   heading = "Meet Our Experienced Psychiatrists",
@@ -29,9 +30,10 @@ const PsychologistsListening: FC<PsychologistsListeningProps> = ({
   headingIsCenter,
   tabs = ["Individual", "Couples", "Family", "Child", "Adolescent", "Adult"],
   cardType = "card2",
+  id = "",
 }) => {
   return (
-    <div className="nc-SectionGridFeaturePlaces relative">
+    <div className="nc-SectionGridFeaturePlaces relative" id={id}>
       <HeaderFilter
         tabActive={"Individual"}
         subHeading={subHeading}
@@ -52,4 +54,4 @@ const PsychologistsListening: FC<PsychologistsListeningProps> = ({
   );
 };
 
-export default PsychologistsListening;
+export default ProductsListening;

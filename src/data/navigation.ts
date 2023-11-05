@@ -384,8 +384,7 @@ export const NAVIGATION_DEMO_2: NavItemType[] = [
     children: otherPageChildMenus,
   },
 ];
-
-export const NAVIGATION: NavItemType[] = [
+export const NAVIGATION_OLD: NavItemType[] = [
   {
     id: ncNanoId(),
     href: "/" as PathName,
@@ -417,6 +416,10 @@ export const NAVIGATION: NavItemType[] = [
     name: "Contact",
     type: "none",
   },
+];
+
+export const NAVIGATION: NavItemType[] = [
+
 ];
 
 export const USER_RIGHT_NAVIGATION: NavItemType[] = [

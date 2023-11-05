@@ -12,7 +12,7 @@ import { ImageSvgIcons } from "./images/icons";
 // ========================================================
 
 export const appts = {
-  name: "MindRested",
+  name: "LUIGI BASKET",
   social: networks({
     youtube: "@mindrested_maroc",
     facebook: "mindrested_maroc",
@@ -39,7 +39,7 @@ export const contactConfig = {
 // ========================================================
 
 export const REPOSITORY_OWNER = "mouadlouhichi";
-export const REPOSITORY_NAME = "mindrested-app";
+export const REPOSITORY_NAME = "luigibasket-frontend";
 export const REPOSITORY_URL = `https://github.com/${REPOSITORY_OWNER}/${REPOSITORY_NAME}`;
 export const baseUrl =
   process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
@@ -57,7 +57,7 @@ export const BRAND_DESCRIPTION =
 
 export const OWNER_ROLE = "Owner";
 export const ADMIN_ROLE = "Admin";
-export const Therapist_ROLE = "Therapist";
+export const MERCHANDISER = "Merchandiser";
 export const USER_ROLE = "User";
 export const GUEST_ROLE = "Guest";
 
@@ -65,7 +65,7 @@ export const TRIAL_LENGTH_IN_DAYS = 7;
 export const ROLES = [
   OWNER_ROLE,
   ADMIN_ROLE,
-  Therapist_ROLE,
+  MERCHANDISER,
   GUEST_ROLE,
 ] as const;
 
@@ -124,15 +124,18 @@ export const defaultFeatures = {
 
 export const settings = {
   internationalizationEnabled: true,
-  themeToggleEnabled: true,
+  themeToggleEnabled: false,
+  authEnabled: false,
+  surveyEnabled: false,
+  carteEnabled: true,
 };
 
 export const siteConfig = {
-  name: "MindRested",
-  shortName: "MindRested",
+  name: "LUIGI BASKET",
+  shortName: "LUIGI BASKET",
   author: "mouadlouhichi",
   description:
-    "Elevate your mental well-being with MindRested - your trusted online therapy platform. Schedule sessions, track progress, and access self-care resources for a healthier you.",
+    "your ultimate shopping companion! Browse a wide range of products, set quantity and price per unit, or simply enter the total price. With a click, generate a beautiful PDF summary of your shopping basket. Shop smarter with ShopSmart today!",
   company: {
     name: "MindRested",
     link: "https://www.mindrested.com",
@@ -143,36 +146,26 @@ export const siteConfig = {
     twitter: "@mindrested_maroc",
   },
   keywords: [
-    "online therapy",
-    "mental health",
-    "therapy platform",
-    "self-care",
-    "Mental wellness",
-    "therapist appointments",
-    "therapy progress",
-    "Morocco",
-    "MindRested",
-    "counseling",
-    "emotional support",
-    "mental well-being",
-    "therapeutic sessions",
-    "stress management",
-    "anxiety relief",
-    "depression help",
-    "virtual therapy",
-    "licensed therapists",
-    "online counseling",
-    "psychological support",
-    "mental health resources",
-    "therapy sessions",
-    "mental health tracking",
-    "mental health progress",
-    "online mental health",
-    "therapy access",
-    "personalized therapy",
-    "professional therapists",
-    "therapeutic resources",
-    "self-help tools",
+    "Online Shopping",
+    "E-commerce",
+    "Product Catalog",
+    "Shopping App",
+    "Price Comparison",
+    "Quality Products",
+    "Basket Summary",
+    "PDF Generator",
+    "Smart Shopping",
+    "Convenient Shopping",
+    "Shopping Assistant",
+    "Personal Shopping",
+    "Product Listings",
+    "Price Per Unit",
+    "Total Price",
+    "Shopping List",
+    "Product Selection",
+    "Basket Summary PDF",
+    "Web Shopping",
+    "Digital Shopping"
   ],
   url: {
     base: baseUrl,

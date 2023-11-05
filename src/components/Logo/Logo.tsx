@@ -2,7 +2,7 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next-intl/link";
 import LogoSvgDark from "@/images/logos/dark/mindrested.svg";
-import LogoSvg from "@/images/logos/nomal/mindrested.svg";
+import LogoSvg from "@/images/logos/nomal/luigiBasket.svg";
 import { Route } from "@/routers/types";
 import { cva, type VariantProps } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
@@ -18,8 +18,8 @@ const cvaConfig = cva(
   {
     variants: {
       size: {
-        md: ["w-[8rem]"],
-        lg: ["w-[8rem]", "md:w-[12rem]"],
+        md: ["w-[12rem]"],
+        lg: ["w-[12rem]", "md:w-[18rem]"],
         xl: ["w-24", "md:w-[8rem]"],
       },
     },
