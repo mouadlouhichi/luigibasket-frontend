@@ -1,3 +1,4 @@
+"use client"
 import React, { FC, useState } from "react";
 import Link from "next/link";
 import { useTimeoutFn } from "react-use";
