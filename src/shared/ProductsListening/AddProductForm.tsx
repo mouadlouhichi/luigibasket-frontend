@@ -23,7 +23,7 @@ interface Props {
 }
 
 const AddProductForm: React.FC<Props> = ({ control, formState }) => {
-  // Define the component's logic and rendering here
+  // Define the component's logic and rendering here deploy
 
   return (
     <div className="w-full space-y-5 mt-12">
