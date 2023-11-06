@@ -43,8 +43,8 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
               control={control}
               render={({ field }) => (
                 <Input
-                  type="text"
-                  placeholder="Adon Shaka"
+                  type="number"
+                  placeholder="Prix unitaire"
                   className="mt-1 w-3/4"
                   rounded="min"
                   pattern="[0-9]*"
@@ -69,8 +69,8 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
               control={control}
               render={({ field }) => (
                 <Input
-                  type="text"
-                  placeholder="example@example.com"
+                  type="number"
+                  placeholder="Quantité"
                   className="mt-1 w-3/4"
                   rounded="min"
                   pattern="[0-9]*"
@@ -96,6 +96,7 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
               render={({ field }) => (
                 <Input
                   type="number"
+                  placeholder="Total"
                   className="mt-1 w-3/4"
                   rounded="min"
                   pattern="[0-9]*"
