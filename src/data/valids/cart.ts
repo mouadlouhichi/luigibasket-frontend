@@ -1,12 +1,9 @@
 import * as z from "zod";
 
 export const basketItemSchema = z.object({
-  quantity: z
-    .number()
-    .int()
-    .min(1, {
-      message: "Quantity must be at least 1",
-    }),
+  quantity: z.number().int().min(1, {
+    message: "Quantity must be at least 1",
+  }),
   price: z.number().min(0, {
     message: "Price must be at least 0",
   }),
@@ -15,4 +12,3 @@ export const basketItemSchema = z.object({
   }),
 });
 export type IBasketForm = z.infer<typeof basketItemSchema>;
-

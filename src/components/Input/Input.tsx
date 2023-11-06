@@ -26,6 +26,8 @@ const cvaConfig = cva(
       },
       rounded: {
         "rounded-2xl": ["rounded-2xl"],
+        full: ["rounded-full"],
+        min: ["rounded"],
       },
       font: {
         base: ["text-sm", "font-normal"],
@@ -49,7 +51,8 @@ export interface InputProps
   ref?: React.Ref<HTMLInputElement>;
   type?: string;
   font?: "base";
-  rounded?: "rounded-2xl";
+  rounded?: "rounded-2xl" | "full" | "min";
+  inputmode?: string;
 }
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (

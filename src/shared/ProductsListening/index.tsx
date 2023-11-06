@@ -5,6 +5,7 @@ import { Product } from "@prisma/client";
 import { DEMO_STAY_LISTINGS } from "@/data/listings";
 import { StayDataType } from "@/data/types";
 import Button from "@/components/Button";
+import Skeleton from "@/components/Skeleton";
 
 import HeaderFilter from "./HeaderFilter";
 import ProductCard from "./ProductCard";
@@ -43,20 +44,24 @@ const ProductsListening: FC<ProductsListeningProps> = ({
         heading={heading}
       />
       <div
-        className={`grid gap-6 md:gap-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ${gridClass}`}
+        className={`${
+          isLoading
+            ? "block"
+            : "grid gap-6 md:gap-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        }   ${gridClass}`}
       >
-        {!isLoading &&
-          data &&
-          data.map(
-            (product: Product) =>
-              product && (
-                <ProductCard
-                  key={product.id}
-                  className="relative"
-                  data={product}
-                />
-              ),
-          )}
+        {isLoading ? (
+          <Skeleton
+            count={8}
+            height="7rem"
+            containerClassName="flex gap-2 justify-between flex-wrap"
+            className=" mb-2 !w-[calc(50%_-_1rem)]"
+          />
+        ) : (
+          data?.map((product) => (
+            <ProductCard key={product.id} className="relative" data={product} />
+          ))
+        )}
       </div>
     </div>
   );

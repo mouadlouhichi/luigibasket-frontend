@@ -6,9 +6,9 @@ import { PathName } from "@/routers/types";
 
 import { FOOTER_NAVIGATION } from "@/data/navigation";
 import { CustomLink } from "@/data/types";
-import Logo from "@/components/Logo";
 import SocialsList1 from "@/shared/SocialsList1";
 import FooterNav from "@/components/FooterNav/";
+import Logo from "@/components/Logo";
 
 const PAGES_WITH_FOOTER_NAV: PathName[] = ["/account" as PathName];
 
@@ -50,7 +50,6 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
 
   return (
     <>
-
       <div
         className={`nc-Footer relative border-t border-neutral-200 py-24 dark:border-neutral-700 lg:py-28 ${className}`}
       >

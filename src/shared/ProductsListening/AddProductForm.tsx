@@ -30,11 +30,11 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
       <div
         className={`w-full bg-white dark:bg-neutral-800 overflow-hidden rounded-2xl shadow-lg `}
       >
-        <div className="p-5">
+        <div className="p-5 flex gap-2 flex-col">
           <span className="block font-semibold text-xl sm:text-2xl my-4">
             Ajoutez ce produit
           </span>
-          <label className="block relative">
+          <label className="flex items-center gap-2 relative justify-between">
             <span className="font-medium text-neutral-800 dark:text-neutral-200">
               Prix
             </span>
@@ -45,7 +45,10 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
                 <Input
                   type="text"
                   placeholder="Adon Shaka"
-                  className="mt-1"
+                  className="mt-1 w-3/4"
+                  rounded="min"
+                  pattern="[0-9]*"
+                  inputmode="numeric"
                   {...field}
                 />
               )}
@@ -57,7 +60,7 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
             )}
           </label>
 
-          <label className="block relative">
+          <label className="flex items-center gap-2 relative justify-between">
             <span className="text-neutral-800 dark:text-neutral-200">
               Quantité
             </span>
@@ -68,7 +71,10 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
                 <Input
                   type="text"
                   placeholder="example@example.com"
-                  className="mt-1"
+                  className="mt-1 w-3/4"
+                  rounded="min"
+                  pattern="[0-9]*"
+                  inputmode="numeric"
                   {...field}
                 />
               )}
@@ -79,8 +85,8 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
               </p>
             )}
           </label>
-          <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
-          <label className="block relative">
+          <div className="w-full border-b my-4 border-neutral-200 dark:border-neutral-700"></div>
+          <label className="flex items-center gap-8 relative justify-between">
             <span className="flex items-center justify-between text-neutral-800 dark:text-neutral-200">
               Total
             </span>
@@ -88,7 +94,14 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
               name="total"
               control={control}
               render={({ field }) => (
-                <Input type="number" className="mt-1" {...field} />
+                <Input
+                  type="number"
+                  className="mt-1 w-3/4"
+                  rounded="min"
+                  pattern="[0-9]*"
+                  inputmode="numeric"
+                  {...field}
+                />
               )}
             />
             {formState.errors.total && (

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { FC, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTimeoutFn } from "react-use";
 import { Route } from "@/routers/types";
@@ -40,12 +41,13 @@ const ProductCard: FC<ProductCardProps> = ({
   }
   const renderSliderGallery = () => {
     return (
-      <div className="relative w-full">
-        <GallerySlider
-          uniqueID={`ProductCard_${data?.id}`}
-          ratioClass="aspect-w-4 aspect-h-3 "
-          galleryImgs={[data.image]}
-          galleryClass={size === "default" ? undefined : ""}
+      <div className="relative flex items-center justify-center aspect-w-4 aspect-h-3 ">
+        <Image
+          src={data.image}
+          fill
+          alt="listing card gallery"
+          className={`object-cover `}
+          sizes="(max-width: 1025px) 100vw, 300px"
         />
       </div>
     );

@@ -182,7 +182,8 @@ export const guestUser = {
   email: "luigibasket@yopmail.com",
   name: "Guest user",
   role: GUEST_ROLE,
-  image: "https://res.cloudinary.com/dqo2aggjs/image/upload/v1696596420/default-avatar_kqqse2.jpg"
+  image:
+    "https://res.cloudinary.com/dqo2aggjs/image/upload/v1696596420/default-avatar_kqqse2.jpg",
 };
 
 // ========================================================

@@ -6,7 +6,6 @@ import { AppUser } from "./types";
 type BasketItemAttr = keyof BasketItem;
 type BasketItemValue = BasketItem[BasketItemAttr];
 
-
 type initialState = {
   language: string;
   user: AppUser | null;
@@ -89,7 +88,11 @@ const useAppStore = create<initialState>((set) => ({
       }
     }),
 
-  updateBasetItem: (basketItemId: number, field: BasketItemAttr, value : BasketItemValue) =>
+  updateBasetItem: (
+    basketItemId: number,
+    field: BasketItemAttr,
+    value: BasketItemValue,
+  ) =>
     set((state) => {
       const existingItemIndex = state.cart.basketItems.findIndex(
         (cartItem) => cartItem.id === basketItemId,
