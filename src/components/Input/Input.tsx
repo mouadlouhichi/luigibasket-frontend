@@ -52,7 +52,7 @@ export interface InputProps
   type?: string;
   font?: "base";
   rounded?: "rounded-2xl" | "full" | "min";
-  inputMode?: string;
+  inputMode?: "email" | "search" | "tel" | "text" | "url" | "none" | "numeric" | "decimal" | undefined;
 }
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
