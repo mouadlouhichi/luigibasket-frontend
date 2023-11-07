@@ -1,12 +1,15 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import { Product } from "@prisma/client";
 import { Control, Controller, FormState } from "react-hook-form";
 
 import Input from "@/components/Input";
 
 interface Props {
   loading?: boolean;
+  product: Product;
   formState: FormState<{
     price: number;
     quantity: number;
@@ -22,7 +25,7 @@ interface Props {
   >;
 }
 
-const AddProductForm: React.FC<Props> = ({ control, formState }) => {
+const AddProductForm: React.FC<Props> = ({ control, formState, product }) => {
   // Define the component's logic and rendering here deploy
 
   return (
@@ -34,6 +37,23 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
           <span className="block font-semibold text-xl sm:text-2xl my-4">
             Ajoutez ce produit
           </span>
+          <div className="w-full  gap-2 flex">
+            <div>
+              <Image
+                src={product.image}
+                alt="listing card gallery"
+                className={`relative object-cover rounded-2xl `}
+                width={100}
+                height={100}
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="text-base  font-bold">{product.name}</span>
+              <span className="text-sm  font-semibold bg-primary-200 text-white px-4 w-fit rounded-xl">
+                {product.category}
+              </span>
+            </div>
+          </div>
           <label className="flex items-center gap-2 relative justify-between">
             <span className="font-medium text-neutral-800 dark:text-neutral-200">
               Prix
@@ -48,7 +68,7 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
                   className="mt-1 w-3/4"
                   rounded="min"
                   pattern="[0-9]*"
-                  inputmode="numeric"
+                  inputMode="numeric"
                   {...field}
                 />
               )}
@@ -74,7 +94,7 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
                   className="mt-1 w-3/4"
                   rounded="min"
                   pattern="[0-9]*"
-                  inputmode="numeric"
+                  inputMode="numeric"
                   {...field}
                 />
               )}
@@ -100,7 +120,7 @@ const AddProductForm: React.FC<Props> = ({ control, formState }) => {
                   className="mt-1 w-3/4"
                   rounded="min"
                   pattern="[0-9]*"
-                  inputmode="numeric"
+                  inputMode="numeric"
                   {...field}
                 />
               )}

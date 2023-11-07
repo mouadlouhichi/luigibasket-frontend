@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, Fragment } from "react";
+import React, { FC, Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,15 +29,37 @@ const AddProductModal: FC<AddProductModalProps> = ({
   showDialog = false,
   setShowDialog = () => {},
   resetIsShowingDialog = () => {},
+  product,
 }) => {
-  const { handleSubmit, control, reset, formState } = useForm<IBasketForm>({
-    defaultValues: {
-      price: 0,
-      quantity: 0,
-      total: 0,
-    },
-    resolver: zodResolver(basketItemSchema),
-  });
+  const { handleSubmit, control, resetField, formState, watch, setValue } =
+    useForm<IBasketForm>({
+      resolver: zodResolver(basketItemSchema),
+    });
+
+  const watchTotal = watch("total", 0);
+  const watchPrice = watch("price", 0);
+  const watchQuantity = watch("quantity", 0);
+
+  useEffect(() => {
+    if (watchPrice && watchQuantity) {
+      setValue("total", watchPrice * watchQuantity);
+    } /* else if (!watchQuantity) {
+      setValue("total", NaN);
+    } */
+  }, [watchQuantity, watchPrice]);
+
+  useEffect(() => {
+    if (
+      watchPrice &&
+      watchQuantity &&
+      watchTotal !== watchPrice * watchQuantity
+    ) {
+      setValue("price", NaN);
+      setValue("quantity", NaN);
+    }
+    console.log(watchTotal);
+  }, [watchTotal]);
+
   return (
     <div className="AddProductModal">
       <Transition appear show={showModal} as={Fragment}>
@@ -69,6 +91,7 @@ const AddProductModal: FC<AddProductModalProps> = ({
                         <AddProductForm
                           control={control}
                           formState={formState}
+                          product={product}
                         />
                       </div>
                       <div className="px-4 py-3 bg-white dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-700 flex justify-between">
