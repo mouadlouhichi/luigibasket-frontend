@@ -8,9 +8,12 @@ import useAppStore from "@/store";
 import { Dialog, Transition } from "@headlessui/react";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import ReactPDF, { PDFDownloadLink } from "@react-pdf/renderer";
 
 import { useIsClient } from "@/hooks/use-is-client";
 import Button from "@/components/Button";
+
+import CartDoc from "./CartDoc";
 
 interface CartProps {
   className?: string;
@@ -113,11 +116,11 @@ const Cart: FC<CartProps> = ({
                             </div>
                           ))
                         ) : (
-                          <div className="flex h-full justify-center gap-4 flex-col items-center -translate-y-20">
+                          <div className="flex justify-center gap-4 flex-col items-center translate-y-20">
                             <Image
                               src={noProduct}
                               alt="no product"
-                              className={`object-cover w-40  `}
+                              className={`object-cover w-40`}
                             />
                             <p className="text-xl  font-bold text-gray-600">
                               Votre panier est vide
@@ -134,7 +137,16 @@ const Cart: FC<CartProps> = ({
                               closeModal();
                             }}
                           >
-                            Sauvegarder
+                            <PDFDownloadLink
+                              document={<CartDoc />}
+                              fileName="fee_acceptance.pdf"
+                            >
+                              {({ blob, url, loading, error }) =>
+                                loading
+                                  ? "Loading"
+                                  : "Sauvegarder"
+                              }
+                            </PDFDownloadLink>
                             <Icons.Save className="w-5 h-5 ml-2" />
                           </Button>
                         </div>
