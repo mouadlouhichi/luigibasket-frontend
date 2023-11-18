@@ -119,8 +119,8 @@ const useAppStore = create<initialState>()(
           if (existingItemIndex !== -1) {
             // If the item already exists in the cart, remove the item
             const updatedItems = [...state.cart.basketItems];
-            updatedItems.map((item) => item.id !== basketItem.id);
-
+            // remove the item
+            updatedItems.splice(existingItemIndex, 1);
             return {
               ...state,
               cart: { ...state.cart, basketItems: updatedItems },

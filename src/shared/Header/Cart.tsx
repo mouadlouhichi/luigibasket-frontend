@@ -83,7 +83,7 @@ const Cart: FC<CartProps> = ({
                                       className={`object-cover   rounded-xl`}
                                     />
                                   </div>
-                                  <div className="flex justify-center flex-col">
+                                  <div className="flex justify-between flex-col">
                                     <span className="text-base  font-bold">
                                       {item.name}
                                     </span>
@@ -105,7 +105,7 @@ const Cart: FC<CartProps> = ({
                                     className=""
                                     onClick={() => removeBasketItem(item)}
                                   >
-                                    <TrashIcon className="w-5 h-5 text-secondary-6000 dark:text-white" />
+                                    <TrashIcon className="w-5 h-5 mt-1 text-secondary-6000 dark:text-white" />
                                   </button>
                                 </div>
                               </div>
