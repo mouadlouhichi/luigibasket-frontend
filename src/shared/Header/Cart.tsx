@@ -69,7 +69,7 @@ const Cart: FC<CartProps> = ({
                         </button>
                       </div>
                       <div className="h-full">
-                        {cart && cart.basketItems.length > 0 && mounted
+                        {cart && cart.basketItems?.length > 0 && mounted
                           ? cart.basketItems.map((item) => (
                               <div className="flex flex-col p-4 " key={item.id}>
                                 <div className="flex justify-between">
@@ -110,7 +110,8 @@ const Cart: FC<CartProps> = ({
                                 </div>
                               </div>
                             ))
-                          : cart && cart.basketItems.length === 0 && (
+                          : cart &&
+                            cart.basketItems?.length === 0 && (
                               <div className="flex h-full justify-center gap-4 flex-col items-center -translate-y-20">
                                 <Image
                                   src={noProduct}
