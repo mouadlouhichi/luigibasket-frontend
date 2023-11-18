@@ -2,6 +2,7 @@
 
 import React, { FC, Fragment } from "react";
 import Image from "next/image";
+import noProduct from "@/images/icons/no-product.svg";
 import useAppStore from "@/store";
 import { Dialog, Transition } from "@headlessui/react";
 import { TrashIcon } from "@heroicons/react/24/outline";
@@ -60,57 +61,67 @@ const Cart: FC<CartProps> = ({
                   {showDialog && (
                     <div className="relative w-[calc(100%-3rem)] h-full overflow-hidden flex-1 flex flex-col ">
                       <div className=" flex w-full border-b p-4  justify-between items-center">
-                        <h1 className="text-xl font-bold text-center">
+                        <h1 className="text-xl font-bold font-display text-center">
                           Produits de Basket
                         </h1>
                         <button className="" onClick={closeModal}>
                           <XMarkIcon className="w-5 h-5 text-black dark:text-white" />
                         </button>
                       </div>
-                      <div className="">
-                        {cart &&
-                          cart.basketItems &&
-                          mounted &&
-                          cart.basketItems.map((item) => (
-                            <div className="flex flex-col p-4 " key={item.id}>
-                              <div className="flex justify-between">
-                                <div className="flex space-x-4 ">
-                                  <div className=" w-20 h-24  relative flex items-center justify-center">
-                                    <Image
-                                      src={item.image}
-                                      fill
-                                      alt="listing card gallery"
-                                      className={`object-cover   rounded-xl`}
-                                    />
-                                  </div>
-                                  <div className="flex justify-between flex-col">
-                                    <span className="text-base  font-bold">
-                                      {item.name}
-                                    </span>
+                      <div className="h-full">
+                        {cart && cart.basketItems.length > 0 && mounted
+                          ? cart.basketItems.map((item) => (
+                              <div className="flex flex-col p-4 " key={item.id}>
+                                <div className="flex justify-between">
+                                  <div className="flex space-x-4 ">
+                                    <div className=" w-20 h-24  relative flex items-center justify-center">
+                                      <Image
+                                        src={item.image}
+                                        fill
+                                        alt="listing card gallery"
+                                        className={`object-cover   rounded-xl`}
+                                      />
+                                    </div>
+                                    <div className="flex justify-between flex-col">
+                                      <span className="text-base  font-bold">
+                                        {item.name}
+                                      </span>
 
-                                    <p className="text-xs text-gray-600">
-                                      prix unitaire: {item.price} DH
-                                    </p>
-                                    <p className="text-xs text-gray-600">
-                                      quantité: {item.quantity}
-                                    </p>
+                                      <p className="text-xs text-gray-600">
+                                        prix unitaire: {item.price} DH
+                                      </p>
+                                      <p className="text-xs text-gray-600">
+                                        quantité: {item.quantity}
+                                      </p>
 
-                                    <p className="font-semibold text-primary-6000">
-                                      total: {item.totalPrice} DH
-                                    </p>
+                                      <p className="font-semibold text-primary-6000">
+                                        total: {item.totalPrice} DH
+                                      </p>
+                                    </div>
                                   </div>
-                                </div>
-                                <div>
-                                  <button
-                                    className=""
-                                    onClick={() => removeBasketItem(item)}
-                                  >
-                                    <TrashIcon className="w-5 h-5 mt-1 text-secondary-6000 dark:text-white" />
-                                  </button>
+                                  <div>
+                                    <button
+                                      className=""
+                                      onClick={() => removeBasketItem(item)}
+                                    >
+                                      <TrashIcon className="w-5 h-5 mt-1 text-secondary-6000 dark:text-white" />
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          ))}
+                            ))
+                          : cart.basketItems.length === 0 && (
+                              <div className="flex h-full justify-center gap-4 flex-col items-center -translate-y-20">
+                                <Image
+                                  src={noProduct}
+                                  alt="no product"
+                                  className={`object-cover w-40  `}
+                                />
+                                <p className="text-2xl font-display font-bold text-gray-600">
+                                  Votre panier est vide
+                                </p>
+                              </div>
+                            )}
                       </div>
                     </div>
                   )}
