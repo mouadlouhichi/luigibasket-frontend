@@ -103,7 +103,7 @@ const Cart: FC<CartProps> = ({
                                 <div>
                                   <button
                                     className=""
-                                    onClick={() => removeBasketItem(item.id)}
+                                    onClick={() => removeBasketItem(item)}
                                   >
                                     <TrashIcon className="w-5 h-5 text-secondary-6000 dark:text-white" />
                                   </button>

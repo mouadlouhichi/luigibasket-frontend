@@ -42,6 +42,11 @@ type initialState = {
   addBasketItem: (basketItem: BasketItemObject, userId: string) => void;
   removeBasketItem: (basketItem: BasketItemObject) => void;
   getBasketCount: () => number;
+  updateBasetItem: (
+    basketItemId: string,
+    field: BasketItemAttr,
+    value: BasketItemValue,
+  ) => void;
 };
 
 const useAppStore = create<initialState>()(
