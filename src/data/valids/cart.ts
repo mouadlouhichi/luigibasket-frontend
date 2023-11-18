@@ -7,7 +7,7 @@ export const basketItemSchema = z.object({
   price: z.number().min(0, {
     message: "Price must be at least 0",
   }),
-  total: z.number().min(0, {
+  totalPrice: z.number().min(0, {
     message: "Total must be at least 0",
   }),
 });

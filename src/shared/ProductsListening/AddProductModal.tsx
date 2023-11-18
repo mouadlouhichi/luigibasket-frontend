@@ -1,11 +1,15 @@
 "use client";
 
-import React, { FC, Fragment, useEffect } from "react";
+import React, { FC, Fragment, use, useCallback, useEffect } from "react";
+import useAppStore from "@/store";
+import ncNanoId from "@/utils/ncNanoId";
 import { Dialog, Transition } from "@headlessui/react";
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Product } from "@prisma/client";
-import { useForm } from "react-hook-form";
+import { Decimal } from "@prisma/client/runtime";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { nan } from "zod";
 
 import { basketItemSchema, IBasketForm } from "@/data/valids/cart";
 import ButtonSubmit from "@/components/Button";
@@ -22,6 +26,12 @@ interface AddProductModalProps {
   product: Product;
 }
 
+type FormValues = {
+  price: number;
+  quantity: number;
+  totalPrice: number;
+};
+
 const AddProductModal: FC<AddProductModalProps> = ({
   className = "",
   closeModal = () => {},
@@ -36,13 +46,13 @@ const AddProductModal: FC<AddProductModalProps> = ({
       resolver: zodResolver(basketItemSchema),
     });
 
-  const watchTotal = watch("total", 0);
+  const watchTotal = watch("totalPrice", 0);
   const watchPrice = watch("price", 0);
   const watchQuantity = watch("quantity", 0);
 
   useEffect(() => {
     if (watchPrice && watchQuantity) {
-      setValue("total", watchPrice * watchQuantity);
+      setValue("totalPrice", watchPrice * watchQuantity);
     } /* else if (!watchQuantity) {
       setValue("total", NaN);
     } */
@@ -59,6 +69,33 @@ const AddProductModal: FC<AddProductModalProps> = ({
     }
     console.log(watchTotal);
   }, [watchTotal]);
+
+  const { addBasketItem } = useAppStore();
+
+  const onSubmit = useCallback<SubmitHandler<FormValues>>(
+    async (data) => {
+      try {
+        addBasketItem(
+          {
+            id: ncNanoId(),
+            productId: product.id.toString(),
+            quantity: data.quantity,
+            price: data.price,
+            totalPrice: data.totalPrice,
+            name : product.name,
+            image : product.image,
+            description : product.description || "",
+            category : product.category,
+          },
+          "GUEST",
+        );
+        closeModal();
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    [product],
+  );
 
   return (
     <div className="AddProductModal">
@@ -79,9 +116,12 @@ const AddProductModal: FC<AddProductModalProps> = ({
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-52"
               >
-                <Dialog.Panel className="relative h-full overflow-hidden flex-1 flex flex-col justify-between ">
+                <Dialog.Panel className="relative w-full">
                   {showDialog && (
-                    <>
+                    <form
+                      onSubmit={handleSubmit(onSubmit)}
+                      className="relative h-full overflow-hidden flex-1 flex flex-col justify-between "
+                    >
                       <div className="absolute left-4 top-4">
                         <button className="" onClick={closeModal}>
                           <XMarkIcon className="w-5 h-5 text-black dark:text-white" />
@@ -105,17 +145,13 @@ const AddProductModal: FC<AddProductModalProps> = ({
                         >
                           Réinitialiser
                         </button>
-                        <ButtonSubmit
-                          onClick={() => {
-                            closeModal();
-                          }}
-                        >
+                        <ButtonSubmit type="submit">
                           {" "}
                           Ajouter
                           <PlusIcon className="w-5 h-5 ml-2 text-white dark:text-primary-6000" />
                         </ButtonSubmit>
                       </div>
-                    </>
+                    </form>
                   )}
                 </Dialog.Panel>
               </Transition.Child>

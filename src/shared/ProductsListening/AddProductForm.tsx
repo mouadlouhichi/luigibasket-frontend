@@ -13,13 +13,13 @@ interface Props {
   formState: FormState<{
     price: number;
     quantity: number;
-    total: number;
+    totalPrice: number;
   }>;
   control: Control<
     {
       price: number;
       quantity: number;
-      total: number;
+      totalPrice: number;
     },
     any
   >;
@@ -65,19 +65,21 @@ const AddProductForm: React.FC<Props> = ({ control, formState, product }) => {
                 <Input
                   type="number"
                   placeholder="Prix unitaire"
-                  className="mt-1 w-3/4"
+                  className={`mt-1 w-3/4 ${
+                    formState.errors.price
+                      ? "border-red-500 dark:border-red-500"
+                      : ""
+                  }}`}
                   rounded="min"
                   pattern="[0-9]*"
                   inputMode="numeric"
-                  {...field}
+                  value={field.value}
+                  onChange={(e) => {
+                    field.onChange(parseInt(e.target.value, 10));
+                  }}
                 />
               )}
             />
-            {formState.errors.price && (
-              <p className="text-sm text-red-500 dark:text-red-500 absolute">
-                {formState.errors.price.message}
-              </p>
-            )}
           </label>
 
           <label className="flex items-center gap-2 relative justify-between">
@@ -95,15 +97,13 @@ const AddProductForm: React.FC<Props> = ({ control, formState, product }) => {
                   rounded="min"
                   pattern="[0-9]*"
                   inputMode="numeric"
-                  {...field}
+                  value={field.value}
+                  onChange={(e) => {
+                    field.onChange(parseInt(e.target.value, 10));
+                  }}
                 />
               )}
             />
-            {formState.errors.quantity && (
-              <p className="text-sm text-red-500 dark:text-red-500 absolute ">
-                {formState.errors.quantity.message}
-              </p>
-            )}
           </label>
           <div className="w-full border-b my-4 border-neutral-200 dark:border-neutral-700"></div>
           <label className="flex items-center gap-8 relative justify-between">
@@ -111,7 +111,7 @@ const AddProductForm: React.FC<Props> = ({ control, formState, product }) => {
               Total
             </span>
             <Controller
-              name="total"
+              name="totalPrice"
               control={control}
               render={({ field }) => (
                 <Input
@@ -121,15 +121,13 @@ const AddProductForm: React.FC<Props> = ({ control, formState, product }) => {
                   rounded="min"
                   pattern="[0-9]*"
                   inputMode="numeric"
-                  {...field}
+                  value={field.value}
+                  onChange={(e) => {
+                    field.onChange(parseInt(e.target.value, 10));
+                  }}
                 />
               )}
             />
-            {formState.errors.total && (
-              <p className="text-sm text-red-500 dark:text-red-500 ">
-                {formState.errors.total.message}
-              </p>
-            )}
           </label>
         </div>
       </div>

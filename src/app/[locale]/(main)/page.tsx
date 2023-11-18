@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useTranslations } from "next-intl";
+import { Icons } from "@/images/icons/index";
 
 import { LP_GRID_ITEMS } from "@/data/lp-items";
 import ProductsListening from "@/shared/ProductsListening";
@@ -32,9 +33,11 @@ function PageHome() {
               </p>
               <Button href="#products" className="mr-3">
                 Nouveau Achats
+                <Icons.ShoppingCart className="ml-2 h-5 w-5" />
               </Button>
               <Button href="https://vercel.com/" intent="secondary">
                 Historique
+                <Icons.History className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </div>
