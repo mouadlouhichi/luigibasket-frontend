@@ -488,8 +488,8 @@ devDependencies:
     specifier: ^0.13.0
     version: 0.13.0(@types/node@20.7.0)(encoding@0.1.13)(ts-node@10.9.1)
   '@t3-oss/env-nextjs':
-    specifier: ^0.6.1
-    version: 0.6.1(typescript@5.2.2)(zod@3.22.2)
+    specifier: ^0.11.0
+    version: 0.11.0(typescript@5.2.2)(zod@3.22.2)
   '@tailwindcss/aspect-ratio':
     specifier: ^0.4.2
     version: 0.4.2(tailwindcss@3.3.3)
@@ -6592,8 +6592,6 @@ packages:
     peerDependenciesMeta:
       '@next/font':
         optional: true
-      '@storybook/addon-actions':
-        optional: true
       typescript:
         optional: true
       webpack:
@@ -7153,23 +7151,29 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
-  /@t3-oss/env-core@0.6.1(typescript@5.2.2)(zod@3.22.2):
-    resolution: {integrity: sha512-KQD7qEDJtkWIWWmTVjNvk0wnHpkvAQ6CRbUxbWMFNG/fiosBQDQvtRpBNu6USxBscJCoC4z6y7P9MN52/mLOzw==}
+  /@t3-oss/env-core@0.11.0(typescript@5.2.2)(zod@3.22.2):
+    resolution: {integrity: sha512-PSalC5bG0a7XbyoLydiQdAnx3gICX6IQNctvh+TyLrdFxsxgocdj9Ui7sd061UlBzi+z4aIGjnem1kZx9QtUgQ==}
     peerDependencies:
-      typescript: '>=4.7.2'
+      typescript: '>=5.0.0'
       zod: ^3.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
       typescript: 5.2.2
       zod: 3.22.2
     dev: true
 
-  /@t3-oss/env-nextjs@0.6.1(typescript@5.2.2)(zod@3.22.2):
-    resolution: {integrity: sha512-z1dIC++Vxj9kmzX5nSPfcrCSkszy3dTEPC4Ssx7Ap5AqR3c2Qa7S0xf8axn6coy7D/vCXDAAnHYnCMDhtcY3SQ==}
+  /@t3-oss/env-nextjs@0.11.0(typescript@5.2.2)(zod@3.22.2):
+    resolution: {integrity: sha512-gcRrY2CzSMSrxDf5+fKCUfzbBK125IxOcJHcoMVdjcTmYxEgIZFZ5qPPtngOY3UmTeXSqRZOGuNiosqWTFTkMw==}
     peerDependencies:
-      typescript: '>=4.7.2'
+      typescript: '>=5.0.0'
       zod: ^3.0.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
-      '@t3-oss/env-core': 0.6.1(typescript@5.2.2)(zod@3.22.2)
+      '@t3-oss/env-core': 0.11.0(typescript@5.2.2)(zod@3.22.2)
       typescript: 5.2.2
       zod: 3.22.2
     dev: true
